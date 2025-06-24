@@ -74,3 +74,7 @@
 	//#endif /* OPLUS_FEATURE_THERMAL_HORAE */
 
 };
+
+&wlan_direct_link {
+	status = "disabled";
+}
