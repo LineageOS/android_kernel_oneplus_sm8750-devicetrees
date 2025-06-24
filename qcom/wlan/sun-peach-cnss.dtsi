@@ -209,6 +209,7 @@
 		qcom,iommu-group = <&cnss_audio_iommu_group0>;
 		memory-region = <&direct_link_iommu_region_partition>;
 		dma-coherent;
+		status = "disabled";
 
 		direct_link_iommu_region_partition: direct_link_iommu_region_partition {
 			iommu-addresses = <&wlan_direct_link 0x00000000 0x18000000>,
