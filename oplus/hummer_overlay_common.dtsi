@@ -49,3 +49,7 @@
     };
     //#endif /* CONFIG_HMBIRD_SCHED */
 };
+
+&wlan_direct_link {
+    status = "disabled";
+}
