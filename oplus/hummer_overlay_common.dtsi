@@ -49,3 +49,7 @@
     };
     //#endif /* CONFIG_HMBIRD_SCHED */
 };
+
+&adspslpi_mem {
+	reg = <0x0 0x9ee00000 0x0 0x5a80000>;
+};
