@@ -3777,6 +3777,17 @@
 		size = <0x0 0x1400000>;
 	};
 
+	// #ifdef OPLUS_FEATURE_UFF_FINGERPRINT
+	/* ref: platform/vendor/qcom-opensource/devicetree ---> qcom/sun.dtsi */
+	qseecom_ta_mem_cust: qseecom_ta_region_cust {
+		compatible = "removed-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		no-map;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1000000>; /* size to 20MB for max TA size */
+	};
+	// #endif /* OPLUS_FEATURE_UFF_FINGERPRINT */
+
 	/* merged aop_config, tme_crash_dump, tme_log and uefi_log regions */
 	aop_tme_uefi_merged_mem: aop_tme_uefi_merged_region@81c80000 {
 		no-map;
