@@ -39,7 +39,6 @@
 		qcom,dynamic-mode-switch-type = "dynamic-resolution-switch-immediate";
 		qcom,mdss-dsi-display-timings {
 			timing@0 {
-				#include "dsi-panel-AC274-P-3-A0026-common.dtsi"
 				cell-index = <0>;
 				//qcom,mdss-mdp-transfer-time-us = <6290>;
 				//qcom,mdss-dsi-panel-jitter = <0x4 0x1>;
@@ -178,6 +177,32 @@
 					39 00 00 20 00 00 14 A9 02 09 B0 00 00 01 01 00 8B 00 01 00 00 01 00 87 00 00 00
 				];
 
+				qcom,dsi-panel-date-switch-command = [
+					/*read panel info switch page 01*/
+					39 00 00 00 00 00 06 F0 55 AA 52 08 01
+				];
+
+				qcom,mdss-dsi-default-switch-page-command = [
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+				];
+
+				qcom,mdss-dsi-vid-120hz-switch-command = [
+					15 00 00 20 00 00 02 2F 01
+				];
+
+				qcom,mdss-dsi-vid-90hz-switch-command = [
+					15 00 00 10 00 00 02 2F 02
+				];
+
+				qcom,mdss-dsi-vid-60hz-switch-command = [
+					15 00 00 10 00 00 02 2F 03
+				];
+
+				qcom,dsi-panel-date-switch-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-default-switch-page-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-vid-120hz-switch-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-vid-90hz-switch-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-vid-60hz-switch-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-lp1-command-state = "dsi_hs_mode";
@@ -261,6 +286,9 @@
 	qcom,dsi-dfps-vfp-list       = <84     1036  2996  84>;
 	qcom,dsi-dfps-vbp-list       = <26     26    26    26>;
 	qcom,dsi-dfps-vpw-list       = <2      2     2     2>;
+
+	/* ignore some fps swicth factory test */
+	oplus,factory-ignore-mode = <1 5>;
 
 	/* OPLUS FEATURES CONFIG */
 	oplus,dsi-serial-number-enabled;
