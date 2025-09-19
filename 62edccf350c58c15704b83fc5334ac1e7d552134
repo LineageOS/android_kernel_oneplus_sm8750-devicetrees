@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e4b4ef9_f8ab88de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-19T19:05:47Z",
+      "side": 1,
+      "message": "We can move this to dodge and erhai. At least pagani should be fine, since it has 15.0.2 FW.",
+      "revId": "62edccf350c58c15704b83fc5334ac1e7d552134",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
