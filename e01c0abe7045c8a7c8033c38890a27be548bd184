@@ -34,6 +34,24 @@
       "parentUuid": "641ed44c_30bdbf09",
       "revId": "e01c0abe7045c8a7c8033c38890a27be548bd184",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ef06c87_e70afa66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2025-09-20T07:42:58Z",
+      "side": 1,
+      "message": "that\u0027s our usecase, but technically different targets can co-exist, so it should be allowed in makefile",
+      "parentUuid": "0546ade7_f54a6c69",
+      "revId": "e01c0abe7045c8a7c8033c38890a27be548bd184",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
