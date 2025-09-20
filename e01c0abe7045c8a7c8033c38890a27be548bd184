@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "641ed44c_30bdbf09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2025-09-20T01:38:41Z",
+      "side": 1,
+      "message": "I prefer not to use `else` here since they are not mutually exclusive",
+      "revId": "e01c0abe7045c8a7c8033c38890a27be548bd184",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
