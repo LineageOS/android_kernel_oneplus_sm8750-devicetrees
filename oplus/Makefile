@@ -11,6 +11,8 @@ OPLUS_SUN_BOARDS += dodge-23821-sun-overlay.dtbo\
 else ifeq ($(CONFIG_ERHAI_DTB),y)
 OPLUS_SUN_BOARDS += erhai-24926-sun-overlay.dtbo\
                     erhai-24926-sun-overlay-DVT.dtbo\
+                    erhai-24974-sun-overlay.dtbo\
+                    erhai-24974-eu-sun-overlay.dtbo\
                     erhai-24976-sun-overlay.dtbo\
                     erhai-24976-sun-overlay-DVT.dtbo\
                     erhai-24976-eu-sun-overlay.dtbo\

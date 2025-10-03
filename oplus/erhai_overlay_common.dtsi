@@ -143,6 +143,9 @@
 	//#endif /* CONFIG_HMBIRD_SCHED */
 };
 
+&modem_pas {
+    status = "no";
+};
 &dsm_partition_1_mem {
     status = "disabled";
 };
@@ -154,17 +157,6 @@
 };
 &qdss_apps_mem {
     status = "disabled";
-};
-
-&soc {
-	oplus_mm_config: oplus,mm_config {
-		compatible = "oplus,mm_osvelte-config";
-		ram-8g {
-			oplus_bsp_uxmem_opt {
-				feature-disable;
-			};
-		};
-	};
 };
 
 &adspslpi_mem {
