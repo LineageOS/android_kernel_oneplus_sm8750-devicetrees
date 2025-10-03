@@ -4,7 +4,7 @@
 		oplus,gauge_ic = <&oplus_adsp_gauge &oplus_ext_gauge>;
 		oplus,gauge_ic_index = <0 1>;
 		oplus,gauge_ic_func_group = <&adsp_gauge_groups &bq27541_groups>;
-		oplus,batt_capacity_mah = <11740>;
+		oplus,batt_capacity_mah = <12140>;
 		oplus,ic_type = <OPLUS_CHG_IC_VIRTUAL_GAUGE>;
 		oplus,ic_index = <0>;
 	};
@@ -177,5 +177,13 @@
 		qcom,modify-soc-calibration;
 		oplus,support_extern_cmd;
 		oplus,batt_num = <1>;
+	};
+};
+
+&soc {
+	/* support battery health, not support rapid smart charge */
+	oplus_smart_charge: oplus,smart_charge {
+		compatible = "oplus,smart_charge";
+		oplus,smart_chg_soh_support;
 	};
 };
