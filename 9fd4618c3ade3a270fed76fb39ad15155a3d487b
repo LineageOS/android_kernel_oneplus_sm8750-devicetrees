@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb7ccbf2_b9d36882",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-10-03T07:56:08Z",
+      "side": 1,
+      "message": "oplus/tp/erhai-oplus-tp_firmware_nt36536.dtsi looks the same, apart from new trailing spaces here and there.",
+      "revId": "9fd4618c3ade3a270fed76fb39ad15155a3d487b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
