@@ -14,7 +14,9 @@ OPLUS_SUN_BOARDS += erhai-24926-sun-overlay.dtbo\
                     erhai-24976-sun-overlay.dtbo\
                     erhai-24976-sun-overlay-DVT.dtbo\
                     erhai-24976-eu-sun-overlay.dtbo\
-                    erhai-24976-eu-sun-overlay-DVT.dtbo
+                    erhai-24976-eu-sun-overlay-DVT.dtbo\
+                    erhai-24974-sun-overlay.dtbo\
+                    erhai-24974-eu-sun-overlay.dtbo
 else ifeq ($(CONFIG_HUMMER_DTB),y)
 OPLUS_SUN_BOARDS += hummer-24811-sun-overlay.dtbo
 else ifeq ($(CONFIG_PAGANI_DTB),y)
