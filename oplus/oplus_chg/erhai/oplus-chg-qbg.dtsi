@@ -5,7 +5,7 @@
 		oplus,gauge_ic = <&oplus_adsp_gauge &maxim_encryption_gauge>;
 		oplus,gauge_ic_index = <0 1>;
 		oplus,gauge_ic_func_group = <&adsp_gauge_groups &maxim_encryption_gauge_groups>;
-		oplus,batt_capacity_mah = <11740>;
+		oplus,batt_capacity_mah = <12140>;
 		oplus,ic_type = <OPLUS_CHG_IC_VIRTUAL_GAUGE>;
 		oplus,ic_index = <0>;
 	};

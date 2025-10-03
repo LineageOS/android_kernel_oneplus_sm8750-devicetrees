@@ -45,8 +45,8 @@
 		touchpanel,pen-max-tilt = <60 60>;
 		touchpanel,msecs-to-jiffies-time = <100>;
 		touchpanel,smooth-level = <255 32 64 96 128 254>;
-		touchpanel,sensitive-level = <255 20 15 10 6 3>;
-		touchpanel,sensitive-level-charging = <255 30 20 15 9 6>;
+		touchpanel,sensitive-level = <255 20 15 12 10 5>;
+		touchpanel,sensitive-level-charging = <255 30 20 15 12 7>;
 
 		panel_type = <15>;
 		// type of tp_dev ,TP-HUAXING = 15;
@@ -76,6 +76,8 @@
 		fw_update_in_probe_with_headfile;
 		black_gesture_indep_support;
 		report_rate_limit;
+		tp_scene_para_switch_support;
+		exception_upload_support;
 
 		/*
 		 *Virtual Key Config:
