@@ -100,6 +100,19 @@
 };
 
 &soc {
+	gpio_keys {
+		lid {
+			label = "lid";
+			gpios = <&tlmm 97 1>;
+			interrupt-parent = <&tlmm>;
+			interrupts = <97 0x0>;
+			linux,input-type = <EV_SW>;
+			linux,code = <0>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+	};
+
 	//#ifdef OPLUS_FEATURE_RF_CABLE_DETECT
 	oplus_rf_cable {
 		compatible = "oplus,rf_cable";
