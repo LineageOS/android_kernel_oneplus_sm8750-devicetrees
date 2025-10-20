@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &tlmm {
@@ -89,6 +89,36 @@
 				pins = "gpio64";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
+				output-high;
+			};
+		};
+	};
+
+	i2s0_sd1 {
+		i2s0_sd1_sleep: i2s0_sd1_sleep {
+			mux {
+				pins = "gpio63";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio63";
+				drive-strength = <2>; /* 2 mA */
+				bias-pull-down; /* PULL DOWN */
+				input-enable;
+			};
+		};
+
+		i2s0_sd1_active: i2s0_sd1_active {
+			mux {
+				pins = "gpio63";
+				function = "i2s0_data1";
+			};
+
+			config {
+				pins = "gpio63";
+				drive-strength = <8>; /* 8 mA */
+				bias-disable; /* NO PULL */
 				output-high;
 			};
 		};
@@ -1925,6 +1955,65 @@
 		};
 	};
 
+	/* sdcc1 pins */
+	sdc1_on: sdc1_on {
+		clk {
+			pins = "gpio121";
+			function = "sdc1_clk";
+			bias-disable;
+			drive-strength = <8>;
+		};
+
+		cmd {
+			pins = "gpio123";
+			function = "sdc1_cmd";
+			bias-pull-up;
+			drive-strength = <8>;
+		};
+
+		data {
+			pins = "gpio124", "gpio125", "gpio126", "gpio127", "gpio128", "gpio129", "gpio130", "gpio131";
+			function = "sdc1_data";
+			bias-pull-up;
+			drive-strength = <8>;
+		};
+
+		rclk {
+			pins = "gpio120";
+			function = "sdc1_rclk";
+			bias-pull-down;
+		};
+	};
+
+	sdc1_off: sdc1_off {
+		clk {
+			pins = "gpio121";
+			function = "sdc1_clk";
+			bias-disable;
+			drive-strength = <2>;
+		};
+
+		cmd {
+			pins = "gpio123";
+			function = "sdc1_cmd";
+			bias-pull-up;
+			drive-strength = <2>;
+		};
+
+		data {
+			pins = "gpio124", "gpio125", "gpio126", "gpio127", "gpio128", "gpio129", "gpio130", "gpio131";
+			function = "sdc1_data";
+			bias-pull-up;
+			drive-strength = <2>;
+		};
+
+		rclk {
+			pins = "gpio120";
+			function = "sdc1_rclk";
+			bias-pull-down;
+		};
+	};
+
 	/* sdcc2 pins */
 	sdc2_on: sdc2_on {
 		clk {
@@ -1981,6 +2070,61 @@
 			pins = "gpio58";
 			bias-pull-up;
 			drive-strength = <2>;
+		};
+	};
+
+	pcie0 {
+		pcie0_perst_default: pcie0_perst_default {
+			mux {
+				pins = "gpio78";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio78";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+
+		pcie0_clkreq_default: pcie0_clkreq_default {
+			mux {
+				pins = "gpio80";
+				function = "pcie0_clk_req_n";
+			};
+
+			config {
+				pins = "gpio80";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		pcie0_wake_default: pcie0_wake_default {
+			mux {
+				pins = "gpio114";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio114";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		pcie0_clkreq_sleep: pcie0_clkreq_sleep {
+			mux {
+				pins = "gpio80";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio80";
+				drive-strength = <2>;
+				bias-pull-up;
+				input-enable;
+			};
 		};
 	};
 

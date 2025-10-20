@@ -30,6 +30,7 @@ endif
 
 ifeq ($(CONFIG_ARCH_RAVELIN),y)
 dtbo-y += nxp/ravelin-nfc.dtbo
+dtbo-y += nxp/montague-hsp-idp-nfc.dtbo
 endif
 
 

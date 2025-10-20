@@ -18,7 +18,9 @@
 	model = "Qualcomm Technologies, Inc. Kera MTP";
 	compatible = "qcom,kera-mtp", "qcom,kera", "qcom,kerap-mtp", "qcom,kerap",
                         "qcom,mtp";
-	qcom,msm-id = <686 0x10000>, <686 0x20000>, <659 0x10000>, <659 0x20000>;
+	qcom,msm-id = <686 0x10000>, <686 0x20000>, <659 0x10000>, <659 0x20000>,
+			<720 0x10000>, <720 0x20000>, <721 0x10000>, <721 0x20000>,
+			<731 0x10000>, <732 0x10000>, <731 0x20000>, <732 0x20000>;
 	qcom,board-id = <0x10008 0>, <0x10008 1>, <0x20008 0>, <0x20008 1>,
                         <0x30008 0>, <0x30008 1>;
 };

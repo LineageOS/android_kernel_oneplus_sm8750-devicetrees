@@ -13,6 +13,7 @@
 		qcom,bus-type=<0>;
 		qcom,notify-modem-status;
 		firmware-managed-resources;
+		gunyah-hypervisor;
 
 		#address-cells=<1>;
 		#size-cells=<1>;

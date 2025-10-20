@@ -12,6 +12,6 @@
 	model = "Qualcomm Technologies, Inc. Kera RCM";
 	compatible = "qcom,kera-rcm", "qcom,kera", "qcom,kerap-rcm", "qcom,kerap",
 			"qcom,rcm";
-	qcom,msm-id = <686 0x10000>, <659 0x10000>;
+	qcom,msm-id = <686 0x10000>, <659 0x10000>, <731 0x10000>, <732 0x10000>;
 	qcom,board-id = <0x10015 0>;
 };

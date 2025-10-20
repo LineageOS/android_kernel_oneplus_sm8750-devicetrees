@@ -27,7 +27,7 @@
 	#size-cells = <2>;
 
 	chosen {
-		bootargs = "log_buf_len=2M earlycon=msm_geni_serial,0x880000 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=off";
+		bootargs = "log_buf_len=2M earlycon=msm_geni_serial,0x880000 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=off fw_devlink.strict=1";
 	};
 
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
@@ -383,7 +383,7 @@
 
 		removed_region: removed_region@86200000 {
 			no-map;
-			reg = <0x0 0x86200000 0x0 0x2d00000>;
+			reg = <0x0 0x86200000 0x0 0x1900000>;
 		};
 
 		pil_camera_mem: camera_region@8ab00000 {
@@ -413,22 +413,22 @@
 
 		pil_adsp_mem: pil_adsp_region@95900000 {
 			no-map;
-			reg = <0x0 0x95900000 0x0 0x1e00000>;
+			reg = <0x0 0x95900000 0x0 0x1800000>;
 		};
 
-		pil_ipa_fw_mem: ips_fw_region@97700000 {
+		pil_ipa_fw_mem: ips_fw_region@97100000 {
 			no-map;
-			reg = <0x0 0x97700000 0x0 0x10000>;
+			reg = <0x0 0x97100000 0x0 0x10000>;
 		};
 
-		pil_ipa_gsi_mem: ipa_gsi_region@97710000 {
+		pil_ipa_gsi_mem: ipa_gsi_region@97110000 {
 			no-map;
-			reg = <0x0 0x97710000 0x0 0x5000>;
+			reg = <0x0 0x97110000 0x0 0x5000>;
 		};
 
-		pil_gpu_mem: gpu_region@97715000 {
+		pil_gpu_mem: gpu_region@97115000 {
 			no-map;
-			reg = <0x0 0x97715000 0x0 0x2000>;
+			reg = <0x0 0x97115000 0x0 0x2000>;
 		};
 
 		qseecom_mem: qseecom_region {
@@ -436,7 +436,7 @@
 			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 			reusable;
 			alignment = <0x0 0x400000>;
-			size = <0x0 0x1400000>;
+			size = <0x0 0x800000>;
 		};
 
 		kinfo_mem: debug_kinfo_region {
@@ -445,9 +445,9 @@
 			no-map;
 		};
 
-		cdsp_sec_mem: cdsp_sec_regions@9f800000 {
+		cdsp_sec_mem: cdsp_sec_regions@9ec00000 {
 			no-map;
-			reg = <0x0 0x9f800000 0x0 0x1e00000>;
+			reg = <0x0 0x9ec00000 0x0 0x1e00000>;
 		};
 
 		adsp_mem: adsp_region {
@@ -455,7 +455,7 @@
 			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 			reusable;
 			alignment = <0x0 0x400000>;
-			size = <0x0 0x800000>;
+			size = <0x0 0x400000>;
 		};
 
 		va_md_mem: va_md_mem_region {
@@ -486,7 +486,7 @@
 			alloc-ranges = <0 0x00000000 0 0xffffffff>;
 			reusable;
 			alignment = <0 0x400000>;
-			size = <0 0x1000000>;
+			size = <0 0x800000>;
 		};
 
 		sp_mem: sp_region {  /* SPSS-HLOS ION shared mem */
@@ -502,7 +502,7 @@
 			alloc-ranges = <0 0x00000000 0 0xffffffff>;
 			reusable;
 			alignment = <0 0x400000>;
-			size = <0 0x8c00000>;
+			size = <0 0x800000>;
 		};
 
 		cont_splash_memory: splash_region {
@@ -524,7 +524,7 @@
 			compatible = "shared-dma-pool";
 			alloc-ranges = <0 0x00000000 0 0xffffffff>;
 			reusable;
-			size = <0 0x2800000>;
+			size = <0 0x1000000>;
 		};
 
 		/* global autoconfigured region for contiguous allocations */
@@ -533,7 +533,7 @@
 			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 			reusable;
 			alignment = <0x0 0x400000>;
-			size = <0x0 0x2000000>;
+			size = <0x0 0x1c00000>;
 			linux,cma-default;
 		};
 	};
@@ -604,6 +604,10 @@
 		#dma-cells = <1>;
 		qcom,ee = <1>;
 		qcom,num-ees = <2>;
+		iommus = <&apps_smmu 0x17e6 0x0>,
+			<&apps_smmu 0x17ed 0x0>,
+			<&apps_smmu 0x17ee 0x0>,
+			<&apps_smmu 0x17f0 0x1>;
 	};
 
 	slim_aud: slim@62dc0000 {
@@ -615,6 +619,10 @@
 		dma-names = "rx", "tx";
 		#address-cells = <1>;
 		#size-cells = <0>;
+		iommus = <&apps_smmu 0x17e6 0x0>,
+			<&apps_smmu 0x17ed 0x0>,
+			<&apps_smmu 0x17ee 0x0>,
+			<&apps_smmu 0x17f0 0x1>;
 		status = "disabled";
 	};
 
@@ -628,6 +636,7 @@
 		#dma-cells = <1>;
 		qcom,ee = <1>;
 		qcom,num-ees = <2>;
+		iommus = <&apps_smmu 0x17f3 0x0>;
 	};
 
 	slim_qca: slim@62e40000 {
@@ -639,6 +648,7 @@
 		dma-names = "rx", "tx";
 		#address-cells = <1>;
 		#size-cells = <0>;
+		iommus = <&apps_smmu 0x17f3 0x0>;
 		status = "disabled";
 	};
 

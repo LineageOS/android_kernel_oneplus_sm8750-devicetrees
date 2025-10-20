@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 /dts-v1/;
@@ -11,8 +11,9 @@
 / {
 	model = "Qualcomm Technologies, Inc. Kera MTP";
 	compatible = "qcom,kera-mtp", "qcom,kera", "qcom,kerap-mtp", "qcom,kerap",
-			"qcom,mtp";
-	qcom,msm-id = <686 0x10000>, <659 0x10000>;
+			"qcom,mtp", "qcom,kerap-qmb", "qcom,kerap-qna";
+	qcom,msm-id = <686 0x10000>, <659 0x10000>, <720 0x10000>, <721 0x10000>,
+			<731 0x10000>, <732 0x10000>;
 	qcom,board-id = <0x10008 0>, <0x20008 0>, <0x10008 1>, <0x20008 1>;
 };
 

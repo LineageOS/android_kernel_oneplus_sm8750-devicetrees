@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &reserved_memory {
@@ -8,9 +8,14 @@
 	#size-cells = <2>;
 	ranges;
 
-	hyp_mem: hyp_region@80000000 {
+	hyp_mem: hyp_region@83600000 {
 		no-map;
-		reg = <0x0 0x80000000 0x0 0x600000>;
+		reg = <0x0 0x83600000 0x0 0xe00000>;
+	};
+
+	hyp_mem1: hyp_region1@82200000 {
+		no-map;
+		reg = <0x0 0x82200000 0x0 0x800000>;
 	};
 
 	xbl_dtlog_mem: xbl_dtlog_region@80600000 {
@@ -67,6 +72,11 @@
 	cpucp_fw_mem: cpucp_fw_region@80b00000 {
 		no-map;
 		reg = <0x0 0x80b00000 0x0 0x100000>;
+	};
+
+	pvm_fw_mem: pvm_fw_region@80c00000 {
+		no-map;
+		reg = <0x0 0x80c00000 0x0 0x200000>;
 	};
 
 	wlan_msa_mem: wlan_msa_mem_region@82a00000 {
@@ -130,25 +140,18 @@
 	};
 
 	trust_ui_vm_mem: trust_ui_vm_region@e0c00000 {
-		no-map;
-		reg = <0x0 0xe0c00000 0x0 0x49f3000>;
+		compatible = "shared-dma-pool";
+		reg = <0x0 0xe0c00000 0x0 0x4c00000>;
+		reusable;
+		alignment = <0x0 0x400000>;
 	};
 
-	trust_ui_vm_qrtr: trust_ui_vm_qrtr@e55f3000 {
-		no-map;
-		reg = <0x0 0xe55f3000 0x0 0x9000>;
-	};
-
-	trust_ui_vm_vblk0_ring: trust_ui_vm_vblk0_ring@e55fc000 {
-		no-map;
-		reg = <0x0 0xe55fc000 0x0 0x4000>;
-		gunyah-label = <0x11>;
-	};
-
-	trust_ui_vm_swiotlb: trust_ui_vm_swiotlb@e5600000 {
-		no-map;
-		reg = <0x0 0xe5600000 0x0 0x100000>;
-		gunyah-label = <0x12>;
+	vm_comm_mem: vm_comm_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x400000>;
 	};
 
 	tz_stat_mem: tz_stat_region@e8800000 {

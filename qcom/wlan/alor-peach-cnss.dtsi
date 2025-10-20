@@ -209,6 +209,7 @@
 			 " {class: wlan_pdc, ss: rf, res: S4D0.v, upval: 1860}",
 			 " {class: wlan_pdc, ss: rf, res: S4D0.v, dwnval: 1820}",
 			 " {class: wlan_pdc, ss: rf, res: S2D0.m, enable: 0}",
+			 " {class: wlan_pdc, ss: rf, res: S2D0.v, enable: 0}",
 			 " {class: wlan_pdc, ss: rf, res: L16B0.m, enable: 0}",
 			 " {class: wlan_pdc, ss: rf, res: B1B0.m, enable: 0}",
 			 " {class: wlan_pdc, ss: rf, res: S1L0.m, enable: 1}",
@@ -219,6 +220,12 @@
 		 * <cpumask_for_rx_interrupts cpumask_for_tx_comp_interrupts>
 		 */
 		wlan-txrx-intr-cpumask = <0x3 0x30>;
+
+		/* PMIC reg & regulator for XOCAL purpose
+		 */
+		nvmem-cells = <&xo_calib_data>;
+		nvmem-cell-names = "xo_calib_reg";
+		wcal-pbs-supply = <&WCAL_PBS>;
 	};
 
 	wlan_direct_link: qcom,cnss-direct-link {

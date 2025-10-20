@@ -12,6 +12,7 @@
 	model = "Qualcomm Technologies, Inc. tuna SoC";
 	compatible = "qcom,tuna";
 	qcom,msm-id = <655 0x10000>, <681 0x10000>, <694 0x10000>, <659 0x10000>,
-		      <686 0x10000>;
+		      <686 0x10000>, <720 0x10000>, <721 0x10000>, <731 0x10000>,
+			<732 0x10000>;
 	qcom,board-id = <0 0>, <15 0>;
 };

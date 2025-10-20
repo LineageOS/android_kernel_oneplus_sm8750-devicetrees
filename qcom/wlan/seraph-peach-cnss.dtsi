@@ -86,7 +86,6 @@
 		wlan-en-gpio = <&tlmm 31 0>;
 		qcom,bt-en-gpio = <&tlmm 32 0>;
 		qcom,sw-ctrl-gpio = <&tlmm 33 0>;
-		qcom,wlan-tsf-gpio = <&tlmm 71 0>;
 		wlan-host-sol-gpio = <&tlmm 73 0>;
 		wlan-dev-sol-gpio = <&tlmm 74 0>;
 		/* List of GPIOs to be setup for interrupt wakeup capable */

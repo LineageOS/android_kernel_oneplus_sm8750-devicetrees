@@ -1141,6 +1141,7 @@
 
 		coresight-name = "coresight-replicator-swao";
 
+		qcom,replicator-loses-context;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -1153,18 +1154,18 @@
 			 * over ETR
 			 */
 			port@0 {
-				reg = <1>;
-				replicator_swao_out_eud: endpoint {
+				reg = <0>;
+				replicator_swao_out_funnel_in1: endpoint {
 					remote-endpoint =
-					  <&eud_in_replicator_swao>;
+					  <&funnel_in1_in_replicator_swao>;
 				};
 			};
 
 			port@1 {
-				reg = <0>;
-				replicator_swao_out_funnel_in1: endpoint {
+				reg = <1>;
+				replicator_swao_out_eud: endpoint {
 					remote-endpoint =
-					<&funnel_in1_in_replicator_swao>;
+					<&eud_in_replicator_swao>;
 				};
 			};
 		};
@@ -1365,7 +1366,7 @@
 		coresight-name = "coresight-eud";
 		qcom,dummy-sink;
 
-		out-ports {
+		in-ports {
 			port {
 				eud_in_replicator_swao: endpoint {
 					remote-endpoint =

@@ -13,6 +13,6 @@
 	compatible = "qcom,kera-atp", "qcom,kera", "qcom,kerap-atp", "qcom,kerap",
 			"qcom,atp";
 
-	qcom,msm-id = <686 0x10000>, <659 0x10000>;
+	qcom,msm-id = <686 0x10000>, <659 0x10000>, <731 0x10000>, <732 0x10000>;
 	qcom,board-id = <33 0>;
 };

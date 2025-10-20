@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
@@ -39,8 +39,8 @@
 			     <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH /* CE11 */ >;
 		qcom,iommu-dma = "fastmap";
 		qcom,iommu-faults = "stall-disable", "HUPCF", "non-fatal";
-		qcom,iommu-dma-addr-pool = <0xa0000000 0x10000000>;
 		qcom,iommu-geometry = <0xa0000000 0x10000000>;
+		memory-region = <&icnss2_iommu_region_partition>;
 		qcom,fw-prefix;
 		qcom,wlan;
 		bdf-download-support;
@@ -65,6 +65,16 @@
 					  "qcom,smp2p-early-crash-ind";
 		};
 
+		/**
+		 * qcom,iommu-dma-addr-pool = <0xa0000000 0x10000000> conversion:
+		 * 0x0 0xA0000000 - first range from above dma-addr pool
+		 * 0x0 0xB0000000 = 0xa0000000 + 0x10000000
+		 * 0x0 0x50000000 = 100000000 - 0xB0000000
+		 */
+		icnss2_iommu_region_partition: icnss2_iommu_region_partition {
+			iommu-addresses = <&icnss 0x00000000 0xa0000000>,
+					<&icnss 0xB0000000 0x50000000>;
+		};
 	};
 
 };

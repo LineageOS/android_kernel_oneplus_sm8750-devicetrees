@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
@@ -26,9 +26,18 @@
 	#address-cells = <2>;
 	#size-cells = <2>;
 
+	aliases: aliases {
+		serial0 = &qupv3_se7_2uart; /* Debug UART */
+		serial1 = &qupv3_se0_2uart; /* HST debug UART */
+		hsuart0 = &qupv3_se2_4uart;
+		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
+		mmc0 = &sdhc_1; /*SDC1 eMMC slot*/
+		mmc1 = &sdhc_2; /* SDC2 SD card slot */
+	};
+
 	chosen: chosen {
-		stdout-path = "/soc/qcom,qup_uart@a88000:115200n8";
-		bootargs = "loglevel=6 log_buf_len=256K kernel.panic_on_rcu_stall=1 loop.max_part=7 pcie_ports=compat kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops pstore.compress=none kpti=0 swiotlb=noforce cgroup.memory=nokmem,nosocket kswapd_per_node=2 slub_debug=- allow_file_spec_access cpufreq.default_governor=performance transparent_hugepage=never can.stats_timer=0 disable_dma32=on android12_only.will_be_removed_soon.memblock_nomap_remove=on pcie_ports=compat fw_devlink.strict=1";
+		stdout-path = "serial0:115200n8";
+		bootargs = "loglevel=6 log_buf_len=256K kernel.panic_on_rcu_stall=1 loop.max_part=7 pcie_ports=compat kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops pstore.compress=none kpti=0 swiotlb=noforce cgroup.memory=nokmem,nosocket kswapd_per_node=2 slub_debug=- allow_file_spec_access cpufreq.default_governor=performance transparent_hugepage=never can.stats_timer=0 disable_dma32=on android12_only.will_be_removed_soon.memblock_nomap_remove=on pcie_ports=compat fw_devlink.strict=1 restrict_cma_redirect=false";
 	};
 
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
@@ -47,14 +56,23 @@
 		status = "disabled";
 	};
 
-	aliases: aliases {
-		serial0 = &qupv3_se7_2uart; /* Debug UART */
-		serial1 = &qupv3_se0_2uart; /* HST debug UART */
-		hsuart0 = &qupv3_se2_4uart;
-		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
-		mmc0 = &sdhc_1; /*SDC1 eMMC slot*/
-		mmc1 = &sdhc_2; /* SDC2 SD card slot */
+	qcom,gunyah-panic-notifier {
+		compatible = "qcom,gh-panic-notifier";
+		qcom,primary-vm;
+		gunyah-label = <9>;
+		peer-name = <2>;
+		memory-region = <&vm_comm_mem>;
+		shared-buffer-size = <0x1000>;
 	};
+
+	dmesg-dump {
+		compatible = "qcom,dmesg-dump";
+			qcom,primary-vm;
+			gunyah-label = <7>;
+			peer-name = <2>;
+			 memory-region = <&vm_comm_mem>;
+			 shared-buffer-size = <0x1000>;
+	 };
 
 	mmio_sram: mmio-sram@17D09100 {
 		#address-cells = <2>;
@@ -2450,16 +2468,25 @@
 		status = "ok";
 	};
 
-	qrtr-gunyah {
+	trust_ui_vm_qrtr: qcom,qrtr-gunyah-tuivm {
 		compatible = "qcom,qrtr-gunyah";
 		qcom,master;
 		gunyah-label = <3>;
 		peer-name = <2>;
-		shared-buffer = <&trust_ui_vm_qrtr>;
 	};
 
-	trust_ui_vm: qcom,trust_ui_vm@e55fc000 {
-		reg = <0xe55fc000 0x104000>;
+	trust_ui_vm_vblk0_ring: trust_ui_vm_vblk0_ring {
+		size = <0x4000>;
+		gunyah-label = <0x11>;
+	};
+
+	trust_ui_vm_swiotlb: trust_ui_vm_swiotlb {
+		size = <0x100000>;
+		gunyah-label = <0x12>;
+	};
+
+	trust_ui_vm: qcom,trust_ui_vm {
+		shared-buffers-size = <0x104000>;
 		vm_name = "trustedvm";
 		shared-buffers = <&trust_ui_vm_vblk0_ring &trust_ui_vm_swiotlb>;
 	};
@@ -2473,8 +2500,9 @@
 		compatible = "qcom,gh-secure-vm-loader";
 		qcom,pas-id = <28>;
 		qcom,vmid = <45>;
+		qcom,keep-running;
 		qcom,firmware-name = "trustedvm";
-		memory-region = <&trust_ui_vm_mem>;
+		memory-region = <&trust_ui_vm_mem &vm_comm_mem>;
 		virtio-backends = <&trust_ui_vm_virt_be0>;
 	};
 
@@ -2482,6 +2510,7 @@
 		compatible = "qcom,gh-secure-vm-loader";
 		qcom,pas-id = <35>;
 		qcom,vmid = <50>;
+		qcom,keep-running;
 		qcom,firmware-name = "cpusys_vm";
 		memory-region = <&cpusys_vm_mem>;
 		ext-region = <&chipinfo_mem>;
@@ -2500,7 +2529,6 @@
 #include "ravelin-qupv3.dtsi"
 #include "ravelin-regulators.dtsi"
 #include "ravelin-pcie.dtsi"
-#include "ravelin-wcn6750.dtsi"
 
 &qupv3_se7_2uart {
 	status = "ok";
