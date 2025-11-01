@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6976aae0_bbe17267",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10067
+      },
+      "writtenOn": "2025-11-01T01:42:56Z",
+      "side": 1,
+      "message": "no idea what the downsides of using this mode are, but I think it\u0027s fine.",
+      "revId": "0991346caac216d8be2f1ea337bdf333eae6febd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
