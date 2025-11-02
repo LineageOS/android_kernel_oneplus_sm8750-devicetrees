@@ -293,7 +293,7 @@
 	oplus,mipi-err-check-match-modes = <0x00000000>;
 
 	qcom,mdss-dsi-pan-enable-dynamic-fps;
-	qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_vfp";
+	qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_both_hv_porch";
 	qcom,dsi-supported-dfps-list = <120 144 90  60   50   48   30>;
 	qcom,dsi-dfps-hfp-list       = <50  34  210 50   210  210  50>;
 	qcom,dsi-dfps-hbp-list       = <64  20  160 64   160  160  64>;
