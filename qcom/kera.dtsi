@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/clock/qcom,cambistmclkcc-sun.h>
@@ -39,6 +39,7 @@
 	aliases: aliases {
 		serial0 = &qupv3_se13_2uart;
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
+		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
 		mmc1 = &sdhc_2; /* SDC2 SD card slot */
 		hsuart0 = &qupv3_se5_4uart;
 		i2c0 = &qupv3_se0_i2c;
@@ -71,7 +72,7 @@
 	};
 
 	chosen: chosen {
-		bootargs = "log_buf_len=512K loglevel=6 cpufreq.default_governor=performance sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc kpti=0 swiotlb=0 loop.max_part=7 pcie_ports=compat irqaffinity=0-2 printk.console_no_auto_verbose=1 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kernel.panic_on_rcu_stall=1 disable_dma32=on cgroup_disable=pressure fw_devlink.strict=1 can.stats_timer=0 ftrace_dump_on_oops page_poison=on cgroup.memory=nokmem,nosocket";
+		bootargs = "log_buf_len=512K loglevel=6 cpufreq.default_governor=performance sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc kpti=0 swiotlb=0 loop.max_part=7 pcie_ports=compat irqaffinity=0-2 printk.console_no_auto_verbose=1 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kernel.panic_on_rcu_stall=1 disable_dma32=on cgroup_disable=pressure fw_devlink.strict=1 can.stats_timer=0 ftrace_dump_on_oops page_poison=on cgroup.memory=nokmem,nosocket restrict_cma_redirect=false";
 		stdout-path = "serial0:115200n8";
 	};
 
@@ -1689,12 +1690,16 @@
 			reg = <0x14b 0x1>;
 			bits = <7 1>;
 		};
+
+		boot_config: boot_config@600 {
+			reg = <0x600 0x1>;
+		};
 	};
 
 	 qfprom_sys: qfprom@0 {
 		compatible = "qcom,qfprom-sys";
-		nvmem-cells = <&feat_conf6>, <&feat_conf18>;
-		nvmem-cell-names = "feat_conf6", "feat_conf18";
+		nvmem-cells = <&feat_conf6>, <&feat_conf18>, <&boot_config>;
+		nvmem-cell-names = "feat_conf6", "feat_conf18", "boot_config";
 	};
 
 	wpss_pas: remoteproc-wpss@97000000 {
@@ -2760,6 +2765,90 @@
 		qcom,client-id = <0x00000001>;
 	};
 
+	sdhc1_opp_table: sdhc1-opp-table {
+		compatible = "operating-points-v2";
+
+		opp-100000000 {
+			opp-hz = /bits/ 64 <100000000>;
+			opp-peak-kBps = <1600000 280000>;
+			opp-avg-kBps = <104000 0>;
+		};
+
+		opp-384000000 {
+			opp-hz = /bits/ 64 <384000000>;
+			opp-peak-kBps = <5600000 1500000>;
+			opp-avg-kBps = <400000 0>;
+		};
+	};
+
+	sdhc_1: sdhci@F44000 {
+		status = "disabled";
+
+		compatible = "qcom,sdhci-msm-v5";
+		reg = <0x00F44000 0x1000>, <0x00F45000 0x1000>,
+			<0x00F48000 0x18000>;
+		reg-names = "hc", "cqhci";
+
+		interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "hc_irq", "pwr_irq";
+
+		boot_device_type = <0x6>;
+		nvmem-cells = <&boot_config>;
+		nvmem-cell-names = "boot_conf";
+
+		bus-width = <8>;
+		non-removable;
+		supports-cqe;
+
+		no-sd;
+		no-sdio;
+
+		mmc-ddr-1_8v;
+		mmc-hs200-1_8v;
+		mmc-hs400-1_8v;
+		mmc-hs400-enhanced-strobe;
+
+		cap-mmc-hw-reset;
+
+		clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+			<&gcc GCC_SDCC1_APPS_CLK>,
+			<&gcc GCC_SDCC1_ICE_CORE_CLK>;
+		clock-names = "iface", "core", "ice_core";
+
+		qcom,ice-clk-rates = <300000000 100000000>;
+
+		/* DLL HSR settings. Refer go/hsr - <Target> DLL settings */
+		qcom,dll-hsr-list = <0x000F44EC 0x0 0x01
+					0x090106C0 0x80040868>;
+
+		/* Add dt entry for gcc hw reset */
+		resets = <&gcc GCC_SDCC1_BCR>;
+		reset-names = "core_reset";
+
+		iommus = <&apps_smmu 0x520 0x0>;
+		dma-coherent;
+		qcom,iommu-dma = "fastmap";
+
+		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
+		qcom,iommu-geometry = <0x40000000 0x10000000>;
+
+		interconnects = <&aggre2_noc MASTER_SDCC_1 &mc_virt SLAVE_EBI1>,
+			<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_SDCC_1>;
+		interconnect-names = "sdhc-ddr","cpu-sdhc";
+		operating-points-v2 = <&sdhc1_opp_table>;
+
+		qos0 {
+			mask = <0xf0>;
+			vote = <44>;
+		};
+
+		qos1 {
+			mask = <0x0f>;
+			vote = <44>;
+		};
+	};
+
 	sdhc2_opp_table: sdhc2-opp-table {
 		compatible = "operating-points-v2";
 
@@ -2900,6 +2989,9 @@
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
 		#reset-cells = <1>;
+		boot_device_type = <0x0>;
+		nvmem-cells = <&boot_config>;
+		nvmem-cell-names = "boot_conf";
 
 		qcom,ice-use-hwkm;
 

@@ -4,22 +4,3 @@
  */
 
 #include "ravelin-idp.dtsi"
-
-&soc {
-};
-
-&pcie0 {
-	status = "ok";
-};
-
-&pcie0_msi {
-	status = "ok";
-};
-
-&bluetooth {
-	status = "disabled";
-};
-
-&wpss_pas {
-	status = "disabled";
-};

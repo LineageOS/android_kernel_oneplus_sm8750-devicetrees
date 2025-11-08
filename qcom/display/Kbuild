@@ -53,6 +53,8 @@ ifneq ($(CONFIG_ARCH_QTI_VM), y)
 dtbo-$(CONFIG_ARCH_KERA) += display/kera-sde.dtbo \
 		display/kera-sde-display-atp-overlay.dtbo \
 		display/kera-sde-display-cdp-overlay.dtbo \
+		display/kera-sde-display-idp-no-display-overlay.dtbo \
+		display/kera-sde-display-idp-overlay.dtbo \
 		display/kera-sde-display-mtp-overlay.dtbo \
 		display/kera-sde-display-qrd-overlay.dtbo \
 		display/kera-sde-display-rumi-overlay.dtbo \

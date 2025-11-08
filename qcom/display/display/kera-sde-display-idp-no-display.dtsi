@@ -1,0 +1,54 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "kera-sde-display.dtsi"
+
+&mdss_mdp {
+	status = "disabled";
+};
+
+&mdss_dsi0 {
+	status = "disabled";
+};
+
+&mdss_dsi1 {
+	status = "disabled";
+};
+
+&mdss_dsi_phy0 {
+	status = "disabled";
+};
+
+&mdss_dsi_phy1 {
+	status = "disabled";
+};
+
+&sde_dp {
+	status = "disabled";
+};
+
+&smmu_sde_unsec {
+	status = "disabled";
+};
+
+&smmu_sde_sec {
+	status = "disabled";
+};
+
+&sde_cesta {
+	status = "disabled";
+};
+
+&sde_dsi {
+	status = "disabled";
+};
+
+&sde_dsi1 {
+	status = "disabled";
+};
+
+&sde_wb2 {
+	status = "disabled";
+};

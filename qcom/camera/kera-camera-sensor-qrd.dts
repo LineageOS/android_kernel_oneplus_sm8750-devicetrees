@@ -18,6 +18,6 @@
 	model = "Qualcomm Technologies, Inc. Kera QRD";
 	compatible = "qcom,kera-qrd", "qcom,kera", "qcom,kerap-qrd", "qcom,kerap",
                         "qcom,qrd";
-	qcom,msm-id = <686 0x10000>, <686 0x20000>, <659 0x10000>, <659 0x20000>;
+	qcom,msm-id = <686 0x10000>, <686 0x20000>, <659 0x10000>, <659 0x20000>, <720 0x10000>, <720 0x20000>, <721 0x10000>, <721 0x20000>;
 	qcom,board-id = <0x1000B 0>, <0x2000B 0>, <0x3000B 0>;
 };

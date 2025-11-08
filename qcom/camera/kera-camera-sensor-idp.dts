@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/clock/qcom,gcc-kera.h>
+#include <dt-bindings/clock/qcom,camcc-sun.h>
+#include <dt-bindings/clock/qcom,cambistmclkcc-sun.h>
+#include <dt-bindings/interconnect/qcom,kera.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+
+#include "kera-camera-sensor-idp.dtsi"
+/ {
+	model = "Qualcomm Technologies, Inc. Kera IDP";
+	compatible = "qcom,kera-idp", "qcom,kera", "qcom,kerap-idp", "qcom,kerap",
+                        "qcom,idp";
+	qcom,msm-id = <686 0x10000>, <721 0x10000>;
+	qcom,board-id = <0x10022 0>, <0x20022 0>, <0x30022 0>, <0x40022 0>;
+};

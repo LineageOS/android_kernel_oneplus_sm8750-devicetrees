@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/thermal/thermal_qti.h>
@@ -91,12 +91,12 @@
 		cooling-maps {
 			lbat_1_nr_scg {
 				trip = <&bcl_lvl1>;
-				cooling-device = <&modem_nr_scg_dsc 10 10>;
+				cooling-device = <&modem_nr_scg_dsc 100 100>;
 			};
 
 			lbat_1_nr {
 				trip = <&bcl_lvl1>;
-				cooling-device = <&modem_nr_dsc 9 9>;
+				cooling-device = <&modem_nr_dsc 10 10>;
 			};
 
 			lbat_1_mdm_lte {

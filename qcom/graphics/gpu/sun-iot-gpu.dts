@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/clock/qcom,aop-qmp.h>
+#include <dt-bindings/clock/qcom,gcc-sun.h>
+#include <dt-bindings/clock/qcom,gpucc-sun.h>
+#include <dt-bindings/clock/qcom,gxclkctl-sun.h>
+#include <dt-bindings/clock/qcom,rpmh.h>
+#include <dt-bindings/interconnect/qcom,sun.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+
+#include "sun-gpu.dtsi"
+#include "sun-iot-gpu-pwrlevels.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. sun IoT";
+	compatible = "qcom,sun";
+	qcom,msm-id = <0x2c1 0x10000>, <0x2c2 0x10000>, <0x10002c1 0x10000>, <0x10002c2 0x10000>;
+	qcom,board-id = <0 0>;
+};

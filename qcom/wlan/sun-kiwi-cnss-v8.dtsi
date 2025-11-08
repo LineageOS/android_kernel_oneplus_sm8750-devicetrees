@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/interconnect/qcom,sun.h>
@@ -192,10 +192,18 @@
 		 * <cpumask_for_rx_interrupts cpumask_for_tx_comp_interrupts>
 		 */
 		wlan-txrx-intr-cpumask = <0x3 0x30>;
+
+		/* PMIC reg & regulator for XOCAL purpose
+		*/
+		nvmem-cells = <&xo_calib_data>;
+		nvmem-cell-names = "xo_calib_reg";
+		wcal-pbs-supply = <&WCAL_PBS>;
 	};
 };
 
 &pcie0_rp {
+	#address-cells = <3>;
+	#size-cells = <2>;
 
 	cnss_pci0: cnss_pci0 {
 		reg = <0 0 0 0 0>;

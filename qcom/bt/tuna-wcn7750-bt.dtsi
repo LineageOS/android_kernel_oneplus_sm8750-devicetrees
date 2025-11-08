@@ -68,9 +68,9 @@
 		qcom,bt-vdd-ipa-2p2-supply = <&S1G>; /* WCN_2p2_RFA */
 
 		qcom,bt-vdd-io-config      = <1620000 1800000 0 1 1>;
-		qcom,bt-vdd-aon-config     = <900000 1040000 0 1 0>;
-		qcom,bt-vdd-rfacmn-config  = <900000 1040000 0 1 0>;
-		qcom,bt-vdd-dig-config     = <900000 1040000 0 1 0>;
+		qcom,bt-vdd-aon-config     = <750000 1040000 0 1 0>;
+		qcom,bt-vdd-rfacmn-config  = <750000 1040000 0 1 0>;
+		qcom,bt-vdd-dig-config     = <750000 1040000 0 1 0>;
 		qcom,bt-vdd-rfa-0p8-config = <900000 2000000 0 1 0>;
 		qcom,bt-vdd-rfa1-config    = <1900000 2104000 0 1 0>;
 		qcom,bt-vdd-rfa2-config    = <1330000 1408000 0 1 0>;

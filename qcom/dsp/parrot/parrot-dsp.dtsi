@@ -170,9 +170,10 @@
 			qcom,iommu-dma-addr-pool = <0x60000000 0x78000000>;
 			qcom,iommu-faults = "stall-disable", "HUPCF";
 			qcom,iommu-vmid = <0xA>;
+			qcom,nsessions = <1>;
 			dma-coherent;
 
-			pd-type = <6>;
+			pd-type = <6>; /* CPZ_USERPD */
 		};
 
 		compute-cb@10 {
