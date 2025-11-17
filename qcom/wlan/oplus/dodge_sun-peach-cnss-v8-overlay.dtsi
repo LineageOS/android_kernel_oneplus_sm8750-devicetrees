@@ -6,7 +6,3 @@
 	nvmem-cell-names = "";
 	wcal-pbs-supply = <0>;
 };
-
-&wlan_direct_link {
-	status = "disabled";
-};
