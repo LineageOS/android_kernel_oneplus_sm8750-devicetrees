@@ -22,6 +22,30 @@
       },
       "revId": "87235cbd9c3596611dbd7c26f159e4df02718264",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6592685a_4b7b8953",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 32253
+      },
+      "writtenOn": "2025-11-17T13:14:23Z",
+      "side": 1,
+      "message": "hopefully ^^. keeping it as a draft for now",
+      "parentUuid": "14f7e5cf_c5894931",
+      "range": {
+        "startLine": 11,
+        "startChar": 34,
+        "endLine": 11,
+        "endChar": 52
+      },
+      "revId": "87235cbd9c3596611dbd7c26f159e4df02718264",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
