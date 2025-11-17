@@ -8,7 +8,11 @@
 };
 
 &lpass_bt_swr {
-	status = "ok";
+	status = "disabled";
+};
+
+&bt_swr_gpios {
+	status = "disabled";
 };
 
 &wcd_usbss {

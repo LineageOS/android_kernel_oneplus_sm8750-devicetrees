@@ -1,0 +1,177 @@
+/* BQ TI pack gauge */
+#define GAUGE_TI_SN28Z729 3
+#include "oplus-chg-24851.dtsi"
+
+&oplus_monitor {
+	track,gauge_status_ctrl;
+	track,external_gauge_num = <1>;
+	track,nominal_qmax1 = <3902>;
+	track,nominal_fcc1 = <7134>;
+
+	track,gauge_max_cell_vol = <4600>;
+	track,gauge_max_charge_curr = <13000>;
+	track,gauge_max_dischg_curr = <6000>;
+	track,gauge_min_cell_temp = <30>;
+	track,gauge_max_cell_temp = <70>;
+	track,gauge_lifetime_support;
+};
+
+&oplus_mms_gauge {
+	/* three level term volt config for TI28Z729 gauge. */
+	oplus_spec,term_volt = <2900 2875 2750>;
+	oplus_spec,term_volt_hold_time = <5  5  3>;
+	oplus_spec,time_to_drop_per1 = <10 10>;
+	/* oplus_spec,recover_term_volt = <2900 2750>; */
+	oplus_spec,recover_term_volt_hold_time = <10 10>;
+
+	oplus_virtual_gauge: oplus,virtual_gauge {
+		compatible = "oplus,virtual_gauge";
+		oplus,gauge_ic = <&oplus_ext_gauge  &oplus_adsp_gauge>;
+		oplus,gauge_ic_index = <0 1>;
+		oplus,gauge_ic_func_group = <&bq27541_groups &oplus_adsp_gauge_groups>;
+		oplus,batt_capacity_mah = <7800>;
+		oplus,ic_type = <OPLUS_CHG_IC_VIRTUAL_GAUGE>;
+		oplus,ic_index = <0>;
+	};
+};
+
+&oplus_chg_comm {
+	oplus_spec,dec-vol-vct-mv = <100 120 140 140 160 160>;
+	oplus_spec,batt_full_time = <60>;
+	oplus_spec,batt_full_low_soc = <99>;
+	oplus_spec,batt_full_low_soc_time = <600>;
+	oplus_spec,smooth_strategy_name = "bs";
+	smooth_strategy {
+		oplus_spec,reserve_table_centipercent =
+			/* start(%) end(%) dischg_reserve(0.01%) full_reserve(0.01%) chg_reserve(0.01%) chg_split(%) */
+			<0   20  0   0   350 100>,
+			<21  99  200 0   350 100>,
+			<100 100 200 0   350 100>;
+	};
+};
+
+&oplus_chg_core {
+	oplus-gauge {
+		bq27541_groups: oplus,bq27541_groups {
+			functions = <
+				OPLUS_IC_FUNC_INIT
+				OPLUS_IC_FUNC_EXIT
+				OPLUS_IC_FUNC_REG_DUMP
+				OPLUS_IC_FUNC_SMT_TEST
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_VOL
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_MAX
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_MIN
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_CURR
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_TEMP
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_SOC
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_FCC
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_CC
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_RM
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_SOH
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_AUTH
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_HMAC
+				/*TODO: remove the battery full to fix the issue of force report full*/
+				/*OPLUS_IC_FUNC_GAUGE_SET_BATT_FULL*/
+				OPLUS_IC_FUNC_GAUGE_UPDATE_DOD0
+				OPLUS_IC_FUNC_GAUGE_UPDATE_SOC_SMOOTH
+				OPLUS_IC_FUNC_GAUGE_GET_CB_STATUS
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_NUM
+				OPLUS_IC_FUNC_GAUGE_GET_DEVICE_TYPE
+				OPLUS_IC_FUNC_GAUGE_GET_DEVICE_TYPE_FOR_VOOC
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_FCC
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_FC
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_QM
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_PD
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_RCU
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_RCF
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_FCU
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_FCF
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_SOU
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_DO0
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_DOE
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_TRM
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_PC
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_QS
+				OPLUS_IC_FUNC_GAUGE_IS_SUSPEND
+				OPLUS_IC_FUNC_GAUGE_GET_BCC_PARMS
+				OPLUS_IC_FUNC_GAUGE_FASTCHG_UPDATE_BCC_PARMS
+				OPLUS_IC_FUNC_GAUGE_GET_PREV_BCC_PARMS
+				OPLUS_IC_FUNC_GAUGE_SET_BCC_PARMS
+				OPLUS_IC_FUNC_GAUGE_SET_PROTECT_CHECK
+				OPLUS_IC_FUNC_GAUGE_GET_AFI_UPDATE_DONE
+				OPLUS_IC_FUNC_GAUGE_CHECK_RESET
+				OPLUS_IC_FUNC_GAUGE_SET_RESET
+				OPLUS_IC_FUNC_GAUGE_GET_DEVICE_TYPE_FOR_BCC
+				OPLUS_IC_FUNC_GAUGE_GET_DOD0
+				OPLUS_IC_FUNC_GAUGE_GET_DOD0_PASSED_Q
+				OPLUS_IC_FUNC_GAUGE_GET_QMAX
+				OPLUS_IC_FUNC_GAUGE_GET_QMAX_PASSED_Q
+				OPLUS_IC_FUNC_GAUGE_GET_REG_INFO
+				OPLUS_IC_FUNC_GAUGE_GET_CALIB_TIME
+				OPLUS_IC_FUNC_GAUGE_SET_CALIB_TIME
+				OPLUS_IC_FUNC_GAUGE_GET_DEEP_DISCHG_COUNT
+				OPLUS_IC_FUNC_GAUGE_SET_DEEP_DISCHG_COUNT
+				OPLUS_IC_FUNC_GAUGE_GET_DEEP_TERM_VOLT
+				OPLUS_IC_FUNC_GAUGE_SET_DEEP_TERM_VOLT
+				OPLUS_IC_FUNC_GAUGE_SET_SILI_SPARE_POWER
+				OPLUS_IC_FUNC_GAUGE_GET_SILI_SIMULATE_TERM_VOLT
+				OPLUS_IC_FUNC_GAUGE_GET_SILI_IC_ALG_TERM_VOLT
+				OPLUS_IC_FUNC_GAUGE_SET_SILI_IC_ALG_CFG
+				OPLUS_IC_FUNC_GAUGE_GET_SILI_IC_ALG_DSG_ENABLE
+				OPLUS_IC_FUNC_GAUGE_SET_SILI_IC_ALG_TERM_VOLT
+				OPLUS_IC_FUNC_GAUGE_GET_SILI_ALG_APPLICATION_INFO
+				OPLUS_IC_FUNC_GAUGE_GET_SILI_LIFETIME_STATUS
+				OPLUS_IC_FUNC_GAUGE_GET_SILI_LIFETIME_INFO
+				OPLUS_IC_FUNC_GAUGE_SET_LAST_CC
+				OPLUS_IC_FUNC_GAUGE_GET_LAST_CC
+				OPLUS_IC_FUNC_GAUGE_GET_CHEM_ID
+				OPLUS_IC_FUNC_GAUGE_GET_DEC_FG_TYPE
+				OPLUS_IC_FUNC_GAUGE_GET_DEC_CV_SOH
+				OPLUS_IC_FUNC_GAUGE_SET_VCT
+				OPLUS_IC_FUNC_GAUGE_GET_VCT
+				OPLUS_IC_FUNC_GAUGE_GET_GAUGE_CAR_C
+				OPLUS_IC_FUNC_GAUGE_SET_CUV_STATE
+				OPLUS_IC_FUNC_GAUGE_GET_CUV_STATE
+				OPLUS_IC_FUNC_GAUGE_GET_THREE_LEVEL_TERM_VOLT
+				OPLUS_IC_FUNC_GAUGE_SET_THREE_LEVEL_TERM_VOLT
+				OPLUS_IC_FUNC_GAUGE_GET_BATT_SOC_CENTI
+			>;
+			virqs = <
+				OPLUS_IC_VIRQ_ERR
+				OPLUS_IC_VIRQ_OFFLINE
+				OPLUS_IC_VIRQ_RESUME
+			>;
+		};
+	};
+};
+
+&qupv3_hub_i2c1 {
+	status = "ok";
+	qcom,clk-freq-out = <100000>;
+	pinctrl-names = "default", "sleep", "pulldown", "pullup";
+	pinctrl-0 = <&qupv3_hub_i2c1_sda_active_oplus>, <&qupv3_hub_i2c1_scl_active_oplus>;
+	pinctrl-1 = <&qupv3_hub_i2c1_sleep>;
+	pinctrl-2 = <&qupv3_hub_i2c1_pulldown>;
+	pinctrl-3 = <&qupv3_hub_i2c1_pullup>;
+
+	oplus_ext_gauge: sn28z729-battery@55 {
+		status = "okay";
+		compatible = "oplus,sn28z729-battery";
+		reg = <0x55>;
+		qcom,modify-soc-smooth;
+		qcom,modify-soc-calibration;
+		qcom,sha1_key_index = <1>;
+		qcom,batt_bq28z610;
+		oplus,remove_iterm_taper;
+		oplus,fcc_too_small_check_support;
+		oplus,batt_num = <2>;
+		qcom,gauge_num = <0>;
+		oplus,bq28z610_afi_buf = /bits/ 8 <
+			/* checksum data_len data+ */
+			0xfd 0x04 0xf4 0x46 0xc8 0x00 /* Charge Term Taper Current 200mA */
+			>;
+
+		oplus,ic_type = <OPLUS_CHG_IC_GAUGE>;
+		oplus,ic_index = <0>;
+	};
+};

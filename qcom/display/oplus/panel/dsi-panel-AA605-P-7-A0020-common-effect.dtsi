@@ -1,0 +1,139 @@
+/***************************************************************
+** Copyright (C), 2022, OPLUS Mobile Comm Corp., Ltd
+**
+** Description : Display effect common config
+** Version : 1.0
+** Date : 2024/06/12
+******************************************************************/
+        qcom,mdss-dsi-loading-effect-1-command = [
+            /* Laoding On 100% */
+            39 00 00 40 00 00 04 FF 5A A5 1E
+            15 00 00 40 00 00 02 80 A9
+            15 00 00 40 00 00 02 81 00
+            15 00 00 40 00 00 02 85 10
+            15 00 00 40 00 00 02 9A 40
+            15 00 00 40 00 00 02 9B 01
+            39 00 00 40 00 00 04 FF 5A A5 1F
+            39 00 00 40 00 00 1F C3 EB FE E9 E9 86 FF 86 86 86 86 FF 86 86 86 86 FF 86 86 86 86 FF 86 86 86 86 FF 86 86 86 86
+            39 00 00 00 00 00 04 FF 5A A5 00
+        ];
+        qcom,mdss-dsi-loading-effect-2-command = [
+            /* Laoding On 110% */
+            39 00 00 40 00 00 04 FF 5A A5 1E
+            15 00 00 40 00 00 02 80 A9
+            15 00 00 40 00 00 02 81 00
+            15 00 00 40 00 00 02 85 10
+            15 00 00 40 00 00 02 9A 40
+            15 00 00 40 00 00 02 9B 01
+            39 00 00 40 00 00 04 FF 5A A5 1F
+            39 00 00 40 00 00 1F C3 FF FE 0E 0E AE FF AE AE AE AE FF AE AE AE AE FF AE AE AE AE FF AE AE AE AE FF AE AE AE AE
+            39 00 00 00 00 00 04 FF 5A A5 00
+        ];
+        qcom,mdss-dsi-loading-effect-3-command = [
+        ];
+        qcom,mdss-dsi-loading-effect-4-command = [
+        ];
+        qcom,mdss-dsi-loading-effect-off-command = [
+            /* Laoding On 130% */
+            39 00 00 40 00 00 04 FF 5A A5 1E
+            15 00 00 40 00 00 02 80 A9
+            15 00 00 40 00 00 02 81 00
+            15 00 00 40 00 00 02 85 10
+            15 00 00 40 00 00 02 9A 40
+            15 00 00 40 00 00 02 9B 01
+            39 00 00 40 00 00 04 FF 5A A5 1F
+            39 00 00 40 00 00 1F C3 FF FE 9E 4A FF FF F9 F9 F9 F9 FF F9 F9 F9 F9 FF F9 F9 F9 F9 FF F9 F9 F9 F9 FF F9 F9 F9 F9
+            39 00 00 00 00 00 04 FF 5A A5 00
+        ];
+
+        qcom,mdss-dsi-uir-loading-effect-1-command = [
+        ];
+
+        qcom,mdss-dsi-uir-loading-effect-2-command = [
+        ];
+
+        qcom,mdss-dsi-uir-loading-effect-3-command = [
+        ];
+
+        qcom,mdss-dsi-uir-on-loading-effect-1-command = [
+            /* Loading On 100%~200% */
+            39 00 00 40 00 00 04 FF 5A A5 1E
+            15 00 00 40 00 00 02 81 12 //dimming on
+            15 00 00 40 00 00 02 80 A9
+            15 00 00 40 00 00 02 85 00 //APL Mode
+            15 00 00 40 00 00 02 9A 40 //max APL 100%
+            15 00 00 40 00 00 02 9B 0D //min APL 20%
+            39 00 00 40 00 00 04 FF 5A A5 1F
+            39 00 00 00 00 00 1F C3 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+        ];
+        qcom,mdss-dsi-uir-on-loading-effect-2-command = [
+              /* Loading On 110%~200% */
+            39 00 00 40 00 00 04 FF 5A A5 1E
+            15 00 00 40 00 00 02 81 12 //dimming on
+            15 00 00 40 00 00 02 80 A9
+            15 00 00 40 00 00 02 85 00 //APL Mode
+            15 00 00 40 00 00 02 9A 40 //max APL 100%
+            15 00 00 40 00 00 02 9B 0D //min APL 20%
+            39 00 00 40 00 00 04 FF 5A A5 1F
+            39 00 00 00 00 00 1F C3 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+        ];
+        qcom,mdss-dsi-uir-on-loading-effect-3-command = [
+            /* Loading On 130%~200%*/
+            39 00 00 40 00 00 04 FF 5A A5 1E
+            15 00 00 40 00 00 02 81 12 //dimming on
+            15 00 00 40 00 00 02 80 A9
+            15 00 00 40 00 00 02 85 00 //APL Mode
+            15 00 00 40 00 00 02 9A 40 //max APL 100%
+            15 00 00 40 00 00 02 9B 0D //min APL 20%
+            39 00 00 40 00 00 04 FF 5A A5 1F
+            39 00 00 00 00 00 1F C3 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+        ];
+        qcom,mdss-dsi-uir-off-loading-effect-1-command = [
+            /* Loading On 100%*/
+            39 00 00 40 00 00 04 FF 5A A5 1E
+            15 00 00 40 00 00 02 81 14 //dimming off
+            15 00 00 40 00 00 02 80 A9 //peak enable
+            15 00 00 40 00 00 02 85 10 //opr mode
+            15 00 00 40 00 00 02 9A 40 //max_apl 100%
+            15 00 00 40 00 00 02 9B 01 //min_apl 1%
+            39 00 00 40 00 00 04 FF 5A A5 1F
+            39 00 00 00 00 00 1F C3 EB FE E9 E9 86 FF 86 86 86 86 FF 86 86 86 86 FF 86 86 86 86 FF 86 86 86 86 FF 86 86 86 86
+        ];
+        qcom,mdss-dsi-uir-off-loading-effect-2-command = [
+            /* Loading On 110%*/
+            39 00 00 40 00 00 04 FF 5A A5 1E
+            15 00 00 40 00 00 02 81 14 //dimming off
+            15 00 00 40 00 00 02 80 A9 //peak enable
+            15 00 00 40 00 00 02 85 10 //opr mode
+            15 00 00 40 00 00 02 9A 40 //max_apl 100%
+            15 00 00 40 00 00 02 9B 01 //min_apl 1%
+            39 00 00 40 00 00 04 FF 5A A5 1F
+            39 00 00 00 00 00 1F C3 FF FE 0E 0E AE FF AE AE AE AE FF AE AE AE AE FF AE AE AE AE FF AE AE AE AE FF AE AE AE AE
+        ];
+        qcom,mdss-dsi-uir-off-loading-effect-3-command = [
+            /* Loading On 130%*/
+            39 00 00 40 00 00 04 FF 5A A5 1E
+            15 00 00 40 00 00 02 81 14 //dimming off
+            15 00 00 40 00 00 02 80 A9 //peak enable
+            15 00 00 40 00 00 02 85 10 //opr mode
+            15 00 00 40 00 00 02 9A 40 //max_apl 100%
+            15 00 00 40 00 00 02 9B 01 //min_apl 1%
+            39 00 00 40 00 00 04 FF 5A A5 1F
+            39 00 00 00 00 00 1F C3 FF FE 4A 4A FF FF F9 F9 F9 F9 FF F9 F9 F9 F9 FF F9 F9 F9 F9 FF F9 F9 F9 F9 FF F9 F9 F9 F9
+        ];
+
+        qcom,mdss-dsi-loading-effect-1-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-loading-effect-2-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-loading-effect-3-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-loading-effect-4-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-loading-effect-off-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-uir-loading-effect-1-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-uir-loading-effect-2-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-uir-loading-effect-3-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-uir-on-loading-effect-1-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-uir-on-loading-effect-2-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-uir-on-loading-effect-3-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-uir-off-loading-effect-1-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-uir-off-loading-effect-2-command-state = "dsi_hs_mode";
+        qcom,mdss-dsi-uir-off-loading-effect-3-command-state = "dsi_hs_mode";
+

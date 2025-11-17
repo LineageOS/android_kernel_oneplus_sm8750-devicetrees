@@ -10,9 +10,10 @@
 
 #include <dt-bindings/oplus/hw-id.h>
 #include "../sun-camera.dtsi"
-#include "erhai_camera_overlay_common_T0.dtsi"
+#include "ktm_camera_overlay_common_T0.dtsi"
 / {
-	model = "Qualcomm Technologies, Inc. Sun erhai_T0";
+	model = "Qualcomm Technologies, Inc. Sun ktm_T0";
 	compatible = "qcom,sun-mtp", "qcom,sun", "qcom,mtp";
-	oplus,project-id = <24924 24926 24976 24974>;
+	oplus,project-id = <24851>;
+	oplus,hw-id = <OPLUS_EVB1 OPLUS_EVB2 OPLUS_EVB3 OPLUS_EVT1 OPLUS_EVT2 OPLUS_T0 OPLUS_T1 OPLUS_DVT1 OPLUS_DVT2 OPLUS_PVT1>;
 };

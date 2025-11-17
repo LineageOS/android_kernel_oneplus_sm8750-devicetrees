@@ -26,10 +26,10 @@
 
 		/* Power Config */
 		enable2v8_gpio = <&pm8550vs_j_gpios 3 0x1>;
-		//enable1v8_gpio = <&tlmm 97 0x1>;
 		//vdd_2v8-supply = <&L14B>;
-		vcc_1v8-supply = <&L4B>;
 		//vdd_2v8_volt = <3008000>;
+		vcc_1v8-supply = <&L4B>;
+		vcc_1v8_volt = <1800000>;
 
 		/* Other HW Resource */
 		irq-gpio = <&tlmm 162 0x2008>;
@@ -173,6 +173,8 @@
 
 		/* Power Config */
 		synaptics,avdd-gpio = <&pm8550vs_j_gpios 3 0x1>;
+		//vcc-supply = <&L16B>;
+		//synaptics,avdd-name = "vcc";
 		vdd-supply = <&L4B>;
 		synaptics,vdd-name = "vdd";
 
@@ -180,7 +182,7 @@
 		synaptics,irq-gpio = <&tlmm 162 0x2008>;
 		synaptics,reset-gpio = <&tlmm 161 0x1>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&ts_int_active &ts_reset_active &ts_avdd_active>;
+		pinctrl-0 = <&ts_int_active &ts_reset_active>;
 
 		touchpanel,panel-coords = <23040 50688>;
 		touchpanel,tx-rx-num = <17 38>;
@@ -212,17 +214,6 @@
 		S3910_PANEL7 {
 			touchpanel,tx-rx-num = <18 40>;
 		};
-	};
-};
-
-&pm8550vs_j_gpios {
-	ts_avdd_active: ts_avdd_active {
-		pins = "gpio3";
-		function = "normal";
-		input-disable;
-		output-enable;
-		output-low;
-		power-source = <1>;
 	};
 };
 

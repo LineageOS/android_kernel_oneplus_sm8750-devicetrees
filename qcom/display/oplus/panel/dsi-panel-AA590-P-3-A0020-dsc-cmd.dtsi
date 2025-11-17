@@ -5394,7 +5394,7 @@
 
 	/* ofp config */
 	oplus,ofp-fp-type = <0x90>;
-	oplus,ofp-longrui-aod-config = <0x02>;
+	oplus,ofp-longrui-aod-config = <0x06>;
 	oplus,ofp-need-to-wait-data-before-aod-on;
 	oplus,ofp-aod-off-frame-cost = <1>;
 	/* adfr config */
@@ -6030,7 +6030,7 @@
 		...
 		Bit24:support pwm mode0
 		Bit25:support pwm mode1
-		Bit25:support pwm mode2
+		Bit26:support pwm mode2
 	*/
 	oplus,pwm-switch-config = <0x0700007F>;
 	/*	oplus,pwm-switch-mode0-states-info/oplus,pwm-switch-mode1-states-info:
@@ -6042,12 +6042,12 @@
 	oplus,pwm-switch-mode0-states-info = <2 1162 1>;
 	oplus,pwm-switch-mode1-states-info = <2 1162 0>;
 	oplus,pwm-switch-mode2-states-info = <0>;
-	/*	oplus,pwm-cmd-switch-map:
+	/*	oplus,pwm-mode1-cmd-switch-map/oplus,pwm-mode2-cmd-switch-map;
 		Specific cmd replace relationship while in switch on(1pulse) mode. It is a string array that
 		compose with cmd names, every 2 names combine 1 map. For example, map "'a', 'b'" means replace
 		a to b while sending a in switch on mode.
 	*/
-	oplus,pwm-cmd-switch-map = "qcom,mdss-dsi-nolp-command", "qcom,mdss-dsi-aod-off-pwm-mode2-command",
+	oplus,pwm-mode2-cmd-switch-map = "qcom,mdss-dsi-nolp-command", "qcom,mdss-dsi-aod-off-pwm-mode2-command",
 			"qcom,mdss-dsi-timing-switch-command", "qcom,mdss-dsi-timming-switch-pwm-mode2-command";
 
 	oplus,pwm-compatible-mode;

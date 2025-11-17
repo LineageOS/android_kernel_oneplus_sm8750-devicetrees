@@ -1,0 +1,357 @@
+&mdss_mdp {
+	dsi_panel_AE055_P_3_A0026_dsc_vid_mp2: qcom,mdss_dsi_panel_AE055_P_3_A0026_dsc_vid_mp2 {
+		qcom,mdss-dsi-panel-name = "AE055 P 3 A0026 dsc video mode panel";
+		oplus,mdss-dsi-vendor-name = "A0026";
+		oplus,mdss-dsi-manufacture = "P_3";
+		qcom,mdss-dsi-panel-type = "dsi_video_mode";
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-bpp = <30>;
+		qcom,mdss-dsi-color-order = "rgb_swap_rgb";
+		qcom,mdss-dsi-underflow-color = <0xff>;
+		qcom,mdss-dsi-border-color = <0>;
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+		qcom,mdss-dsi-traffic-mode = "burst_mode";
+		qcom,mdss-dsi-lane-map = "lane_map_0123";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-reset-sequence = <1 5>, <0 5>, <1 11>;
+		qcom,mdss-pan-physical-width-dimension = <72>;
+		qcom,mdss-pan-physical-height-dimension = <157>;
+		qcom,mdss-dsi-init-delay-us = <1000>;
+		qcom,mdss-dsi-panel-jitter = <0x4 0x1>;
+
+		/* disable cesta */
+		qcom,mdss-disable-cesta-hw-sleep;
+		oplus,panel_backlight_check_disable;
+
+		/* HDR Setting */
+		qcom,mdss-dsi-panel-hdr-enabled;
+		qcom,mdss-dsi-panel-hdr-color-primaries = <15635 16450 34000 16000 13250 34500 7500 3000>;
+		qcom,mdss-dsi-panel-peak-brightness = <20000000>;
+		qcom,mdss-dsi-panel-average-brightness = <2000000>;
+		qcom,mdss-dsi-panel-blackness-level = <4000>;
+
+		qcom,esd-check-enabled;
+		oplus,esd-check-flag-enabled;
+		qcom,mdss-dsi-panel-status-check-mode = "reg_read";
+		qcom,mdss-dsi-panel-status-command = [
+				06 00 00 00 00 00 01 0A
+			];
+		qcom,mdss-dsi-panel-status-command-state = "dsi_lp_mode";
+		qcom,mdss-dsi-panel-status-value = <0x9C>;
+		qcom,mdss-dsi-panel-status-read-length = <1>;
+
+		qcom,mdss-dsi-display-timings {
+			timing@sa_fhd_120 {
+				#include "dsi-panel-AE055-P-3-A0026-dsc-vid-common.dtsi"
+				qcom,mdss-dsi-timing-default;
+				qcom,mdss-dsi-panel-framerate = <120>;
+				qcom,mdss-dsi-panel-clockrate = <1360013120>;
+
+				qcom,mdss-dsi-panel-width = <1280>;
+				qcom,mdss-dsi-panel-height = <2800>;
+				qcom,mdss-dsi-h-front-porch = <138>;
+				qcom,mdss-dsi-h-back-porch = <16>;
+				qcom,mdss-dsi-h-pulse-width = <16>;
+				qcom,mdss-dsi-h-sync-pulse = <0>;
+				qcom,mdss-dsi-v-back-porch = <26>;
+				qcom,mdss-dsi-v-front-porch = <124>;
+				qcom,mdss-dsi-v-pulse-width = <2>;
+
+				qcom,mdss-dsi-h-left-border = <0>;
+				qcom,mdss-dsi-h-right-border = <0>;
+				qcom,mdss-dsi-v-top-border = <0>;
+				qcom,mdss-dsi-v-bottom-border = <0>;
+
+				qcom,mdss-dsi-on-command = [
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					15 00 00 40 00 00 02 6F 01
+					15 00 00 40 00 00 02 C7 11
+					15 00 00 40 00 00 02 6F 04
+					39 00 00 40 00 00 05 C7 00 42 00 42
+					// OSC2 to 167 Mhz
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 04
+					15 00 00 40 00 00 02 C3 0A
+					15 00 00 40 00 00 02 6F 09
+					15 00 00 40 00 00 02 C3 0A
+					15 00 00 40 00 00 02 EA C0
+					15 00 00 40 00 00 02 6F 11
+					15 00 00 40 00 00 02 EA C0
+					15 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 0B EA 01 02 01 34 01 34 01 34 04 D1
+					15 00 00 40 00 00 02 6F 18
+					39 00 00 40 00 00 0B EA 01 8A 01 D7 01 D7 01 D7 07 5E
+					// VGXP by pad cap less
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 1F
+					15 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 20
+					15 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 08
+					15 00 00 40 00 00 02 FC 01
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 24
+					15 00 00 40 00 00 02 F8 FF
+					// For Idle enter BIST
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 C0 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 0B
+					15 00 00 40 00 00 02 D2 00
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F 10
+					15 00 00 40 00 00 02 F8 02
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 F2 15
+					// LCTC Constraint For ESD Improve
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F A9
+					15 00 00 40 00 00 02 F4 F3
+					// FOD OFF
+					39 00 00 40 00 00 06 F0 55 AA 52 08 09
+					15 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 03 8B 00 00
+					15 00 00 40 00 00 02 87 00
+					// Resolution Setting
+					39 00 00 40 00 00 05 2A 00 00 04 FF
+					39 00 00 40 00 00 05 2B 00 00 0A EF
+					// VESA1.2 10bit 3.75 DSC Setting
+					15 00 00 40 00 00 02 90 03
+					15 00 00 40 00 00 02 6F 01
+					15 00 00 40 00 00 02 90 43
+					39 00 00 40 00 00 13 91 AB A8 00 28 E2 00 02 77 03 DB 00 08 02 E0 02 20 10 E0
+					//Reduce video drop detection time
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 08
+					39 00 00 40 00 00 03 D2 00 00
+					// Dimming OFF
+					15 00 00 40 00 00 02 53 20
+					// Video Mode Ext_VFP,VBPF Setting
+					39 00 00 40 00 00 11 3B 00 1C 00 74 00 1C 00 7C 00 1C 04 54 00 1C 00 7C
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 05 3B 00 1C 00 7C
+					// DPC Temperature Setting
+					39 00 00 40 00 00 03 81 01 19
+					// FPR1 EN
+					15 00 00 40 00 00 02 88 01
+					// 120Hz Sleep Out
+					15 00 00 40 00 00 02 2F 01
+					// TE ON
+					15 00 00 40 00 00 02 35 00
+					// Setting Loading Effect x1.0
+					39 00 00 40 00 00 03 5F 00 00
+					// improve Water Ripples
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 47
+					15 00 00 40 00 00 02 F2 21
+					// OD code
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+					15 00 00 40 00 00 02 6F 06
+					39 00 00 40 00 00 03 E0 00 00
+					15 00 00 40 00 00 02 6F 13
+					39 00 00 40 00 00 13 E0 00 01 01 2C 01 9B 02 52 03 CB 04 10 04 40 08 51 0B 6A
+					39 00 00 40 00 00 0F E1 06 0D 30 1A 1A 1A 1A 1A 1A 15 0C 07 07 0C
+					39 00 00 40 00 00 0F E2 0A 15 30 2A 2A 2A 2A 2A 23 1D 12 0E 0D 0D
+					39 00 00 40 00 00 0F E3 00 00 00 07 07 07 07 07 07 07 07 08 0B 06
+					15 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E1 04 08 20 0F 0F 0F 0F 0F 07 07 06 06 09 0B
+					15 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E2 05 0A 20 13 13 13 13 13 0A 07 06 06 07 09
+					15 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 00 00 0A 0B 0E 11
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E1 02 04 1B 07 07 07 07 07 04 03 06 07 0B 0E
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E2 03 06 1B 0D 0D 0C 0C 0C 06 06 06 07 09 0B
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 00 0B 0A 0B 0D 10
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E1 02 04 11 08 07 06 05 04 03 05 08 09 0C 10
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E2 03 06 11 0D 0B 0A 08 06 04 05 06 08 0A 0E
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 04 07 09 0C 0F 13
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E1 02 04 0B 07 06 05 04 03 05 08 0B 0C 0D 11
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E2 02 04 0B 08 07 06 05 04 05 07 09 0B 0C 0E
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E3 00 00 00 02 02 02 02 02 05 08 09 0A 0C 0F
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E1 02 03 09 06 06 05 04 04 06 09 0A 0B 0D 11
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E2 02 03 09 06 06 05 04 04 05 07 09 0B 0B 0E
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E3 00 00 00 00 01 02 03 04 05 09 0A 0B 0C 0F
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E1 02 03 08 06 06 05 04 04 06 0A 0B 0C 0E 11
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E2 02 04 08 08 07 06 05 04 06 08 0A 0B 0C 0F
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E3 00 00 00 03 03 04 04 04 06 09 0A 0B 0D 10
+					15 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E1 00 01 03 02 02 03 04 04 07 08 0A 0C 0E 13
+					15 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E2 00 01 03 02 02 03 04 04 06 08 09 0B 0D 10
+					15 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E3 00 00 00 02 02 03 04 04 06 09 0C 0E 11 16
+					15 00 00 40 00 00 02 6F 70
+					39 00 00 40 00 00 0F E1 00 01 02 02 02 03 04 04 06 08 0B 0D 0F 14
+					15 00 00 40 00 00 02 6F 70
+					39 00 00 40 00 00 0F E2 00 01 02 02 02 03 04 04 05 07 09 0C 0F 13
+					15 00 00 40 00 00 02 6F 70
+					39 00 00 00 00 00 0F E3 00 00 00 02 02 03 04 04 06 09 0B 0F 11 15
+
+					15 00 00 00 78 00 02 11 00
+					15 00 00 00 00 00 02 29 00
+					39 00 00 00 00 00 3D A9 02 08 E0 00 00 40 02 08 E1 01 01 30 02 08 E2 01 01 30 02 08 E1 10 10 20 02 08 E2 10 10 20 02 08 E1 1E 1E 1B 02 08 E2 1E 1E 1B 02 08 E1 2C 2C 11 02 08 E2 2C 2C 11 02 08 E1 3A 3A 0B
+					39 00 00 00 00 00 3D A9 02 08 E2 3A 3A 0B 02 08 E1 48 48 09 02 08 E2 48 48 09 02 08 E1 56 56 08 02 08 E2 56 56 08 02 08 E1 64 64 03 02 08 E2 64 64 03 02 08 E1 72 72 02 02 08 E2 72 72 02 02 08 E0 00 00 41
+					39 00 00 00 00 00 07 A9 01 00 2F 00 00 01
+				];
+
+				qcom,mdss-dsi-vid-144hz-switch-command = [
+					39 00 00 10 00 00 07 A9 01 00 2F 00 00 00
+				];
+				qcom,mdss-dsi-vid-120hz-switch-command = [
+					39 00 00 10 00 00 07 A9 01 00 2F 00 00 01
+				];
+				qcom,mdss-dsi-vid-90hz-switch-command = [
+					39 00 00 10 00 00 07 A9 01 00 2F 00 00 02
+				];
+				qcom,mdss-dsi-vid-60hz-switch-command = [
+					39 00 00 10 00 00 07 A9 01 00 2F 00 00 03
+				];
+				qcom,mdss-dsi-fps-switch-command = [];
+
+				qcom,mdss-dsi-lhbm-pressed-icon-on-command = [
+					39 00 00 50 00 00 07 A9 01 00 2F 00 00 01
+					39 00 00 50 00 00 35 A9 02 08 B1 00 00 03 02 08 C1 00 07 8E 90 EE 90 90 EE 90 90 02 08 C1 08 0A EE D0 D0 02 01 B9 1D 1D 08 02 09 B0 00 00 11 01 00 8B 00 01 10 01 01 00 87 00 00 25
+					39 00 00 10 00 00 2E A9 01 00 A2 00 27 03 02 08 C1 00 07 8E FF EE FF FF EE FF FF 02 08 C1 08 0A EE FF FF 00 00 00 00 00 02 01 B9 1D 1D 08 00 00 00 00 00 00 00
+				];
+
+				qcom,mdss-dsi-lhbm-pressed-icon-off-command = [
+					39 00 00 50 00 00 35 A9 02 08 B1 00 00 02 02 08 C1 00 07 8F 50 FF 50 50 FF 50 50 02 08 C1 08 0A FF 50 50 02 01 B9 1D 1D 08 02 09 B0 00 00 01 01 00 8B 00 01 00 00 01 00 87 00 00 00
+					39 00 00 10 00 00 2E A9 01 00 A2 00 27 03 02 08 C1 00 07 8E FF EE FF FF EE FF FF 02 08 C1 08 0A EE FF FF 00 00 00 00 00 02 01 B9 1D 1D 08 00 00 00 00 00 00 00
+				];
+
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-vid-144hz-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-vid-120hz-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-vid-90hz-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-vid-60hz-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-fps-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-lhbm-pressed-icon-on-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-lhbm-pressed-icon-off-command-state = "dsi_hs_mode";
+
+				qcom,compression-mode = "dsc";
+				qcom,mdss-dsc-version = <0x12>;
+				qcom,mdss-dsc-encoders = <2>;
+				qcom,mdss-dsc-slice-height = <40>;
+				qcom,mdss-dsc-slice-width = <640>;
+				qcom,mdss-dsc-slice-per-pkt = <2>;
+				qcom,mdss-dsc-bit-per-component = <10>;
+				qcom,mdss-dsc-bit-per-pixel = <8>;
+				qcom,mdss-dsc-block-prediction-enable;
+			};
+		};
+	};
+};
+
+&soc {
+	dsi_panel_AE055_P_3_A0026_dsc_vid_mp2 {
+		qcom,dsi-display-active;
+	};
+};
+
+&dsi_panel_AE055_P_3_A0026_dsc_vid_mp2 {
+	/* pwoer config */
+	qcom,panel-supply-entries = <&oplus_dsi_panel_custom_pwr_supply>;
+	qcom,platform-te-gpio = <&tlmm 17 0>;
+	qcom,platform-reset-gpio = <&tlmm 12 0>;
+
+	oplus,panel-reset-position = <0x02>;
+	oplus,panel-power-on-sequence = "1", "vddio", "1", "vci", "1", "vdd", "10";
+	oplus,panel-power-off-sequence = "10", "vdd", "10", "vci", "10", "vddio", "10";
+
+	qcom,panel_voltage_vddi_name = "vddio";
+	qcom,panel_voltage_vddi = <0 1800000 1850000 1950000>;
+ 	qcom,panel_voltage_vddr_name = "vdd";
+	qcom,panel_voltage_vddr = <1 1200000 1200000 1200000>;
+ 	qcom,panel_voltage_vci_name = "vci";
+ 	qcom,panel_voltage_vci = <1 3000000 3200000 3300000>;
+
+	/* brightness config */
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,bl-update-flag = "delay_until_first_frame";
+	qcom,mdss-dsi-bl-inverted-dbv;
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <4094>;
+	qcom,mdss-brightness-max-level = <4094>;
+	oplus,dsi-bl-normal-max-level = <3598>;
+	oplus,dsi-brightness-normal-max-level = <3598>;
+	oplus,dsi-brightness-default-level = <1638>;
+	oplus,dsi-dc-backlight-threshold = <1088>;
+	oplus,bl_denura-dbv-switch-support;
+	oplus,bl-demura-set-by-one-frame;
+
+	/* mipi config */
+	qcom,ulps-enabled;
+	qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
+	//oplus,enhance_mipi_strength;
+
+	/* aod brightness config*/
+	oplus,video-mode-aod-brightness-change-enable;
+	oplus,video-mode-aod-brightness-value-count= [02];
+	oplus,video-mode-aod-high-brightness-value = [0F FE];
+	oplus,video-mode-aod-low-brightness-value = [0D BB];
+
+	/* serial num config */
+	oplus,dsi-serial-number-enabled;
+	oplus,dsi-serial-number-switch-page;
+	oplus,dsi-serial-number-index= <0>;
+	oplus,dsi-serial-number-reg= <0xD7>;
+	oplus,dsi-serial-number-read-count= <7>;
+
+	/* ofp config */
+	oplus,ofp-fp-type = <0x210>;
+	oplus,ofp-ramless-set-lhbm-after-120hz;
+	oplus,mipi-reset-enable;
+
+	/* vid-timming-switch */
+	oplus,dsi_vid_timming_switch_post_enable;
+
+	/* fps-switch */
+	qcom,mdss-dsi-pan-enable-dynamic-fps;
+	oplus,dsi-poweroff-charging-disable-dfps;
+	qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_both_hv_porch";
+	qcom,dsi-supported-dfps-list = <144    120    90    60>;
+	qcom,dsi-dfps-hbp-list =       <16     16     16    16>;
+	qcom,dsi-dfps-hfp-list =       <54     138    138   138>;
+	qcom,dsi-dfps-hpw-list =       <16     16     16    16>;
+	qcom,dsi-dfps-vbp-list =       <26     26     26    26>;
+	qcom,dsi-dfps-vfp-list =       <116    124    1108  3076>;
+	qcom,dsi-dfps-vpw-list =       <2      2      2     2>;
+	qcom,mdss-dsi-min-refresh-rate = <60>;
+	qcom,mdss-dsi-max-refresh-rate = <144>;
+
+	/* ignore some fps swicth factory test */
+	oplus,factory-ignore-mode = <1 6>;
+
+	qcom,mdss-dsi-display-timings {
+		timing@sa_fhd_120 { /* FHD+ 120hz 1360Mbps */
+			qcom,mdss-dsi-panel-phy-timings = [00 2D 0C 0C 1C 1A 0C 0C 0B 02 04 00 24 11];
+			qcom,display-topology = <2 2 1>;
+			qcom,default-topology-index = <0>;
+		};
+	};
+};

@@ -13,7 +13,6 @@ dtbo-$(CONFIG_ARCH_SUN)   += oplus/dodge-camera-overlay-evb.dtbo \
 
 
 dtbo-$(CONFIG_ARCH_SUN)   += oplus/erhai-camera-overlay-evb.dtbo \
-				 oplus/erhai-camera-overlay-T0.dtbo \
 
 dtbo-$(CONFIG_ARCH_SUN)   += oplus/hummer-camera-overlay-evb.dtbo \
 			     oplus/hummer-camera-overlay-T0.dtbo \
@@ -22,3 +21,5 @@ dtbo-$(CONFIG_ARCH_SUN)   += oplus/hummer-camera-overlay-evb.dtbo \
 dtbo-$(CONFIG_ARCH_SUN)   += oplus/pagani-camera-overlay-T0.dtbo \
 
 dtbo-$(CONFIG_ARCH_SUN)   += oplus/paganiIn-camera-overlay-T0.dtbo \
+
+dtbo-$(CONFIG_ARCH_SUN)   += oplus/ktm-camera-overlay-T0.dtbo \

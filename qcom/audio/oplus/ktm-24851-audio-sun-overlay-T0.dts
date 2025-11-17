@@ -1,0 +1,23 @@
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/oplus/hw-id.h>
+#include "../sun-audio-mtp-nfc.dts"
+#include "sun-audio-overlay-common.dtsi"
+#include "ktm-24851-audio-sun-overlay.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Sun MTP,ktm";
+
+	oplus,project-id = <24851>;
+	qcom,board-id = <0x50008 0>;
+	oplus,hw-id = <OPLUS_EVB1 OPLUS_EVB2 OPLUS_EVB3 OPLUS_T0>;
+};
+
+&qupv3_hub_i2c4 {
+	tfa98xx@34 {
+		tfa_fw_name = "tfa98xx_t0.cnt";
+	};
+	tfa98xx@35 {
+		tfa_fw_name = "tfa98xx_t0.cnt";
+	};
+};

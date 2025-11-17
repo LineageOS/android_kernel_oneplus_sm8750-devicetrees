@@ -1115,7 +1115,7 @@
 
 		ufcs_charge_oplus_strategy {
 			oplus,temp_type = <OPLUS_STRATEGY_USE_SHELL_TEMP>;
-			oplus,soc_range = <0 20 35 55 75 85 90>;
+			oplus,soc_range = <0 20 35 55 75 85 95>;
 			oplus,temp_range = <0 50 120 160 210 350 440 510>;
 
 			strategy_soc_range_min { /* 0 ~ 20 */
@@ -2233,10 +2233,10 @@
 		oplus_spec,voocphy_ibat_over_current = <16000>;
 		oplus_spec,voocphy_cp_max_ibus = <4500>;
 
-		oplus_spec,voocphy_req_freq = <1785600 2438400>;
-		oplus_spec,voocphy_freq_mincore = <1785600>;
-		oplus_spec,voocphy_freq_midcore = <2438400>;
-		oplus_spec,voocphy_freq_maxcore = <2438400>;
+		oplus_spec,voocphy_req_freq = <2918400 3801600>;
+		oplus_spec,voocphy_freq_mincore = <2918400>;
+		oplus_spec,voocphy_freq_midcore = <3801600>;
+		oplus_spec,voocphy_freq_maxcore = <3801600>;
 		oplus_spec,voocphy_current_change_timeout = <100>;
 		oplus_spec,copycat_vooc_support;
 

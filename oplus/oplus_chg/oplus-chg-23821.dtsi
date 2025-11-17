@@ -109,6 +109,9 @@
 		oplus,gauge_ic = <&oplus_virtual_gauge>;
 		oplus,topic-update-interval = <5000>;
 		oplus,support_subboard_ntc;
+		oplus,fcl_support;
+		oplus,fcl_index = <0>;
+		oplus,vb_offset = <0>;
 
 		deep_spec,support;
 		deep_spec,uv_thr = <2800>;
@@ -401,6 +404,8 @@
 					OPLUS_IC_FUNC_GAUGE_SET_LAST_CC
 					OPLUS_IC_FUNC_GAUGE_GET_LAST_CC
 					OPLUS_IC_FUNC_GAUGE_GET_REAL_TIME_CURR
+					OPLUS_IC_FUNC_GAUGE_GET_GAUGE_R_INFO
+					OPLUS_IC_FUNC_GAUGE_GET_BATT_SOC_CENTI
 				>;
 				virqs = <
 					OPLUS_IC_VIRQ_ERR
@@ -453,6 +458,7 @@
 					OPLUS_IC_FUNC_RX_STANDBY_CONFIG
 					OPLUS_IC_FUNC_RX_SET_COMU
 					OPLUS_IC_FUNC_RX_GET_TX_ID
+					OPLUS_IC_FUNC_RX_SET_SILENT
 				>;
 				virqs = <
 					OPLUS_IC_VIRQ_ERR
@@ -657,16 +663,9 @@
 
 	oplus_chg_comm: oplus,comm {
 		compatible = "oplus,common-charge";
-		oplus_spec,dec-vol-cc-thr = <0 400 800>;
-		oplus_spec,dec-vol-fv-mv = <0  0  0  0  0  0  0  0  0
-					    20 20 20 20 20 20 20 0  0
-					    40 40 40 40 40 40 20 0  0>;
-		oplus_spec,dec-vol-wired-ffc-mv = <0  0  0
-						   20 20 20
-						   40 40 20>;
-		oplus_spec,dec-vol-wls-ffc-mv = <0  0  0
-						 20 20 20
-						 40 40 20>;
+		oplus_spec,dec_step = <20>;
+		oplus_spec,dec-vol-cc-full-thr = <0 400 600 800 1000 1200>;
+		oplus_spec,dec-vol-fv-full-mv = <0 20 20 40 40 40>;
 		oplus_spec,batt-them-thr = <(-100) 0 50 120 160 350 450 530>;
 		oplus_spec,iterm-ma = <146>;
 		oplus_spec,fv-mv = <4500 4500 4500 4500 4500 4500 4475 4130 4130>;
@@ -711,6 +710,7 @@
 		oplus_spec,current_limit_of_drop_soc_2 = <350>;
 		oplus_spec,volt_of_fast_drop_soc_1 = <2700>;
 		oplus_spec,support_uisoc_low_battery_control;
+		oplus_spec,support_gauge_r_track;
 
 		oplus_spec,wls-ffc-step-max = <2>;
 		oplus_spec,wls-ffc-fv-mv = <4590 4590>;
@@ -738,20 +738,28 @@
 
 		oplus_spec,sw_check_full_cnt = <12>;
 
-		oplus,smooth_switch;
-		oplus,reserve_chg_soc = <2>;
-		oplus,reserve_dis_soc = <2>;
-
 		oplus,ui_soc_2_voltage_comp_mv = <30>;
 		oplus,chg_shutdown_max_mv = <2800>;
 		oplus,eco_region_list = /bits/ 8 <0x44>;
+
+		oplus_spec,batt_full_time = <60>;
+		oplus_spec,batt_full_low_soc = <99>;
+		oplus_spec,batt_full_low_soc_time = <600>;
+		oplus_spec,smooth_strategy_name = "bs";
+		smooth_strategy {
+			oplus_spec,reserve_table_centipercent =
+				/* start(%) end(%) dischg_reserve(0.01%) full_reserve(0.01%) chg_reserve(0.01%) chg_split(%) */
+				<0   20  0   0   200 100>,
+				<21  99  200 0   200 100>,
+				<100 100 200 0   200 100>;
+		};
 	};
 
 	oplus_monitor: oplus,monitor {
 		compatible = "oplus,monitor";
 		oplus,topic-update-interval = <60000>;
 
-		track,fast_chg_break_t_thd = <1400>;
+		track,fast_chg_break_t_thd = <2500>;
 		track,general_chg_break_t_thd = <300>;
 		track,voocphy_type = <1>;
 		track,wired_max_power = <100000>;
@@ -766,11 +774,13 @@
 		track,external_gauge_num = <1>;
 		track,nominal_qmax1 = <2916>;
 		track,nominal_fcc1 = <5260>;
+		track,low_soc_monitor_ctrl;
 
 		oplus,chg_into_liquid;
 		oplus,chg_into_liquid_cc_disconnect = <10>;
 		oplus,chg_into_liquid_total_time = <5000>;
 		oplus,chg_into_liquid_max_interval_time = <700>;
+		track,track_ver = <TRACK_VER_4_0>;
 	};
 
 	oplus_vooc: oplus,vooc {
@@ -812,6 +822,9 @@
 						390 420 CURR_LIMIT_7BIT_5_0A 3 1
 						410 430 CURR_LIMIT_7BIT_4_0A 4 2
 						420 440 CURR_LIMIT_7BIT_3_0A 4 3 >;
+
+		oplus,plc_strategy-data = <&buck_simple_strategy &svooc_simple_strategy &vooc_simple_strategy>;
+		oplus,plc_strategy-names = "default", "svooc", "vooc";
 
 		oplus_virtual_vphy: oplus,virtual_vphy {
 			compatible = "oplus,virtual_vphy";
@@ -1094,6 +1107,9 @@
 		oplus_spec,ufcs_high_soc = <95>;
 		oplus,ufcs_charge_strategy_soc = <0 20 35 55 75 85 95>;
 		oplus,ufcs_charge_strategy_temp = <0 50 120 160 350 440 510>;
+
+		oplus,plc_strategy-data = <&oplus_ufcs_step_strategy &third_ufcs_simple_strategy>;
+		oplus,plc_strategy-names = "default", "third";
 
 		ufcs_oplus_lcf_strategy {
 			oplus,temp_type = <OPLUS_STRATEGY_USE_SHELL_TEMP>;
@@ -1982,7 +1998,7 @@
 								0x4C 0x0C 0x40 0x0F 0x3E 0x0F 0x3A 0x10 0x36 0x0F 0x35 0x0F 0x35 0x0D 0x35 0x10 0x34 0x12 0x32 0x0E>;
 		oplus,bpp-fod-parm = 		/bits/ 8 <0xff  0x48 0x32 0x48 0x2D 0x48 0x32 0x48 0x30 0x48 0x37 0x48 0x53 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff
 								0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
-		oplus,bpp-fod-parm-magcvr =	/bits/ 8 <0xff  0x48 0x78 0x48 0x6C 0x48 0x7D 0x48 0x85 0x48 0x82 0x48 0x66 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff
+		oplus,bpp-fod-parm-magcvr =	/bits/ 8 <0xff  0x48 0x85 0x48 0x76 0x48 0x7D 0x48 0x85 0x50 0x82 0x56 0x98 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff
 		  					  	0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
 		oplus,epp-fod-parm =		/bits/ 8 <0xff  0x48 0x0A 0x48 0x41 0x46 0x32 0x46 0x37 0x46 0x3C 0x46 0x6E 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff
 								0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
@@ -2227,16 +2243,16 @@
 								 400 430 1500 4330 1
 								 410 440 1000 4560 1
 								 410 440 700  4530 0>;
-				strategy_temp_160_to_400 =      <120 300 5000 4200 1
-								 290 340 3500 4330 1
+				strategy_temp_160_to_400 =      <120 300 5000 4200 30
+								 170 340 3500 4330 1
 								 330 370 3000 4510 1
 								 360 395 2500 4560 1
 								 385 415 2000 4560 1
 								 400 430 1500 4560 1
 								 410 440 1000 4560 1
 								 410 440 800  4530 0>;
-				strategy_temp_400_to_440 =      <120 300 5000 4480 1
-								 290 340 3500 4530 1
+				strategy_temp_400_to_440 =      <120 300 5000 4480 30
+								 170 340 3500 4530 1
 								 330 370 3000 4530 1
 								 360 395 2500 4530 1
 								 385 415 2000 4530 1
@@ -2300,16 +2316,16 @@
 								 400 415 1500 4330 1
 								 410 440 1000 4560 1
 								 410 440 700  4530 0>;
-				strategy_temp_160_to_400 =      <120 300 5000 4200 1
-								 290 325 3500 4330 1
+				strategy_temp_160_to_400 =      <120 300 5000 4200 30
+								 170 325 3500 4330 1
 								 320 355 3000 4510 1
 								 350 375 2500 4560 1
 								 370 405 2000 4560 1
 								 400 415 1500 4560 1
 								 410 440 1000 4560 1
 								 410 440 800  4530 0>;
-				strategy_temp_400_to_440 =      <120 300 5000 4480 1
-								 290 325 3500 4530 1
+				strategy_temp_400_to_440 =      <120 300 5000 4480 30
+								 170 325 3500 4530 1
 								 320 355 3000 4530 1
 								 350 375 2500 4530 1
 								 370 405 2000 4530 1
@@ -2568,6 +2584,51 @@
 	};
 };
 //#endif OPLUS_FEATURE_CHG_BASIC /*for wls charging config*/
+
+&soc {
+	oplus_chg_plc: oplus,plc_charge {
+		compatible = "oplus,plc_charge";
+		oplus,plc_soc = <90>;
+		oplus,plc_strategy-data = <&buck_simple_strategy>;
+		oplus,plc_strategy-names = "default";
+
+		oplus_ufcs_step_strategy: oplus_ufcs_step_strategy {
+			oplus,strategy_type = <PLC_STRATEGY_STEP>;
+		};
+
+		third_ufcs_simple_strategy: third_ufcs_simple_strategy {
+			oplus,strategy_type = <PLC_STRATEGY_SIMPLE>;
+			oplus,strategy_data {
+				strategy_curr_ma = <1000 1500>;
+			};
+		};
+
+		pps_simple_strategy: pps_simple_strategy {
+			oplus,strategy_type = <PLC_STRATEGY_SIMPLE>;
+			oplus,strategy_data {
+				strategy_curr_ma = <1000 1500>;
+			};
+		};
+
+		svooc_simple_strategy: svooc_simple_strategy {
+			oplus,strategy_type = <PLC_STRATEGY_SIMPLE>;
+			oplus,strategy_data {
+				strategy_curr_ma = <1000 1500>;
+			};
+		};
+
+		vooc_simple_strategy: vooc_simple_strategy {
+			oplus,strategy_type = <PLC_STRATEGY_SIMPLE>;
+			oplus,strategy_data {
+				strategy_curr_ma = <2000 3000>;
+			};
+		};
+
+		buck_simple_strategy: buck_simple_strategy {
+			oplus,strategy_type = <PLC_STRATEGY_SIMPLE>;
+		};
+	};
+};
 
 #include "oplus-chg-23821-silicon-p-770.dtsi"
 //#endif OPLUS_FEATURE_CHG_BASIC

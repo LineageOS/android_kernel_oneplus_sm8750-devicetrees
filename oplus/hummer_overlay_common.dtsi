@@ -40,12 +40,4 @@
         compatible = "oplus,shell-temp";
     };
     //#endif /* OPLUS_FEATURE_THERMAL_HORAE */
-
-    //#ifdef CONFIG_HMBIRD_SCHED
-    oplus,hmbird {
-        version_type {
-            type = "HMBIRD_OGKI";
-        };
-    };
-    //#endif /* CONFIG_HMBIRD_SCHED */
 };
