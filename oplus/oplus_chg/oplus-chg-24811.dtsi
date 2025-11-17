@@ -2,6 +2,7 @@
 //BSP.CHG.Basic, 2023/04/19, sjc Add for charging
 
 #include "oplus-chg-8750.h.dtsi"
+#include "oplus-chg-24019-fw.dtsi"
 
 /*
  * NOTICE:
@@ -101,10 +102,10 @@
 					450 15 2
 					530 20 3>;
 
-		deep_spec,term_coeff = <3000 300 0
-					3100 450 2
-					3200 600 5
-					3300 650 7>;
+		deep_spec,term_coeff = <3000 800 4
+					3100 900 6
+					3200 1000 9
+					3300 1100 10>;
 		deep_spec,ddrc_strategy_name = "ddrc_curve";
 		deep_spec,volt_step = <20>;
 		deep_spec,ddbc_curve {
@@ -331,6 +332,8 @@
 					OPLUS_IC_FUNC_SET_TYPEC_MODE
 					OPLUS_IC_FUNC_BUCK_GET_USB_BTB_TEMP
 					OPLUS_IC_FUNC_BUCK_GET_BATT_BTB_TEMP
+					OPLUS_IC_FUNC_BUCK_GET_USB_AICL_ENHANCE
+					OPLUS_IC_FUNC_BUCK_SET_AICL_POINT
 				>;
 				virqs = <
 					OPLUS_IC_VIRQ_ERR
@@ -512,7 +515,7 @@
 	oplus,chg_ops = "plat-pmic";
 	qcom,pmic_ftm_vph = "/sys/bus/spmi/drivers/pmic-spmi/0-00/c42d000.qcom,spmi:qcom,pmk8550@0:vadc@9000/iio:device0/in_voltage_pmih010x_vph_pwr_input";
 	qcom,pmic_ftm_vbat = "/sys/bus/spmi/drivers/pmic-spmi/0-00/c42d000.qcom,spmi:qcom,pmk8550@0:vadc@9000/iio:device0/in_voltage_pmih010x_vbat_sns_qbg_input";
-
+	oplus,usb_aicl_enhance;
 
 	//qcom,otg-booster-en-gpio = <&pm8550ve_i_gpios 8 0x00>;
 	//qcom,otg-ovp-en-gpio = <&pmih010x_gpios 11 0x00>;

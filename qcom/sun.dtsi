@@ -272,14 +272,6 @@
 
 	reserved_memory: reserved-memory { };
 
-	mem-offline {
-		compatible = "qcom,mem-offline";
-		status="disabled";
-		offline-sizes = <0x2 0xc0000000 0x1 0x0>;
-		granule = <512>;
-		qcom,qmp = <&aoss_qmp>;
-	};
-
 	soc: soc { };
 
 	hypervisor: hypervisor {
@@ -3774,19 +3766,10 @@
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 		reusable;
 		alignment = <0x0 0x400000>;
-		size = <0x0 0x1400000>;
+		/* ifdef OPLUS_FEATURE_FINGERPRINT */
+		size = <0x0 0x2000000>;
+		/* endif OPLUS_FEATURE_FINGERPRINT */
 	};
-
-	// #ifdef OPLUS_FEATURE_UFF_FINGERPRINT
-	/* ref: platform/vendor/qcom-opensource/devicetree ---> qcom/sun.dtsi */
-	qseecom_ta_mem_cust: qseecom_ta_region_cust {
-		compatible = "removed-dma-pool";
-		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
-		no-map;
-		alignment = <0x0 0x400000>;
-		size = <0x0 0x1000000>; /* size to 20MB for max TA size */
-	};
-	// #endif /* OPLUS_FEATURE_UFF_FINGERPRINT */
 
 	/* merged aop_config, tme_crash_dump, tme_log and uefi_log regions */
 	aop_tme_uefi_merged_mem: aop_tme_uefi_merged_region@81c80000 {
@@ -3965,6 +3948,11 @@
 	xbl_ramdump_mem: xbl_ramdump_region@b8000000 {
 		no-map;
 		reg = <0x0 0xb8000000 0x0 0x1c0000>;
+	};
+
+	gunyah_hyp_mem1: gunyah_hyp_region1@bd930000 {
+		no-map;
+		reg = <0x0 0xbd930000 0x0 0x800000>;
 	};
 
 	hwfence_shbuf: hwfence-shmem {

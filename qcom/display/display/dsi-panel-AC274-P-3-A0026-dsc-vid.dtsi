@@ -27,18 +27,37 @@
 		qcom,mdss-pan-physical-height-dimension = <157>;
 		qcom,mdss-dsi-init-delay-us = <1000>;
 		qcom,mdss-dsi-panel-jitter = <0x4 0x1>;
+		/* disable cesta */
+		qcom,mdss-disable-cesta-hw-sleep;
 		//qcom,mdss-dsi-dma-schedule-line = <5>;
+		qcom,mdss-dsi-dma-schedule-line-60 = <2600>;
+		qcom,mdss-dsi-dma-schedule-line-90 = <600>;
+		qcom,mdss-dsi-dma-schedule-line-120 = <30>;
 		//qcom,mdss-bl-high2bit;
 		//qcom,mdss-disable-cesta-hw-sleep;
 		//qcom,mdss-dsi-panel-peak-brightness = <5400000>;
-		//qcom,mdss-dsi-panel-peak-brightness = <20000000>;
-		//qcom,mdss-dsi-panel-average-brightness = <2000000>;
-		//qcom,mdss-dsi-panel-blackness-level = <4000>;
-
+		/* HDR Setting */
+		//update for [MPC15]PerformanceClassTest#testDisplayHdr pass
+		qcom,mdss-dsi-panel-hdr-enabled;
+		qcom,mdss-dsi-panel-hdr-color-primaries = <15635 16450 34000 16000 13250 34500 7500 3000>;
+		qcom,mdss-dsi-panel-peak-brightness = <20000000>;
+		qcom,mdss-dsi-panel-average-brightness = <2000000>;
+		qcom,mdss-dsi-panel-blackness-level = <4000>;
+		/*color*/
+		oplus,color_vivid_status;
+		//oplus,color_srgb_status;
+		//oplus,color_softiris_status;
+		//oplus,color_oplus_calibrate_status;
+		//oplus,color_dual_brightness_status;
+		//oplus,color_2nit_status;
+		//oplus,color_loading_status;
+		//oplus,color_nature_profession_status;
+		//oplus,mdss-dsi-panel-type = <0>;
 		//qcom,dynamic-mode-switch-enabled;
 		qcom,dynamic-mode-switch-type = "dynamic-resolution-switch-immediate";
 		qcom,mdss-dsi-display-timings {
 			timing@0 {
+				#include "dsi-panel-AC274-P-3-A0026-common-effect.dtsi"
 				cell-index = <0>;
 				//qcom,mdss-mdp-transfer-time-us = <6290>;
 				//qcom,mdss-dsi-panel-jitter = <0x4 0x1>;
@@ -67,21 +86,20 @@
 				//oplus,ofp-need-to-separate-backlight;
 				//oplus,ofp-backlight-on-period = <1>;
 
+				/* panel C1 PVT */
 				qcom,mdss-dsi-on-command = [
-					/* DVDD Strong to 1V, For other setting refer OP manual Ch 4.9 */
+					/* OSC2 = 138.9Mhz */
 					39 00 00 40 00 00 06 F0 55 AA 52 08 01
 					15 00 00 40 00 00 02 6F 03
-					15 00 00 40 00 00 02 C5 00
-					15 00 00 40 00 00 02 6F 04
-					39 00 00 40 00 00 04 C5 25 25 25
+					15 00 00 40 00 00 02 C4 62
 					/* VGXP by pad cap */
 					39 00 00 40 00 00 05 FF AA 55 A5 80
 					15 00 00 40 00 00 02 6F 1F
-					15 00 00 40 00 00 02 F4 0B
+					15 00 00 40 00 00 02 F4 0F
 					15 00 00 40 00 00 02 6F 20
-					39 00 00 40 00 00 02 F4 3F
+					39 00 00 40 00 00 02 F4 0F
 					15 00 00 40 00 00 02 6F 08
-					15 00 00 40 00 00 02 FC 03
+					15 00 00 40 00 00 02 FC 01
 					39 00 00 40 00 00 05 FF AA 55 A5 80
 					15 00 00 40 00 00 02 6F 24
 					15 00 00 40 00 00 02 F8 FF
@@ -105,15 +123,10 @@
 					39 00 00 40 00 00 02 F8 02
 					39 00 00 40 00 00 05 FF AA 55 A5 84
 					15 00 00 40 00 00 02 F2 15
-					/* Fod Off */
-					39 00 00 40 00 00 06 F0 55 AA 52 08 09
-					15 00 00 40 00 00 02 6F 00
-					15 00 00 40 00 00 02 B0 01
-					15 00 00 40 00 00 02 6F 25
-					15 00 00 40 00 00 02 B0 00
-					15 00 00 40 00 00 02 87 00
-					15 00 00 40 00 00 02 6F 01
-					15 00 00 40 00 00 02 8B 00
+					/* LCTC Constraint for esd improve*/
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F A9
+					15 00 00 40 00 00 02 F4 F3
 					/* Resolution Setting */
 					39 00 00 40 00 00 05 2A 00 00 04 FF
 					39 00 00 40 00 00 05 2B 00 00 0A EF
@@ -133,29 +146,384 @@
 					/* FPR1 EN */
 					15 00 00 40 00 00 02 88 01
 					/* 120Hz sleep out */
-					15 00 00 40 00 00 02 2F 01
+					39 00 00 40 00 00 07 A9 01 00 2F 00 00 01
 					/* TE on */
 					15 00 00 40 00 00 02 35 00
 					/* Setting loading effect x1.0 */
 					39 00 00 40 00 00 03 5F 00 00
+					/* Optimize the slight blue smear in low brightness */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E1 01 07 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E1 01 0B 0D 04
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E1 02 0B 0A 08
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E1 02 09 08 05
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E1 01 07 09 04
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E2 01 09 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E2 02 0D 0E 06
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E2 02 09 0A 07
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E2 02 09 09 07
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E2 02 07 0B 02
 					/* swire pulse */
 					39 00 00 40 00 00 06 F0 55 AA 52 08 00
 					15 00 00 40 00 00 02 6F 03
 					15 00 00 00 00 00 02 B5 D5
 					/* Sleep out */
+					/* FOD Coordinate location */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 03 DF 02 1C
+					15 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 03 DF 09 8C
+					15 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 03 DF 02 E6
+					15 00 00 40 00 00 02 6F 0D
+					39 00 00 40 00 00 03 DF 0A 56
+					/* VDO Trim 139 */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 04
+					15 00 00 40 00 00 02 C3 0A
+					15 00 00 40 00 00 02 6F 09
+					15 00 00 40 00 00 02 C3 0A
 
+					15 00 00 40 00 00 02 EA C0
+					15 00 00 40 00 00 02 6F 11
+					15 00 00 40 00 00 02 EA C0
+					15 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 06 EA 01 04 01 39 01
+					15 00 00 40 00 00 02 6F 0C
+					39 00 00 40 00 00 06 EA 3A 01 39 04 E2
+					15 00 00 40 00 00 02 6F 18
+					39 00 00 40 00 00 06 EA 01 4A 01 8E 01
+					15 00 00 40 00 00 02 6F 1D
+					39 00 00 40 00 00 06 EA 90 01 8E 06 37
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 9B
+					15 00 00 40 00 00 02 B9 80
+					15 00 00 40 00 00 02 6F C3
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F CB
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F D3
+					39 00 00 40 00 00 03 B9 01 80
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 47
+					15 00 00 40 00 00 02 F2 21
 					15 00 00 00 78 00 02 11 00
 					15 00 00 00 14 00 02 29 00
+					/*lhbm brightness -W255 Demora Gain -> 0*/
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					15 00 00 00 00 00 02 CB 06
 				];
+
+				/* panel C3 & T0 */
+				qcom,mdss-dsi-optimize-on-command = [
+					/* OSC2 = 138.9Mhz */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 40 00 00 02 C4 62
+					/* VGXP by pad cap */
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 1F
+					15 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 08
+					15 00 00 40 00 00 02 FC 01
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 24
+					15 00 00 40 00 00 02 F8 FF
+					/* esd enhance*/
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 0F
+					15 00 00 40 00 00 02 D8 42
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F D4
+					15 00 00 40 00 00 02 BA 20
+					39 00 00 40 00 00 06 F0 55 AA 52 08 03
+					15 00 00 40 00 00 02 C6 87
+					/* For idle enter BIST */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 C0 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 02 D2 00
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 02 F8 02
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 F2 15
+					/* LCTC Constraint For ESD Improve */
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F A9
+					15 00 00 40 00 00 02 F4 F3
+					/* CSC Setting */
+					15 00 00 40 00 00 02 6F 14
+					39 00 00 40 00 00 0A B0 F5 55 55 56 AA AA AA AA A8
+					/* Resolution Setting */
+					39 00 00 40 00 00 05 2A 00 00 04 FF
+					39 00 00 40 00 00 05 2B 00 00 0A EF
+					/* Vesa1.2 10bit 3.75 Dsc Setting */
+					15 00 00 40 00 00 02 90 03
+					15 00 00 40 00 00 02 6F 01
+					39 00 00 40 00 00 02 90 43
+					39 00 00 40 00 00 13 91 AB A8 00 28 D2 00 02 5C 04 06 00 08 02 AB 02 20 10 E0
+					/* Dimming Off */
+					15 00 00 40 00 00 02 53 20
+					/* video mode ext_vfp,vbp setting */
+					39 00 00 40 00 00 11 3B 00 1C 00 58 00 1C 00 54 00 1C 04 0C 00 1C 0B B4
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 05 3B 00 1C 00 54
+					/* DPC Temperature Setting */
+					39 00 00 40 00 00 03 81 01 19
+					/* FPR1 EN */
+					15 00 00 40 00 00 02 88 01
+					/* 120Hz sleep out */
+					39 00 00 40 00 00 07 A9 01 00 2F 00 00 01
+					/* TE on */
+					15 00 00 40 00 00 02 35 00
+					/* Setting loading effect x1.0 */
+					39 00 00 40 00 00 03 5F 00 00
+					/* Optimize the slight blue smear in low brightness */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E1 01 07 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E1 01 0B 0D 04
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E1 02 0B 0A 08
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E1 02 09 08 05
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E1 01 07 09 04
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E2 01 09 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E2 02 0D 0E 06
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E2 02 09 0A 07
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E2 02 09 09 07
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E2 02 07 0B 02
+					/* swire pulse */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 00 00 00 02 B5 D5
+					/* Sleep out */
+					/* FOD Coordinate location */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 03 DF 02 1C
+					15 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 03 DF 09 8C
+					15 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 03 DF 02 E6
+					15 00 00 40 00 00 02 6F 0D
+					39 00 00 40 00 00 03 DF 0A 56
+					/* VDO Trim 139 */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 04
+					15 00 00 40 00 00 02 C3 0A
+					15 00 00 40 00 00 02 6F 09
+					15 00 00 40 00 00 02 C3 0A
+
+					15 00 00 40 00 00 02 EA C0
+					15 00 00 40 00 00 02 6F 11
+					15 00 00 40 00 00 02 EA C0
+					15 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 06 EA 01 04 01 39 01
+					15 00 00 40 00 00 02 6F 0C
+					39 00 00 40 00 00 06 EA 3A 01 39 04 E2
+					15 00 00 40 00 00 02 6F 18
+					39 00 00 40 00 00 06 EA 01 4A 01 8E 01
+					15 00 00 40 00 00 02 6F 1D
+					39 00 00 40 00 00 06 EA 90 01 8E 06 37
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 9B
+					15 00 00 40 00 00 02 B9 80
+					15 00 00 40 00 00 02 6F C3
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F CB
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F D3
+					39 00 00 40 00 00 03 B9 01 80
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 47
+					15 00 00 40 00 00 02 F2 21
+					15 00 00 00 78 00 02 11 00
+					15 00 00 00 14 00 02 29 00
+					/*lhbm brightness -W255 Demora Gain -> 0*/
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					15 00 00 00 00 00 02 CB 06
+				];
+
+				/* panel C2 */
+				qcom,mdss-dsi-optimize-vice-on-command = [
+					/* OSC2 = 138.9Mhz */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 40 00 00 02 C4 62
+					/* VGXP by pad cap */
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 1F
+					15 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 08
+					15 00 00 40 00 00 02 FC 01
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 24
+					15 00 00 40 00 00 02 F8 FF
+					/* esd enhance*/
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 0F
+					15 00 00 40 00 00 02 D8 42
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F D4
+					15 00 00 40 00 00 02 BA 20
+					39 00 00 40 00 00 06 F0 55 AA 52 08 03
+					15 00 00 40 00 00 02 C6 87
+					/* For idle enter BIST */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 C0 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 02 D2 00
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 02 F8 02
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 F2 15
+					/* LCTC Constraint For ESD Improve */
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F A9
+					15 00 00 40 00 00 02 F4 F3
+					/* Resolution Setting */
+					39 00 00 40 00 00 05 2A 00 00 04 FF
+					39 00 00 40 00 00 05 2B 00 00 0A EF
+					/* Vesa1.2 10bit 3.75 Dsc Setting */
+					15 00 00 40 00 00 02 90 03
+					15 00 00 40 00 00 02 6F 01
+					39 00 00 40 00 00 02 90 43
+					39 00 00 40 00 00 13 91 AB A8 00 28 D2 00 02 5C 04 06 00 08 02 AB 02 20 10 E0
+					/* Dimming Off */
+					15 00 00 40 00 00 02 53 20
+					/* video mode ext_vfp,vbp setting */
+					39 00 00 40 00 00 11 3B 00 1C 00 58 00 1C 00 54 00 1C 04 0C 00 1C 0B B4
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 05 3B 00 1C 00 54
+					/* DPC Temperature Setting */
+					39 00 00 40 00 00 03 81 01 19
+					/* FPR1 EN */
+					15 00 00 40 00 00 02 88 01
+					/* 120Hz sleep out */
+					39 00 00 40 00 00 07 A9 01 00 2F 00 00 01
+					/* TE on */
+					15 00 00 40 00 00 02 35 00
+					/* Setting loading effect x1.0 */
+					39 00 00 40 00 00 03 5F 00 00
+					/* Optimize the slight blue smear in low brightness */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E1 01 07 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E1 01 0B 0D 04
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E1 02 0B 0A 08
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E1 02 09 08 05
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E1 01 07 09 04
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E2 01 09 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E2 02 0D 0E 06
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E2 02 09 0A 07
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E2 02 09 09 07
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E2 02 07 0B 02
+					/* swire pulse */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 00 00 00 02 B5 D5
+					/* Sleep out */
+					/* FOD Coordinate location */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 03 DF 02 1C
+					15 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 03 DF 09 8C
+					15 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 03 DF 02 E6
+					15 00 00 40 00 00 02 6F 0D
+					39 00 00 40 00 00 03 DF 0A 56
+					/* VDO Trim 139 */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 04
+					15 00 00 40 00 00 02 C3 0A
+					15 00 00 40 00 00 02 6F 09
+					15 00 00 40 00 00 02 C3 0A
+
+					15 00 00 40 00 00 02 EA C0
+					15 00 00 40 00 00 02 6F 11
+					15 00 00 40 00 00 02 EA C0
+					15 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 06 EA 01 04 01 39 01
+					15 00 00 40 00 00 02 6F 0C
+					39 00 00 40 00 00 06 EA 3A 01 39 04 E2
+					15 00 00 40 00 00 02 6F 18
+					39 00 00 40 00 00 06 EA 01 4A 01 8E 01
+					15 00 00 40 00 00 02 6F 1D
+					39 00 00 40 00 00 06 EA 90 01 8E 06 37
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 9B
+					15 00 00 40 00 00 02 B9 80
+					15 00 00 40 00 00 02 6F C3
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F CB
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F D3
+					39 00 00 40 00 00 03 B9 01 80
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 47
+					15 00 00 40 00 00 02 F2 21
+					15 00 00 00 78 00 02 11 00
+					15 00 00 00 14 00 02 29 00
+					/*lhbm brightness -W255 Demora Gain -> 0*/
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					15 00 00 00 00 00 02 CB 06
+				];
+
 				qcom,mdss-dsi-off-command=[
 					15 00 00 00 14 00 02 28 00
 					15 00 00 00 78 00 02 10 00
 				];
 
 				qcom,mdss-dsi-lp1-command = [
-					05 00 00 60 00 00 01 39
 					15 00 00 60 00 00 02 6F 04
-					39 00 00 20 00 00 03 51 0F FE
+					39 00 00 60 00 00 03 51 0F FE
+					05 00 00 20 00 00 01 39
 				];
 				qcom,mdss-dsi-nolp-command = [
 					05 00 00 60 00 00 01 38
@@ -164,17 +532,22 @@
 
 				qcom,mdss-dsi-aod-high-mode-command = [
 					/* AOD High Mode 50nit */
+					15 00 00 60 00 00 02 6F 04
 					39 00 00 20 00 00 03 51 0F FE
 				];
 				qcom,mdss-dsi-aod-low-mode-command = [
 					/* AOD Low Mode 10nit */
+					15 00 00 60 00 00 02 6F 04
 					39 00 00 00 00 00 03 51 0D BB
 				];
 				qcom,mdss-dsi-lhbm-pressed-icon-on-command = [
-					39 00 00 20 00 00 14 A9 02 09 B0 00 00 11 01 00 8B 00 01 10 01 01 00 87 00 00 25
+					39 00 00 50 00 00 07 A9 01 00 2F 00 00 01
+					39 00 00 50 00 00 35 A9 02 08 B1 00 00 03 02 08 C1 00 07 8E 90 EE 90 90 EE 90 90 02 08 C1 08 0A EE D0 D0 02 01 B9 1D 1D 08 02 09 B0 00 00 11 01 00 8B 00 01 10 01 01 00 87 00 00 25
+					39 00 00 10 00 00 2E A9 01 00 A2 00 27 03 02 08 C1 00 07 8E FF EE FF FF EE FF FF 02 08 C1 08 0A EE FF FF 00 00 00 00 00 02 01 B9 1D 1D 08 00 00 00 00 00 00 00
 				];
 				qcom,mdss-dsi-lhbm-pressed-icon-off-command = [
-					39 00 00 20 00 00 14 A9 02 09 B0 00 00 01 01 00 8B 00 01 00 00 01 00 87 00 00 00
+					39 00 00 50 00 00 35 A9 02 08 B1 00 00 02 02 08 C1 00 07 8F 50 FF 50 50 FF 50 50 02 08 C1 08 0A FF 50 50 02 01 B9 1D 1D 08 02 09 B0 00 00 01 01 00 8B 00 01 00 00 01 00 87 00 00 00
+					39 00 00 10 00 00 2E A9 01 00 A2 00 27 03 02 08 C1 00 07 8E FF EE FF FF EE FF FF 02 08 C1 08 0A EE FF FF 00 00 00 00 00 02 01 B9 1D 1D 08 00 00 00 00 00 00 00
 				];
 
 				qcom,dsi-panel-date-switch-command = [
@@ -187,15 +560,15 @@
 				];
 
 				qcom,mdss-dsi-vid-120hz-switch-command = [
-					15 00 00 20 00 00 02 2F 01
+					39 00 00 10 00 00 07 A9 01 00 2F 00 00 01
 				];
 
 				qcom,mdss-dsi-vid-90hz-switch-command = [
-					15 00 00 10 00 00 02 2F 02
+					39 00 00 10 00 00 07 A9 01 00 2F 00 00 02
 				];
 
 				qcom,mdss-dsi-vid-60hz-switch-command = [
-					15 00 00 10 00 00 02 2F 03
+					39 00 00 10 00 00 07 A9 01 00 2F 00 00 03
 				];
 
 				qcom,dsi-panel-date-switch-command-state = "dsi_lp_mode";
@@ -204,6 +577,8 @@
 				qcom,mdss-dsi-vid-90hz-switch-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-vid-60hz-switch-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-optimize-on-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-optimize-vice-on-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-lp1-command-state = "dsi_hs_mode";
 				qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
@@ -255,9 +630,16 @@
 	oplus,dsi-brightness-normal-max-level = <3001>;
 	oplus,dsi-dc-backlight-threshold = <1088>;
 	oplus,dsi-brightness-default-level = <1638>;
+	oplus,panel_backlight_check_disable;
 
 	/* ofp config */
 	oplus,ofp-fp-type = <0xA10>;
+
+	/* aod brightness config*/
+	oplus,video-mode-aod-brightness-change-enable;
+	oplus,video-mode-aod-brightness-value-count= [02];
+	oplus,video-mode-aod-high-brightness-value = [0F FE];
+	oplus,video-mode-aod-low-brightness-value = [0D BB];
 
 	/* esd config */
 	qcom,esd-check-enabled;
@@ -275,7 +657,7 @@
 	oplus,mdss-dsi-panel-status-match-modes = <0x00000000>;
 
 	/* vid-timming-switch */
-	oplus,dsi-vid-timming-switch_enable;
+	oplus,dsi_vid_timming_switch_post_enable;
 	/* fps-switch */
 	qcom,mdss-dsi-pan-enable-dynamic-fps;
 	qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_both_hv_porch";

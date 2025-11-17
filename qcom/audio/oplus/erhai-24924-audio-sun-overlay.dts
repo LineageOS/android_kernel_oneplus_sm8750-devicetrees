@@ -8,7 +8,7 @@
 / {
     model = "Qualcomm Technologies, Inc. Sun MTP,erhai";
 
-    oplus,project-id = <24924 24926 24974 24976>;
+    oplus,project-id = <24924 24926 24976 24974>;
     oplus,hw-id = <OPLUS_EVT1 OPLUS_EVT2 OPLUS_DVT1 OPLUS_DVT2 OPLUS_PVT1>;
 };
 

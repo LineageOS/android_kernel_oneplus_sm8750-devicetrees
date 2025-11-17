@@ -50,6 +50,7 @@ sensor_fb: sensor_fb {
                    is-virtual-sensor;
                    fusion-type = <0>;//AKM_FUSION
                    fold-feature = <0>;
+                   drop_zero = <1>;
                };
            };
            consumer_ir_core {

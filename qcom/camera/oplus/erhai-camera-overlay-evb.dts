@@ -15,5 +15,4 @@
 	model = "Qualcomm Technologies, Inc. Sun erhai_EVB";
 	compatible = "qcom,sun-mtp", "qcom,sun", "qcom,mtp";
 	oplus,project-id = <24924 24926 24976 24974>;
-	oplus,hw-id = <OPLUS_EVB1 OPLUS_EVB2 OPLUS_EVB3>;
 };

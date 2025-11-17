@@ -1,0 +1,53 @@
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/oplus/hw-id.h>
+#include "../qcom/sun-mtp-kiwi-v8-overlay.dts"
+#include "sun_overlay_common.dtsi"
+#include "ktm_overlay_common.dtsi"
+#include "oplus_uff/oplus-uff-24851.dtsi"
+#include "oplus_chg/oplus-gauge-ti-24851.dtsi"
+#include "oplus_misc/oplus-misc-24851-dvt2.dtsi"
+#include "oplus_icc/ktm-icc.dtsi"
+#include "tp/ktm-oplus-tp-24851.dtsi"
+#include "sensor/ktm-sensor-24851.dtsi"
+#include "oplus_nfc/ktm_nfc.dtsi"
+
+
+/ {
+    model = "Qualcomm Technologies, Inc. Sun MTP,ktm-g_ti";
+
+    oplus,project-id = <24851>;
+    oplus,hw-id = < OPLUS_DVT2 >;
+    oplus,gauge-id = <GAUGE_TI_SN28Z729>;
+};
+
+&tlmm {
+  //#ifdef OPLUS_FEATURE_RF_CABLE_DETECT
+  rf_cable0_active: rf_cable0_active {
+    mux {
+      pins = "gpio47";
+      function = "gpio";
+    };
+    config {
+      pins = "gpio47";
+      drive-strength = <2>;
+      input-enable;
+      bias-pull-up;
+    };
+  };
+  //#endif /* OPLUS_FEATURE_RF_CABLE_DETECT */
+};
+
+&soc {
+  //#ifdef OPLUS_FEATURE_RF_CABLE_DETECT
+  oplus_rf_cable {
+    compatible = "oplus,rf_cable";
+    interrupt-parent = <&tlmm>;
+    rf_cable_support_num = <1>;
+    rf,cable0-gpio = <&tlmm 47 0>;
+    rf,cable-support-timer = <0>;
+    pinctrl-names = "rf_cable_active";
+    pinctrl-0 = <&rf_cable0_active>;
+  };
+  //#endif /* OPLUS_FEATURE_RF_CABLE_DETECT */
+};

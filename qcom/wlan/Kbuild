@@ -34,6 +34,7 @@ dtbo-y += oplus/dodge_sun-peach-cnss-v8-overlay.dtbo
 # ifdef OPLUS_FEATURE_WIFI_BDF
 dtbo-y += oplus/hummer_sun-peach-cnss-v8-overlay.dtbo
 dtbo-y += oplus/pagani_sun-peach-cnss-v8-overlay.dtbo
+dtbo-y += oplus/ktm_sun-kiwi-cnss-v8-overlay.dtbo
 # endif /* OPLUS_FEATURE_WIFI_BDF */
 endif
 

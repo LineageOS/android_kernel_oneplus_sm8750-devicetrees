@@ -1,0 +1,30 @@
+&soc {
+  oplus_mm_config: oplus,mm_config {
+    compatible = "oplus,mm_osvelte-config";
+    ram-8g {
+      /* 14M - 16M */
+      ta_cma_rsv {
+        bind-cma = "qseecom_ta_region";
+        size-range = <0xe00000 0x1000000>;
+      };
+    };
+    ram-12g {
+      ta_cma_rsv {
+        bind-cma = "qseecom_ta_region";
+        size-range = <0xe00000 0x1000000>;
+      };
+    };
+    ram-16g {
+      ta_cma_rsv {
+        bind-cma = "qseecom_ta_region";
+        size-range = <0xe00000 0x1000000>;
+      };
+    };
+    ram-24g {
+      ta_cma_rsv {
+        bind-cma = "qseecom_ta_region";
+        size-range = <0xe00000 0x1000000>;
+      };
+    };
+  };
+};

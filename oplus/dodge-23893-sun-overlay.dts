@@ -12,6 +12,7 @@
 #include "tp/dodge-oplus-tp-23821.dtsi"
 #include "oplus_nfc/dodge_nfc.dtsi"
 #include "sensor/dodge-sensor-23821.dtsi"
+#include "mm/dodge-23821-sun-mm.dtsi"
 
 / {
     model = "Qualcomm Technologies, Inc. Sun MTP,dodge";

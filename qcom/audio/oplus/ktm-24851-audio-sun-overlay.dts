@@ -1,0 +1,14 @@
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/oplus/hw-id.h>
+#include "../sun-audio-mtp-nfc.dts"
+#include "sun-audio-overlay-common.dtsi"
+#include "ktm-24851-audio-sun-overlay.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Sun MTP,ktm";
+
+	oplus,project-id = <24851>;
+	qcom,board-id = <0x50008 0>;
+	oplus,hw-id = <OPLUS_T1 OPLUS_EVT1 OPLUS_EVT2 OPLUS_DVT1 OPLUS_DVT2 OPLUS_PVT1>;
+};

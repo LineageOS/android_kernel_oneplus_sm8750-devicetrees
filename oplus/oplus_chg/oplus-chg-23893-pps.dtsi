@@ -64,6 +64,9 @@
 		oplus,pps_charge_strategy_soc = <0 20 35 55 75 85 95>;
 		oplus,pps_charge_strategy_temp = <0 50 120 160 350 440 510>;
 
+		oplus,plc_strategy-data = <&pps_simple_strategy>;
+		oplus,plc_strategy-names = "default";
+
 		pps_charge_third_strategy {
 			oplus,temp_type = <OPLUS_STRATEGY_USE_SHELL_TEMP>;
 			oplus,soc_range = <0 20 35 55 75 85 95>;

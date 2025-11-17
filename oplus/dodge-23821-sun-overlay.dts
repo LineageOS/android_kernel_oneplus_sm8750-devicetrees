@@ -12,6 +12,7 @@
 #include "tp/dodge-oplus-tp-23821.dtsi"
 #include "oplus_nfc/dodge_nfc.dtsi"
 #include "sensor/dodge-sensor-23821.dtsi"
+#include "mm/dodge-23821-sun-mm.dtsi"
 
 / {
     model = "Qualcomm Technologies, Inc. Sun MTP,dodge";
@@ -68,15 +69,6 @@
 		pinctrl-0 = <&rf_cable0_active>;
 	};
 	//#endif /* OPLUS_FEATURE_RF_CABLE_DETECT */
-
-	//#ifdef CONFIG_HMBIRD_SCHED
-	oplus,hmbird {
-		version_type {
-			type = "HMBIRD_OGKI";
-		};
-	};
-	//#endif /* CONFIG_HMBIRD_SCHED */
-
 };
 
 &pm8550_gpios {
@@ -127,7 +119,3 @@
         bias-pull-down;
     };
 };
-
-
-
-

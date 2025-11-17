@@ -244,7 +244,7 @@
 		>;
 
 		oplus_spec,cool_down_sale_pdqc_vol_mv = <5000>;
-		oplus_spec,cool_down_sale_pdqc_curr_ma = <2000>;
+		oplus_spec,cool_down_sale_pdqc_curr_ma = <1200>;
 		oplus_spec,cool_down_pdqc_vol_mv = <5000 5000 5000 9000>;
 		oplus_spec,cool_down_pdqc_curr_ma = <1200 1500 2000 1500>;
 		oplus_spec,cool_down_vooc_curr_ma = <1200 1500 2000 2500 3000 3000>;
@@ -1131,9 +1131,6 @@
 		oplus_spec,slave_cp_enable_thr = <1400>;		//2000-100mA
 		oplus_spec,slave_cp_disable_thr_high = <1100>;	//1500+100mA
 		oplus_spec,voocphy_current_default = <61>;
-		oplus_spec,impedance_calculation_newmethod;
-		oplus_spec,svooc_circuit_r_l = <0x1E>;
-		oplus_spec,svooc_circuit_r_h = <0x0>; // 300mohm
 
 		oplus_spec,vooc_multistep_initial_batt_temp = <1000>;
 		oplus_spec,vooc_low_temp = <0>;
@@ -1505,7 +1502,7 @@
 				strategy_temp_normal_high =	<4535 25 0 0 0
 								4535 20 0 0 0
 								4535 15 0 0 0
-								4545 14 1 0 0>;
+								4545 10 1 0 0>;
 				strategy_temp_warm =		<4130 10 1 0 0>;
 			};
 		};

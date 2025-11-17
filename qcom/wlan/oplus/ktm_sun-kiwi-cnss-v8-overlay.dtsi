@@ -1,0 +1,47 @@
+/*
+ *   <author>     <data>      <desc>
+ *   LiFenfen   2024/09/09  , select BDF by device-tree , bug id 7902090
+ */
+
+#include <dt-bindings/interconnect/qcom,sun.h>
+#include "../sun-kiwi-cnss-v8.dts"
+
+&tlmm {
+	cnss_pins {
+		cnss_host_sol_default: cnss_host_sol_default {
+			mux {
+				pins = "gpio202";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio202";
+				drive-strength = <4>;
+				bias-pull-down;
+			};
+		};
+	};
+};
+
+&wlan_kiwi {
+	wlan-host-sol-gpio = <&tlmm 202 0>;
+	wlan-dev-sol-gpio = <&tlmm 203 0>;
+	pinctrl-names = "wlan_en_active", "wlan_en_sleep", "sw_ctrl",
+			"sw_ctrl_wl_cx", "sol_default";
+	pinctrl-0 = <&cnss_wlan_en_active>;
+	pinctrl-1 = <&cnss_wlan_en_sleep>;
+	pinctrl-2 = <&cnss_wlan_sw_ctrl>;
+	pinctrl-3 = <&cnss_wlan_sw_ctrl_wl_cx>;
+	pinctrl-4 = <&cnss_host_sol_default>;
+
+	oplus_bdf: oplus_bdf {
+		bdf_name = "bdwlan.elf";
+		project_type = "rfid";
+	};
+};
+
+&oplus_bdf {
+    rfid_5: rfid_5 {
+		bdf_name = "bdwlang.elf";
+    };
+};

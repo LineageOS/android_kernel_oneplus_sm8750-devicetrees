@@ -65,13 +65,6 @@
         Hw,sim_det = "modem_det";
     };
     //#endif /*OPLUS_FEATURE_ESIM*/
-    //#ifdef CONFIG_HMBIRD_SCHED
-    oplus,hmbird {
-        version_type {
-            type = "HMBIRD_OGKI";
-        };
-    };
-    //#endif /* CONFIG_HMBIRD_SCHED */
 };
 
 &pm8550_gpios {

@@ -1,6 +1,9 @@
 //ifdef OPLUS_FEATURE_CHG_BASIC
 &oplus_mms_gauge {
 	silicon_p_770 {
+		oplus,fcl_support;
+		oplus,fcl_index = <0>;
+		oplus,vb_offset = <0>;
 		deep_spec,support;
 		deep_spec,uv_thr = <2800>;
 		deep_spec,count_thr = <50>;
@@ -10,12 +13,12 @@
 					450 15 2
 					530 20 3>;
 
-		deep_spec,term_coeff = <3000 300 0
-					3050 400 2
-					3060 400 2
-					3100 500 4
-					3200 550 5
-					3300 600 7>;
+		deep_spec,term_coeff = <3000 800 3
+					3050 900 5
+					3060 900 5
+					3100 1000 7
+					3200 1100 9
+					3300 1200 10>;
 		deep_spec,ddrc_strategy_name = "ddrc_curve";
 		deep_spec,volt_step = <20>;
 		deep_spec,ddbc_curve {

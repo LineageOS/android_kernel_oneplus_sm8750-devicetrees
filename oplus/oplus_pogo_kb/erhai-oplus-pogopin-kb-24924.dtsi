@@ -144,23 +144,24 @@
 
 		pogopin-battery-support;
 		keyboard-name-strings-enc =
-			"Erhai 2KB(Pogo Pin)",
-			"Erhai 1KB CN(Pogo Pin)",
-			"Erhai 1KB EN(Pogo Pin)";
+			"Erhai 2KB",
+			"Erhai 1KB CN",
+			"Erhai 1KB EN";
 		keyboard-ble-name-strings-enc =
 			"Erhai 2KB",
 			"Erhai 1KB CN",
 			"Erhai 1KB EN";
 
 		keyboard-name-strings =
-			"OPLUS Pad 4 Pro Keyboard(Pogo Pin)",
-			"OnePlus Pad 2 Pro Keyboard(Pogo Pin)",
-			"OnePlus Pad 3 Keyboard(Pogo Pin)";
+			"OPLUS Pad 4 Pro Keyboard",
+			"OnePlus Pad 2 Pro Keyboard",
+			"OnePlus Pad 3 Keyboard";
 		keyboard-ble-name-strings =
 			"OPLUS Pad 4 Pro Keyboard",
 			"OnePlus Pad 2 Pro Keyboard",
 			"OnePlus Pad 3 Keyboard";
 
 		touchpad-xy-max = <2764 1630>;
+		touchpad-xy-resolution = <23 23>;
 	};
 };
