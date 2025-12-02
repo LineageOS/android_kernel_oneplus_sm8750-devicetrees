@@ -2676,7 +2676,7 @@
 	oplus,cmdq-sync-support;
 	/* ofp config */
 	oplus,ofp-fp-type = <0xc0>;
-	oplus,ofp-longrui-aod-config = <0x06>;
+	oplus,ofp-longrui-aod-config = <0x0E>;
 	oplus,ofp-need-to-bypass-gamut;
 	oplus,ofp-need-to-wait-data-before-aod-on;
 

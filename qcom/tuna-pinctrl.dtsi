@@ -29,7 +29,10 @@
 				pins = "gpio128";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
-				output-high;
+				//ifdef OPLUS_ARCH_EXTENDS
+				/* Delete output-high, cr#4213026 */
+				//output-high;
+				//#endif /* OPLUS_ARCH_EXTENDS */
 			};
 		};
 	};
@@ -59,7 +62,10 @@
 				pins = "gpio129";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
-				output-high;
+				//ifdef OPLUS_ARCH_EXTENDS
+				/* Delete output-high, cr#4213026 */
+				//output-high;
+				//#endif /* OPLUS_ARCH_EXTENDS */
 			};
 		};
 	};
@@ -89,7 +95,10 @@
 				pins = "gpio130";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
-				output-high;
+				//ifdef OPLUS_ARCH_EXTENDS
+				/* Delete output-high, cr#4213026 */
+				//output-high;
+				//#endif /* OPLUS_ARCH_EXTENDS */
 			};
 		};
 	};
@@ -119,7 +128,10 @@
 				pins = "gpio131";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
-				output-high;
+				//ifdef OPLUS_ARCH_EXTENDS
+				/* Delete output-high, cr#4213026 */
+				//output-high;
+				//#endif /* OPLUS_ARCH_EXTENDS */
 			};
 		};
 	};
