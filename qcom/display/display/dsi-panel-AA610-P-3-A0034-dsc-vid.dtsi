@@ -252,9 +252,17 @@
 				];
 				qcom,mdss-dsi-nolp-command = [
 					39 00 00 60 00 00 04 FF 5A A5 00
-					05 00 00 60 00 00 01 38
+					05 00 00 60 00 00 02 38 00
+					15 00 00 60 00 00 02 D0 00
+					39 00 00 60 00 00 04 FF 5A A5 4F
+					15 00 00 60 00 00 02 80 01
+					15 00 00 60 00 00 02 81 00
+					15 00 00 60 00 00 02 88 78
 					39 00 00 60 00 00 04 FF 5A A5 07
-					15 00 00 20 00 00 02 D4 90
+					15 00 00 60 00 00 02 D4 90
+					39 00 00 60 00 00 04 FF 5A A5 4F
+					15 00 00 60 00 00 02 8B 78
+					39 00 00 20 00 00 04 FF 5A A5 00
 				];
 
 				qcom,mdss-dsi-aod-high-mode-command = [
@@ -567,6 +575,28 @@
 							39 00 00 60 00 00 04 FF 5A A5 4F
 							15 00 00 20 00 00 02 8B 78
 				];
+
+				qcom,mdss-dsi-vid-165hz-switch-command = [
+							39 00 00 50 00 00 04 FF 5A A5 00
+							15 00 00 10 00 00 02 D0 30
+				];
+				qcom,mdss-dsi-vid-144hz-switch-command = [
+							39 00 00 50 00 00 04 FF 5A A5 00
+							15 00 00 10 00 00 02 D0 40
+				];
+				qcom,mdss-dsi-vid-120hz-switch-command = [
+							39 00 00 50 00 00 04 FF 5A A5 00
+							15 00 00 10 00 00 02 D0 00
+				];
+				qcom,mdss-dsi-vid-90hz-switch-command = [
+							39 00 00 50 00 00 04 FF 5A A5 00
+							15 00 00 10 00 00 02 D0 10
+				];
+				qcom,mdss-dsi-vid-60hz-switch-command = [
+							39 00 00 50 00 00 04 FF 5A A5 00
+							15 00 00 10 00 00 02 D0 20
+				];
+
 				qcom,mdss-dsi-fps-switch-165HZ-enter-144Hz-command-state = "dsi_hs_mode";
 				qcom,mdss-dsi-fps-switch-165HZ-enter-120Hz-command-state = "dsi_hs_mode";
 				qcom,mdss-dsi-fps-switch-165HZ-enter-90Hz-command-state = "dsi_hs_mode";
@@ -577,6 +607,11 @@
 				qcom,mdss-dsi-fps-switch-enter-165Hz-command-state = "dsi_hs_mode";
 				qcom,mdss-dsi-fps-switch-144Hz-enter-165Hz-command-state = "dsi_hs_mode";
 				qcom,mdss-dsi-fps-switch-enter-144Hz-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-vid-165hz-switch-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-vid-144hz-switch-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-vid-120hz-switch-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-vid-90hz-switch-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-vid-60hz-switch-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
 				qcom,dsi-panel-date-switch-command-state = "dsi_lp_mode";
@@ -659,9 +694,13 @@
 	//enable mipi strength
 	//oplus,enhance_mipi_strength;
 
+	// disable esd in 30hz
+	oplus,doze_disable_esdcheck;
+
 	/* BRIGHTNESS CONFIG */
 	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
 	qcom,bl-update-flag = "delay_until_first_frame";
+	qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
 	qcom,mdss-dsi-bl-inverted-dbv;
 	qcom,mdss-dsi-bl-min-level = <1>;
 	qcom,mdss-dsi-bl-max-level = <4094>;
@@ -674,6 +713,7 @@
 
 	/* ofp config */
 	oplus,ofp-fp-type = <0xA10>;
+	oplus,ofp-ilitek-write-cmd-before-refresh-rate30hz;
 
 	/* aod brightness config*/
 	oplus,video-mode-aod-brightness-change-enable;
@@ -716,10 +756,10 @@
 	oplus,dsi-serial-number-enabled;
 	oplus,dsi-serial-number-switch-page;
 	oplus,dsi-serial-number-index= <0>;
-	oplus,dsi-serial-number-reg= <0x80>;
+	oplus,dsi-serial-number-reg= <0xF2>;
 	oplus,dsi-serial-number-read-count= <7>;
+	oplus,dsi-serial-number-base-year = <2021>;
 	qcom,ulps-enabled;
-	qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
 
 	//oplus,vreg_ctrl_flag;
 
