@@ -8,7 +8,7 @@
 #include "oplus_misc/oplus-misc-23821.dtsi"
 #include "oplus_chg/oplus-chg-23821.dtsi"
 #include "oplus_chg/oplus-chg-23821-silicon-deep-discharge-770.dtsi"
-#include "oplus_chg/oplus-chg-23821-pps.dtsi"
+#include "oplus_chg/oplus-chg-23893-pps.dtsi"
 #include "tp/dodge-oplus-tp-23821.dtsi"
 #include "oplus_nfc/dodge_nfc.dtsi"
 #include "sensor/dodge-sensor-23821-T0.dtsi"

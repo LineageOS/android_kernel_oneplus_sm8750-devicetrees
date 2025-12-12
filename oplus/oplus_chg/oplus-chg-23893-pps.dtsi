@@ -7,7 +7,7 @@
 					   CHG_PROTOCOL_PPS
 					   CHG_PROTOCOL_VOOC>;
 	oplus,common_chg_pps {
-		oplus,region_id = /bits/ 8 <0x44 0xA7>;
+		oplus,region_id = /bits/ 8 <0x44 0xA7 0x97>; // Add CN
 		oplus,protocol_list = <CHG_PROTOCOL_VOOC 100
 				   CHG_PROTOCOL_PPS  55
 				   CHG_PROTOCOL_PD   18
