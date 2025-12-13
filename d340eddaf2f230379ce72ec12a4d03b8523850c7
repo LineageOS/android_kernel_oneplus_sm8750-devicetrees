@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69b381f8_6839e178",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 24438
+      },
+      "writtenOn": "2025-12-13T04:43:35Z",
+      "side": 1,
+      "message": "before:\n\n```\n[27688.990678] [INFO]: OPLUS_CHG[PPS]([oplus_pps_switch_check_work][1869]): adapter max_curr \u003d 5000\n[27688.991018] [INFO]: OPLUS_CHG[PPS]([oplus_pps_switch_check_work][1883]): final max_curr \u003d 3000```\n\nNow I am able to charge my CN variant with 55W PPS @ 5000 mA as cur max:\nafter:\n```\n[   35.685149] [INFO]: OPLUS_CHG[PPS]([oplus_pps_switch_check_work][1869]): adapter max_curr \u003d 5000\n[   35.686017] [INFO]: OPLUS_CHG[PPS]([oplus_pps_switch_check_work][1883]): final max_curr \u003d 5000\n```",
+      "revId": "d340eddaf2f230379ce72ec12a4d03b8523850c7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
