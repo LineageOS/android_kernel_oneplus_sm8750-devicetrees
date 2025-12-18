@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d13948c_9ab67dd2",
+        "filename": "oplus/oplus_chg/oplus-chg-23821-pps.dtsi",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2025-12-18T21:35:43Z",
+      "side": 1,
+      "message": "add ufcs here?",
+      "range": {
+        "startLine": 13,
+        "startChar": 1,
+        "endLine": 19,
+        "endChar": 27
+      },
+      "revId": "62b123f390bb0020bc5308b083f70d0c6534bc94",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
