@@ -600,22 +600,22 @@
 		compatible = "oplus,wired";
 
 		oplus,vooc-support;
-
+		oplus,qc-curr-check-support;
 		oplus_spec,vbatt_pdqc_to_5v_thr = <5100>;
 		oplus_spec,vbatt_pdqc_to_9v_thr = <5000>;
 		oplus_spec,pd-iclmax-ma = <2000>;
 		oplus_spec,qc-iclmax-ma = <2000>;
 		oplus_spec,non-standard-ibatmax-ma = <500>;
 		oplus_spec,input-power-mw = <
-			2250		/* OPLUS_WIRED_CHG_MODE_UNKNOWN */
-			2250		/* OPLUS_WIRED_CHG_MODE_SDP */
+			2500		/* OPLUS_WIRED_CHG_MODE_UNKNOWN */
+			2500		/* OPLUS_WIRED_CHG_MODE_SDP */
 			7500		/* OPLUS_WIRED_CHG_MODE_CDP */
 			10000		/* OPLUS_WIRED_CHG_MODE_DCP */
 			15000		/* OPLUS_WIRED_CHG_MODE_VOOC */
 			18000		/* OPLUS_WIRED_CHG_MODE_QC */
 			18000		/* OPLUS_WIRED_CHG_MODE_PD */
 		>;
-		oplus_spec,led_on-fccmax-ma = <0 722 2170 3300 3300 3300 3300 1000 0>;
+		oplus_spec,led_on-fccmax-ma = <0 722 2200 3618 4400 4400 4400 1000 0>;
 		oplus_spec,fccmax-ma-lv = <
 			0 521 2200 2200 2200 2200 2200 2200 0	/* OPLUS_WIRED_CHG_MODE_UNKNOWN */
 			0 600  600  600  600  600  600  600 0	/* OPLUS_WIRED_CHG_MODE_SDP */
@@ -2413,6 +2413,7 @@
 	oplus_chg_plc: oplus,plc_charge {
 		compatible = "oplus,plc_charge";
 		oplus,plc_soc = <90>;
+		oplus,plc_support_timeout;
 		oplus,plc_strategy-data = <&buck_simple_strategy>;
 		oplus,plc_strategy-names = "default";
 

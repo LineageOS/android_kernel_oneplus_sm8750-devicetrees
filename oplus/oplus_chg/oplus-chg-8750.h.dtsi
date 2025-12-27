@@ -464,6 +464,9 @@
 #define OPLUS_STRATEGY_USE_MAIN_BATT_TEMP   2
 #define OPLUS_STRATEGY_USE_SUB_BATT_TEMP    3
 
+/* pcc strategy */
+#define PCC_VOOC_PROTOCOL	1
+
 #define AGING_FFC_NOT_SUPPORT		0
 #define AGING_FFC_V1			1
 

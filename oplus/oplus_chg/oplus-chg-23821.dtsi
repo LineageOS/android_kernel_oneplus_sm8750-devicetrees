@@ -1074,6 +1074,9 @@
 		oplus,cp_ic = <&oplus_ufcs_virtual_cp>;
 		oplus,dpdm_switch_ic = <&oplus_adsp_dpdm_switch>;
 
+		oplus,curr_max_ma_percent = <3500 /* 75% ibus */
+					     2000 /* 85% ibus */>;
+
 		oplus,adsp_ufcs_project;
 		oplus,ufcs_boot_time_retry = <10>;
 		oplus,impedance_unit = <&oplus_ufcs_impedance_unit>;
