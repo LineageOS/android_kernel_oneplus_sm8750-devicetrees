@@ -2275,7 +2275,7 @@
 
 	/* ofp config */
 	oplus,ofp-fp-type = <0x490>;
-	oplus,ofp-longrui-aod-config = <0x06>;
+	oplus,ofp-longrui-aod-config = <0x0e>;
 	oplus,ofp-need-to-wait-data-before-aod-on;
 	oplus,ofp-need-to-sync-data-in-aod-on;
 	/* adfr config */

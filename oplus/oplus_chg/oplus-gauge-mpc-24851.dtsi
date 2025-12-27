@@ -40,6 +40,11 @@
 };
 
 &oplus_chg_comm {
+	oplus_spec,soc_down_ladder = <2 11 60 95 100 0 0 0 0 0>;
+	oplus_spec,soc_down_delay_hz_ladder = <20 20 40 60 150 300 0 0 0 0>;
+	oplus_spec,soc_down_chg_delay_hz_ladder = <90 40 40 60 150 300 0 0 0 0>;
+	oplus_spec,soc_down_default_delay_hz = <40>;
+
 	oplus_spec,batt_full_time = <60>;
 	oplus_spec,batt_full_low_soc = <99>;
 	oplus_spec,batt_full_low_soc_time = <600>;

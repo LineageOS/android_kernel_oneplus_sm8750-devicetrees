@@ -163,6 +163,9 @@
 
 &oplus_ufcs_charge {
 	silicon_p_770 {
+		oplus,curr_max_ma_percent = <3500 /* 75% ibus */
+					     2000 /* 85% ibus */>;
+
 		oplus,adsp_ufcs_project;
 		oplus,ufcs_need_reset_adapter;
 		oplus,target_vbus_mv = <11000>;

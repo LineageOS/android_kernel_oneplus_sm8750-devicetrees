@@ -13,6 +13,10 @@
 	oplus_spec,current_limit_of_drop_soc_2 = <700>;
 	oplus_spec,volt_of_fast_drop_soc_1 = <2750>;
 	oplus_spec,support_uisoc_low_battery_control;
+	oplus_spec,soc_down_ladder = <2 11 60 95 100 0 0 0 0 0>;
+	oplus_spec,soc_down_delay_hz_ladder = <20 20 40 60 150 300 0 0 0 0>;
+	oplus_spec,soc_down_chg_delay_hz_ladder = <90 40 40 60 150 300 0 0 0 0>;
+	oplus_spec,soc_down_default_delay_hz = <40>;
 };
 
 &oplus_mms_gauge {
