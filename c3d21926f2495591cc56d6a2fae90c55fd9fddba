@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ce1f31c_80095811",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-01-10T10:47:26Z",
+      "side": 1,
+      "message": "chmod 644 please. Hopefully the existing ones are also not executable.",
+      "revId": "c3d21926f2495591cc56d6a2fae90c55fd9fddba",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
