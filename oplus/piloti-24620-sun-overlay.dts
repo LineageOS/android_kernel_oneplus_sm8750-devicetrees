@@ -1,0 +1,49 @@
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/oplus/hw-id.h>
+#include "../qcom/sun-mtp-v8-overlay.dts"
+#include "sun_overlay_common.dtsi"
+#include "piloti_overlay_common.dtsi"
+#include "oplus_uff/oplus-uff-24620.dtsi"
+#include "oplus_misc/oplus-misc-24620.dtsi"
+#include "oplus_chg/oplus-chg-24620.dtsi"
+#include "oplus_chg/oplus-chg-24620-pps.dtsi"
+#include "tp/piloti-oplus-tp-24620.dtsi"
+#include "oplus_nfc/pista_nfc.dtsi"
+#include "sensor/piloti-sensor-24620.dtsi"
+
+/ {
+    model = "Qualcomm Technologies, Inc. Sun MTP,piloti";
+
+    oplus,project-id = <24620>;
+    oplus,hw-id = <OPLUS_EVB1 OPLUS_EVB2 OPLUS_EVB3 OPLUS_T0 OPLUS_EVT1 OPLUS_EVT2 OPLUS_DVT1 OPLUS_DVT2 OPLUS_PVT1>;
+};
+&tlmm {
+  //#ifdef OPLUS_FEATURE_RF_CABLE_DETECT
+  rf_cable0_active: rf_cable0_active {
+      mux {
+          pins = "gpio47";
+          function = "gpio";
+      };
+      config {
+          pins = "gpio47";
+          drive-strength = <2>;
+          input-enable;
+          bias-pull-up;
+      };
+  };
+  //#endif /* OPLUS_FEATURE_RF_CABLE_DETECT */
+};
+&soc {
+  //#ifdef OPLUS_FEATURE_RF_CABLE_DETECT
+  oplus_rf_cable {
+      compatible = "oplus,rf_cable";
+      interrupt-parent = <&tlmm>;
+      rf_cable_support_num = <1>;
+      rf,cable0-gpio = <&tlmm 47 0>;
+      rf,cable-support-timer = <0>;
+      pinctrl-names = "rf_cable_active";
+      pinctrl-0 = <&rf_cable0_active>;
+  };
+  //#endif /* OPLUS_FEATURE_RF_CABLE_DETECT */
+};
