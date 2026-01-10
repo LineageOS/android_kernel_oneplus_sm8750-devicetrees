@@ -16,6 +16,24 @@
       "message": "chmod 644 please. Hopefully the existing ones are also not executable.",
       "revId": "c3d21926f2495591cc56d6a2fae90c55fd9fddba",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "583f6fca_18c3408d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32253
+      },
+      "writtenOn": "2026-01-10T11:29:35Z",
+      "side": 1,
+      "message": "Done, the rest was already non executable",
+      "parentUuid": "0ce1f31c_80095811",
+      "revId": "c3d21926f2495591cc56d6a2fae90c55fd9fddba",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
