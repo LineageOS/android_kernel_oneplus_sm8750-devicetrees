@@ -41,7 +41,7 @@
 		touchpanel,pen-tx-rx-num = <12 8>;
 		touchpanel,doze-tx-num = <12>;
 		touchpanel,pen-panel-coords = <24000 33920>;
-		touchpanel,pen-max-pressure = <16384>;
+		touchpanel,pen-max-pressure = <65533>;
 		touchpanel,pen-max-tilt = <60 60>;
 		touchpanel,msecs-to-jiffies-time = <100>;
 		touchpanel,smooth-level = <255 32 64 96 128 254>;
