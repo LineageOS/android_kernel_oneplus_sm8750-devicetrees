@@ -43,6 +43,7 @@ _platform_map = {
             {"name": "pagani-24821-sun-overlay.dtbo"},
             {"name": "pagani-24875-sun-overlay.dtbo"},
             {"name": "piloti-24620-sun-overlay.dtbo"},
+            {"name": "pista-24600-sun-overlay.dtbo"},
             {"name": "ktm-24851-sun-overlay-gauge-ti.dtbo"},
             {"name": "ktm-24851-sun-overlay-gauge-mpc.dtbo"},
             {"name": "ktm-24851-sun-overlay-gauge-ti-dvt2.dtbo"},
