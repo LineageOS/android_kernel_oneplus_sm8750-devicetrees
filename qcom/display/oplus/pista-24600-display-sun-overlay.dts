@@ -1,0 +1,12 @@
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/oplus/hw-id.h>
+#include "../display/sun-sde-display-mtp-v8-overlay.dts"
+#include "sun-display-overlay-common.dtsi"
+#include "pista-24600-display-sun-overlay.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Sun MTP,zhufeng";
+
+	oplus,project-id = <24600 24671 24670>;
+};
