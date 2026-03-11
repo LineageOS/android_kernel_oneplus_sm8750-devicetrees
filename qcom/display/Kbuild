@@ -75,6 +75,7 @@ dtbo-y += oplus/erhai-24924-display-sun-overlay.dtbo
 dtbo-y += oplus/erhai-24926-display-sun-overlay.dtbo
 dtbo-y += oplus/pagani-24821-display-sun-overlay.dtbo
 dtbo-y += oplus/piloti-24620-display-sun-overlay.dtbo
+dtbo-y += oplus/pista-24600-display-sun-overlay.dtbo
 dtbo-y += oplus/ktm-24851-display-sun-overlay.dtbo
 #OPLUS_DTS_OVERLAY end
 
