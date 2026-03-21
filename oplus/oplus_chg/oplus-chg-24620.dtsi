@@ -96,6 +96,9 @@
 		oplus,gauge_ic = <&oplus_virtual_gauge>;
 		oplus,topic-update-interval = <5000>;
 		oplus,support_subboard_ntc;
+		oplus,fcl_support;
+		oplus,fcl_index = <0>;
+		oplus,vb_offset = <20>;
 
 
 		deep_spec,support;
@@ -385,7 +388,6 @@
 					OPLUS_IC_FUNC_GAUGE_GET_BATT_SOH
 					OPLUS_IC_FUNC_GAUGE_GET_BATT_AUTH
 					OPLUS_IC_FUNC_GAUGE_GET_BATT_HMAC
-					OPLUS_IC_FUNC_GAUGE_SET_BATT_FULL
 					OPLUS_IC_FUNC_GAUGE_UPDATE_DOD0
 					OPLUS_IC_FUNC_GAUGE_UPDATE_SOC_SMOOTH
 					OPLUS_IC_FUNC_GAUGE_GET_CB_STATUS
@@ -803,7 +805,6 @@
 	};
 	oplus_smart_charge: oplus,smart_charge {
 		compatible = "oplus,smart_charge";
-		oplus,quick_mode_gain_support;
 		oplus,smart_chg_soh_support;
 	};
 	oplus_chg_quirks: oplus,chg_quirks {
