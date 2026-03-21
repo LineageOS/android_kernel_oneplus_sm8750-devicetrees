@@ -116,12 +116,12 @@
 					450 15 2
 					530 20 3>;
 
-		deep_spec,term_coeff = <3000 320 0
-					3050 440 2
-					3060 440 2
-					3150 540 4
-					3250 580 5
-					3350 600 7>;
+		deep_spec,term_coeff = <3000 800 3
+					3050 900 5
+					3060 900 5
+					3150 1000 7
+					3250 1100 9
+					3350 1200 10>;
 		deep_spec,ddrc_strategy_name = "ddrc_curve";
 		deep_spec,volt_step = <20>;
 		deep_spec,ddbc_curve {
@@ -444,6 +444,7 @@
 					OPLUS_IC_FUNC_GAUGE_GET_DEC_CV_SOH
 					OPLUS_IC_FUNC_GAUGE_SET_VCT
 					OPLUS_IC_FUNC_GAUGE_GET_VCT
+					OPLUS_IC_FUNC_GAUGE_GET_GAUGE_R_INFO
 				>;
 				virqs = <
 					OPLUS_IC_VIRQ_ERR
@@ -702,6 +703,7 @@
 		oplus_spec,current_limit_of_drop_soc_2 = <350>;
 		oplus_spec,volt_of_fast_drop_soc_1 = <2900>;
 		oplus_spec,support_uisoc_low_battery_control;
+		oplus_spec,support_gauge_r_track;
 
 
 		oplus_spec,vbat_uv_thr_mv = <3000>;
@@ -1722,6 +1724,8 @@
 
 		oplus,target_vbus_mv = <11000>;
 		oplus,curr_max_ma = <10900>;
+		oplus,curr_max_ma_percent = <3000
+					     2000>;
 		oplus,subboard_ntc_abnormal_current = <7300>;
 		oplus,ufcs_warm_allow_vol = <4000>;
 		oplus,ufcs_warm_allow_soc = <55>;
