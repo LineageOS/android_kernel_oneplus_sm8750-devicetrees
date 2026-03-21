@@ -31,6 +31,8 @@
 
 		oplus,target_vbus_mv = <11000>;
 		oplus,curr_max_ma = <5000>;
+		oplus,curr_max_ma_percent = <3000
+					     2000>;
 		oplus,pps_enable_pps_status;
 		oplus,pps_warm_allow_vol = <4000>;
 		oplus,pps_warm_allow_soc = <55>;
