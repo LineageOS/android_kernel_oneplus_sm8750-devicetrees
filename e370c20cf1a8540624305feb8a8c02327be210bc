@@ -33,6 +33,24 @@
       "message": "Hey bruno, can you test this chain on erhai? it shouldn\u0027t cause any regressions",
       "revId": "e370c20cf1a8540624305feb8a8c02327be210bc",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fe22355_c6a6558d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-06-24T07:33:19Z",
+      "side": 1,
+      "message": "I missed this. I\u0027ll test soon.",
+      "parentUuid": "2613e388_fddc8a73",
+      "revId": "e370c20cf1a8540624305feb8a8c02327be210bc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
