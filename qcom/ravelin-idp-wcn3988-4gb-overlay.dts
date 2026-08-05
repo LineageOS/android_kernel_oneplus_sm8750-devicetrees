@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 /dts-v1/;
@@ -10,7 +10,7 @@
 
 / {
 	model = "Qualcomm Technologies, Inc. Ravelin IDP 4GB DDR + WCN3988";
-	compatible = "qcom,ravelin-idp", "qcom,ravelin", "qcom,idp";
-	qcom,msm-id = <568 0x10000>, <602 0x10000>, <653 0x10000>, <654 0x10000>;
+	compatible = "qcom,ravelin-idp", "qcom,ravelin", "qcom,idp", "qcom,montague-qmb";
+	qcom,msm-id = <568 0x10000>, <602 0x10000>, <653 0x10000>, <654 0x10000>, <734 0x10000>;
 	qcom,board-id = <34 0x601>;
 };

@@ -89,6 +89,29 @@ properties:
    pin-ctrl-support:
      description: Represents pin_ctrl support is present or not.
 
+   wlan-en-gpio:
+     description: Represents gpio config that needs to be send to FW.
+                  WLFW_GPIO_NUM(or PMIC_Index value for PMIC based GPIO) = 0,
+                  WLFW_GPIO_NAME                                         = 1,
+                  WLFW_PMIC_INDEX(PMIC_group value for PMIC based GPIO)  = 2,
+                  WLFW_GPIO_TYPE                                         = 3,
+                  WLFW_OUTPUT_VALUE                                      = 4,
+                  WLFW_FUNC                                              = 5,
+                  WLFW_DIRECTION                                         = 6,
+                  WLFW_DRIVE                                             = 7,
+                  WLFW_BIAS                                              = 8,
+                  WLFW_IS_CLK                                            = 9,
+                  WLFW_IS_WAKE                                           = 10,
+                  WLFW_INTRPT_TRIGGER_TYPE                               = 11,
+                  WLFW_PRIORITY                                          = 12,
+                  WLFW_GPIO_BITRESERVED                                  = 13,
+                  WLFW_GPIO_ARRAY_VALID                                  = 14,
+                  WLFW_GPIO_OWNER                                        = 15
+
+                                  <0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15> ->Config Indexes
+                  wlan-en-gpio = <41 0 0 0 2 0 1 4 0 0 1  255 0  0  1  1>;->Config values
+
+
 required:
   - compatible
   - reg
@@ -111,6 +134,7 @@ examples:
         clock-names = "smmu_aggre2_noc_clk";
         iommus = <&anoc2_smmu 0x1900>,
                  <&anoc2_smmu 0x1901>;
+        wlan-en-gpio = <41 0 0 0 2 0 1 4 0 0 1 255 0 0 1 1>;
         qcom,wlan-smmu-iova-address = <0 0x10000000>;
         qcom,wlan;
         interrupts = <0 130 0 /* CE0 */ >,

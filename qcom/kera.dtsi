@@ -2787,7 +2787,7 @@
 		compatible = "qcom,sdhci-msm-v5";
 		reg = <0x00F44000 0x1000>, <0x00F45000 0x1000>,
 			<0x00F48000 0x18000>;
-		reg-names = "hc", "cqhci";
+		reg-names = "hc", "cqhci", "ice";
 
 		interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>;
@@ -2797,6 +2797,7 @@
 		nvmem-cells = <&boot_config>;
 		nvmem-cell-names = "boot_conf";
 
+		qcom,ice-use-hwkm;
 		bus-width = <8>;
 		non-removable;
 		supports-cqe;
@@ -2839,12 +2840,12 @@
 		operating-points-v2 = <&sdhc1_opp_table>;
 
 		qos0 {
-			mask = <0xf0>;
+			mask = <0xf8>;
 			vote = <44>;
 		};
 
 		qos1 {
-			mask = <0x0f>;
+			mask = <0x07>;
 			vote = <44>;
 		};
 	};

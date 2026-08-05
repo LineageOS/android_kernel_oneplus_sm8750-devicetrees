@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/interconnect/qcom,sun.h>
@@ -72,7 +72,7 @@
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 		reusable;
 		alignment = <0x0 0x400000>;
-		size = <0x0 0x2000000>;
+		size = <0x0 0x4400000>;
 	};
 };
 
@@ -226,6 +226,20 @@
 		};
 
 	};
+
+	qcnwlan: qcom,qcn9224@b0000000 {
+		compatible = "qcom,cnss-qcn9224";
+		reg = <0xb0000000 0x10000>;
+		reg-names = "smmu_iova_ipa";
+		base-addr = <0xb0000000>;
+		qcom,wlan-rc-num = <0>;
+		qcom,wlan-ramdump-dynamic = <0x600000>;
+		mhi,max-channels = <30>;
+		mhi,timeout = <10000>;
+		qrtr_node_id = <0x30>;
+		board_id = <0xdb>;
+		status = "okay";
+	};
 };
 
 &pcie0_rp {
@@ -234,6 +248,8 @@
 	cnss_pci0: cnss_pci0 {
 		reg = <0 0 0 0 0>;
 		qcom,iommu-group = <&cnss_audio_iommu_group0>;
+		qrtr_instance_id = <0x30>;
+		no-l1-supported;
 		memory-region = <&cnss_wlan_mem &cnss_pci0_iommu_region_partition>;
 
 		cnss_pci0_iommu_region_partition: cnss_pci0_iommu_region_partition {

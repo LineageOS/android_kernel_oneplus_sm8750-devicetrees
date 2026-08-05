@@ -8,7 +8,7 @@
 / {
 	model = "Qualcomm Technologies, Inc. Montague SoC";
 	compatible = "qcom,montague";
-	qcom,msm-id = <581 0x10000>;
+	qcom,msm-id = <581 0x10000>, <773 0x10000>;
 };
 
 &apps_rsc {

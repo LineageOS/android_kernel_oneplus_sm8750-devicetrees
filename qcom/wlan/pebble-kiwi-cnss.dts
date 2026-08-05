@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "pebble-kiwi-cnss.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Pebble MTP + Kiwi WLAN";
+	compatible = "qcom,pebble", "qcom,pebble", "qcom,pebble-mtp";
+	qcom,msm-id = <735 0x10000>, <741 0x10000>;
+};

@@ -4,43 +4,49 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include <dt-bindings/interconnect/qcom,yupik.h>
-
+#include <dt-bindings/interconnect/qcom,lahaina.h>
 &soc {
 	wlan: qcom,cnss-qca6490@b0000000 {
 		compatible = "qcom,cnss-qca6490";
-		reg = <0xb0000000 0x10000>;
-		reg-names = "smmu_iova_ipa";
-		wlan-en-gpio = <&tlmm 84 0>;
-		qcom,bt-en-gpio = <&tlmm 85 0>;
+		reg = <0xb0000000 0x10000>,
+		      <0xb2e5510 0x690>;
+		reg-names = "smmu_iova_ipa", "tcs_cmd";
+		wlan-en-gpio = <&tlmm 64 0>;
+		qcom,bt-en-gpio = <&tlmm 65 0>;
+		qcom,sw-ctrl-gpio = <&tlmm 153 0>;
 		pinctrl-names = "wlan_en_active", "wlan_en_sleep";
 		pinctrl-0 = <&cnss_wlan_en_active>;
 		pinctrl-1 = <&cnss_wlan_en_sleep>;
-		qcom,wlan-rc-num = <0>;
 		qcom,wlan;
+		qcom,wlan-rc-num = <0>;
 		qcom,wlan-ramdump-dynamic = <0x420000>;
 		qcom,wlan-cbc-enabled;
+		/* RPMH_PDC_WLAN_RF_TCS<6>_CMD<2> offset */
+		qcom,tcs_offset_int_pow_amp_vreg = <0x4D0>;
+		use-pm-domain;
+		cnss-enable-self-recovery;
+		qcom,same-dt-multi-dev;
 
-		vdd-wlan-aon-supply = <&S7B>;
-		qcom,vdd-wlan-aon-config = <950000 952000 0 0 1>;
-		vdd-wlan-dig-supply = <&S7B>;
-		qcom,vdd-wlan-dig-config = <950000 952000 0 0 1>;
-		vdd-wlan-io-supply = <&L19B>;
+		vdd-wlan-aon-supply = <&S2E>;
+		qcom,vdd-wlan-aon-config = <1012000 1012000 0 0 1>;
+		vdd-wlan-dig-supply = <&S11B>;
+		qcom,vdd-wlan-dig-config = <1012000 1012000 0 0 1>;
+		vdd-wlan-io-supply = <&S10B>;
 		qcom,vdd-wlan-io-config = <1800000 1800000 0 0 1>;
-		vdd-wlan-rfa1-supply = <&S1B>;
-		qcom,vdd-wlan-rfa1-config = <1880000 2040000 0 0 1>;
-		vdd-wlan-rfa2-supply = <&S8B>;
-		qcom,vdd-wlan-rfa2-config = <1350000 1350000 0 0 1>;
-		wlan-ant-switch-supply = <&L11C>;
+		vdd-wlan-rfa1-supply = <&S1C>;
+		qcom,vdd-wlan-rfa1-config = <1900000 1952000 0 0 1>;
+		vdd-wlan-rfa2-supply = <&S12B>;
+		qcom,vdd-wlan-rfa2-config = <1350000 1360000 0 0 1>;
+		wlan-ant-switch-supply = <&L7E>;
 		qcom,wlan-ant-switch-config = <2800000 2800000 0 0 0>;
 
 		interconnects =
-		<&aggre1_noc MASTER_PCIE_0 &aggre1_noc SLAVE_ANOC_PCIE_GEM_NOC>,
+		<&aggre2_noc MASTER_PCIE_0 &aggre2_noc SLAVE_ANOC_PCIE_GEM_NOC>,
 		<&gem_noc MASTER_ANOC_PCIE_GEM_NOC &mc_virt SLAVE_EBI1>;
 		interconnect-names = "pcie_to_memnoc", "memnoc_to_ddr";
 
 		qcom,icc-path-count = <2>;
-		qcom,bus-bw-cfg-count = <9>;
+		qcom,bus-bw-cfg-count = <7>;
 		qcom,bus-bw-cfg =
 		/** ICC Path 1 **/
 		<0 0>, /* no vote */
@@ -54,10 +60,6 @@
 		<100000 790000>,
 		/* very high: > 1080 Mbps snoc/anoc: 403 Mhz ddr: 451.2 MHz */
 		<175000 1600000>,
-		/* Ultra high */
-		<0 0>,
-		/* Super High */
-		<0 0>,
 		/* low (latency critical): 18-60 Mbps snoc/anoc: 200 Mhz
 		 * ddr: 547.2 MHz
 		 */
@@ -70,9 +72,8 @@
 		<30000 1804800>,
 		<100000 1804800>,
 		<175000 6220800>,
-		<0 0>,
-		<0 0>,
 		<7500 2188800>;
+
 	};
 };
 

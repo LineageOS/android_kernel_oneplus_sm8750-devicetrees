@@ -5,7 +5,7 @@
 
 &sdhc_1 {
 	vdd-supply = <&L12B>;
-	qcom,vdd-voltage-level = <2960000 2960000>;
+	qcom,vdd-voltage-level = <2952000 2952000>;
 	qcom,vdd-current-level = <0 570000>;
 
 	vdd-io-supply = <&L1D>;

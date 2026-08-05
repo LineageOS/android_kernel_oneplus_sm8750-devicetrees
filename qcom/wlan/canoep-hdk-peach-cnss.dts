@@ -14,5 +14,5 @@
 	compatible = "qcom,canoep-hdk", "qcom,canoep", "qcom,hdk";
 	qcom,msm-id = <661 0x10000>, <661 0x20000>, <0x1000295 0x10000>,
 		<0x1000295 0x20000>;
-	qcom,board-id = <0x1001F 0>;
+	qcom,board-id = <0x1001F 0>, <0x1011F 0>;
 };

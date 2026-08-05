@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: BSD-3-Clause
+
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "lahaina-qca6490-cnss.dtsi"
+
+&wlan {
+	qcom,xo-clk-gpio = <&tlmm 201 0>;
+};

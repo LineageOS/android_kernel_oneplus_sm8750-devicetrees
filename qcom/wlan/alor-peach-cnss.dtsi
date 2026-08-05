@@ -150,38 +150,38 @@
 		/** ICC Path 1 **/
 		<0 0>, /* no vote */
 		/* idle: 0-18 Mbps snoc/anoc: 100 Mhz */
-		<2250 308000>,
+		<2250 2160000>,
 		/* low: 18-60 Mbps snoc/anoc: 100 Mhz */
-		<7500 308000>,
+		<7500 2160000>,
 		/* medium: 60-240 Mbps snoc/anoc: 100 Mhz */
-		<30000 308000>,
+		<30000 2160000>,
 		/* high: 240-1200 Mbps snoc/anoc: 100 Mhz */
-		<100000 308000>,
-		/* very high: > 1200 Mbps snoc/anoc: 403 Mhz */
-		<175000 3210000>,
-		/* ultra high: DBS mode snoc/anoc: 403 Mhz */
-		<312500 3210000>,
-		/* super high: DBS mode snoc/anoc: 533 Mhz */
-		<587500 6450000>,
+		<100000 2160000>,
+		/* very high: 1200-2000 Mbps snoc/anoc: 100 Mhz */
+		<250000 2160000>,
+		/* ultra high: DBS mode snoc/anoc: 200 Mhz */
+		<312500 2800000>,
+		/* super high: DBS mode snoc/anoc: 403 Mhz */
+		<587500 5624000>,
 		/* low (latency critical): 18-60 Mbps snoc/anoc: 200 Mhz */
 		<7500 1610000>,
 
 		/** ICC Path 2 **/
 		<0 0>,
 		/* idle: 0-18 Mbps ddr: 547.2 MHz */
-		<2250 2188800>,
+		<2250 1200000>,
 		/* low: 18-60 Mbps ddr: 547.2 MHz */
-		<7500 2188800>,
+		<7500 1200000>,
 		/* medium: 60-240 Mbps ddr: 547.2 MHz */
-		<30000 2188800>,
+		<30000 1200000>,
 		/* high: 240-1200 Mbps ddr: 547.2 MHz */
-		<100000 2188800>,
-		/* very high: > 1200 Mbps ddr: 1555 MHz */
-		<175000 6220800>,
+		<100000 1200000>,
+		/* very high: 1200-2000 Mbps ddr: 547.2 MHz */
+		<250000 1200000>,
 		/* ultra high: DBS mode ddr: 2092 MHz */
-		<312500 8368000>,
+		<312500 8395000>,
 		/* super high: DBS mode ddr: 3.2 GHz */
-		<587500 12800000>,
+		<587500 13000000>,
 		/* low (latency critical): 18-60 Mbps ddr: 547.2 MHz */
 		<7500 2188800>;
 
@@ -241,6 +241,10 @@
 			iommu-addresses = <&wlan_direct_link 0x0 0x0 0x0 0x18000000>,
 				<&wlan_direct_link 0x0 0xb0000000 0x0 0x50000000>;
 		};
+	};
+	wlan_vendor_wonder: qcom,cnss-vendor-wlan-wonder {
+		compatible = "qcom,cnss-vendor-wlan-wonder";
+		status = "okay";
 	};
 };
 
