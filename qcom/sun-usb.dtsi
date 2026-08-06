@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/clock/qcom,gcc-sun.h>
@@ -60,6 +60,15 @@
 			0x144 /* GSI_RING_BASE_ADDR_H */
 			0x1a4>; /* GSI_IF_STS */
 
+		qcom,interconnect-values-nom = /* NOMINAL Votes */
+			<1000000 4500000>,
+			<0 2400>,
+			<0 40000>;
+		qcom,interconnect-values-svs = /* SVS Votes */
+			<240000 700000>,
+			<0 2400>,
+			<0 40000>;
+
 		/*
 		 * Establish dependency on smmu driver so that depopulate path of
 		 * deferred probe doesn't run into existing bug in smmu driver.
@@ -85,6 +94,7 @@
 			snps,dis-u2-entry-quirk;
 			snps,dis_u2_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
+			snps,dis_enblslpm_quirk;
 			tx-fifo-resize;
 			num-hc-interrupters = /bits/ 16 <3>;
 			dr_mode = "otg";

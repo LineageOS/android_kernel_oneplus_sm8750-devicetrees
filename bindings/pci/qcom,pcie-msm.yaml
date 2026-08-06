@@ -456,6 +456,18 @@ properties:
     description: L1 sub-state (ss) is not supported.
     type: boolean
 
+  qcom,bdf-change-halt-en:
+    description: Set this property to 1 to enable the BDF_CHANGE_HALT_EN feature
+                 for certain controllers. When enabled, the controller will halt
+                 inbound write transactions upon detecting a No-Snoop change.
+    type: boolean
+
+  qcom,read-halt-en:
+    description: Set this property to 1 to enable the RD_HALT_EN feature
+                 for certain controllers.When enabled, controller halts AXI read
+                 requests until all pending AXI write transactions are completed.
+    type: boolean
+
   qcom,no-aux-clk-sync:
     description: The AUX clock is not synchronous to the Core clock to
                  support l1ss.
@@ -518,6 +530,7 @@ properties:
         minItems: 1
     required:
       - reg
+    additionalProperties: false
 
   pcie1_rp:
     description: This is the root port node (child node).
@@ -527,6 +540,7 @@ properties:
         minItems: 1
     required:
       - reg
+    additionalProperties: false
 
 required:
   - compatible

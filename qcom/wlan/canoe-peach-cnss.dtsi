@@ -204,19 +204,32 @@
 		wcal-pbs-supply = <&WCAL_PBS>;
 	};
 
+	cnss_iommu_peach: cnss_iommu_peach {
+		qcom,iommu-msi-size = <0x1000>;
+		qcom,iommu-geometry = <0x0 0x88000000 0x0 0x28010000>;
+		qcom,iommu-dma = "fastmap";
+		qcom,iommu-pagetable = "coherent";
+		qcom,iommu-faults = "stall-disable", "HUPCF", "non-fatal";
+	};
+
 	wlan_direct_link: qcom,cnss-direct-link {
 		compatible = "qcom,cnss-direct-link";
 		#address-cells = <2>;
 		#size-cells = <2>;
 		iommus = <&apps_smmu 0x100f 0x0>;
-		qcom,iommu-group = <&cnss_audio_iommu_group0>;
+		qcom,iommu-group = <&cnss_iommu_peach>;
 		memory-region = <&direct_link_iommu_region_partition>;
 		dma-coherent;
 
 		direct_link_iommu_region_partition: direct_link_iommu_region_partition {
-			iommu-addresses = <&wlan_direct_link 0x0 0x0 0x0 0x18000000>,
+			iommu-addresses = <&wlan_direct_link 0x0 0x0 0x0 0x88000000>,
 				<&wlan_direct_link 0x0 0xb0000000 0x0 0x50000000>;
 		};
+	};
+
+	wlan_vendor_wonder: qcom,cnss-vendor-wlan-wonder {
+		compatible = "qcom,cnss-vendor-wlan-wonder";
+		status = "okay";
 	};
 };
 
@@ -226,11 +239,11 @@
 
 	cnss_pci0: cnss_pci0 {
 		reg = <0 0 0 0 0>;
-		qcom,iommu-group = <&cnss_audio_iommu_group0>;
+		qcom,iommu-group = <&cnss_iommu_peach>;
 		memory-region = <&cnss_wlan_mem &cnss_pci0_iommu_region_partition>;
 		cnss_pci0_iommu_region_partition: cnss_pci0_iommu_region_partition {
 			/* address-cells =3 size-cells=2 from canoe-pcie.dtsi */
-			iommu-addresses = <&cnss_pci0 0x0 0x0 0x0 0x0 0x18000000>,
+			iommu-addresses = <&cnss_pci0 0x0 0x0 0x0 0x0 0x88000000>,
 					  <&cnss_pci0 0x0 0x0 0xB0000000 0x0 0x50000000>;
 		};
 	};

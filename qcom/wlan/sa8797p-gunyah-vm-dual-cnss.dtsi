@@ -44,29 +44,27 @@
 
 		chip_cfg@3 {
 			supported-ids = <0x1107>;
+			qcom,qrtr_node_id = <0x10>;
 			qcom,wlan-ramdump-dynamic = <0x600000>;
 		};
-	};
-};
-
-&reserved_memory {
-	cnss_wlan_mem1: cnss_wlan_region1 {
-		compatible = "shared-dma-pool";
-		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
-		reusable;
-		alignment = <0x0 0x400000>;
-		size = <0x0 0x2000000>;
 	};
 };
 
 &pcie3 {
 	pcie3_rp: pcie3_rp {
 		reg = <0 0 0 0 0>;
-		#address-cells = <5>;
-		#size-cells = <0>;
 		cnss_pci1: cnss_pci1 {
 			reg = <0 0 0 0 0>;
-			memory-region = <&cnss_wlan_mem1>;
+			memory-region = <&cnss_pci3_iommu_region_partition>;
+
+			#address-cells = <1>;
+			#size-cells = <1>;
+			wlan-smmuv3;
+
+			cnss_pci3_iommu_region_partition: cnss_pci3_iommu_region_partition {
+				iommu-addresses = <&cnss_pci1 0x0 0x0 0x0 0x0 0x98000000>,
+						  <&cnss_pci1 0x0 0x0 0xB0000000 0xf 0x50000000>;
+			};
 		};
 	};
 };

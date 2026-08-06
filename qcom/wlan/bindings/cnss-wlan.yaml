@@ -230,6 +230,16 @@ properties:
        enable to resolve PMU power up issues. Provide BT GPIO using
        this config param.
 
+   qcom,sw-ctrl-data-0-gpio:
+     description: |
+       GPIO signal for software control data 0 functionality.
+       Used for WLAN device control operations.
+
+   qcom,sw-ctrl-data-1-gpio:
+     description: |
+       GPIO signal for software control data 1 functionality.
+       Used for WLAN device control operations.
+
    qcom,same-dt-multi-dev:
      description: |
        Boolean property to decide whether it supports
@@ -256,6 +266,41 @@ properties:
      description: |
        Boolean property to decide whether
        platform name required.
+
+   fig-direct-cx:
+     description: |
+       Boolean property to decide whether chip is fig before device id is
+       determined during PCIe enumeration.
+
+   cx-mode:
+     description: |
+       Indicates the required method to handle the CX rail.
+
+   cx-reg-name:
+     description: |
+       Name of the CX regulator.
+
+   cnss-direct-cx-host-sol-init-gpio:
+     description: |
+       Repurposed Host SOL GPIO pin to be used during power on and
+       power off for fig.
+
+   qcom,pmic-auto-headroom:
+     description: |
+       Integer value specifying the amount of headroom adjustment in millivolts
+       to subtract during open loop CPR voltage update.
+
+   qcom,wake-voltage-drop-adjustment:
+     description: |
+       Integer value specifying the amount of voltage drop adjustment in
+       millivolts to add for the wake voltage during open loop CPR
+       voltage update.
+
+   qcom,sleep-voltage-drop-adjustment:
+     description: |
+       Integer value specifying the amount of voltage drop adjustment in
+       millivolts to add for the sleep voltage during open loop CPR
+       voltage update.
 
    chip_cfg@X:
      description: represent chip specific configurations
@@ -374,4 +419,3 @@ examples:
 	};
     };
 ...
-

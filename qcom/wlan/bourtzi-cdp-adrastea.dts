@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "bourtzi-adrastea.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Bourtzi CDP + WCN3998 + cottid/lcd";
+	compatible = "qcom,bourtzi-cdp", "qcom,bourtzip-cdp", "qcom,bourtzi", "qcom,bourtzip", "qcom,cdp";
+	qcom,msm-id = <776 0x10000>, <777 0x10000>;
+	qcom,board-id = <0x10001 0x0>, <0x20001 0x0>;
+};

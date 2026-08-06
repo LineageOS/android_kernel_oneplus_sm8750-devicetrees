@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/gpio/gpio.h>
 
 &reserved_memory {
-	wlan_msa_mem: wlan_msa_mem_region@82a00000 {
+	ravelin_adrastea_msa_mem: wlan_msa_mem_region@82a00000 {
 		no-map;
 		reg = <0x0 0x82a00000 0x0 0x300000>;
 	};
@@ -39,13 +39,13 @@
 			     <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH /* CE11 */ >;
 		qcom,iommu-dma = "fastmap";
 		qcom,iommu-faults = "stall-disable", "HUPCF", "non-fatal";
-		qcom,iommu-dma-addr-pool = <0xa0000000 0x10000000>;
 		qcom,iommu-geometry = <0xa0000000 0x10000000>;
+		memory-region = <&icnss2_iommu_region_partition>;
 		qcom,fw-prefix;
 		qcom,wlan;
 		bdf-download-support;
 		wpss-support-enable;
-		qcom,wlan-msa-fixed-region = <&wlan_msa_mem>;
+		qcom,wlan-msa-fixed-region = <&ravelin_adrastea_msa_mem>;
 		vdd-cx-mx-supply = <&L11B>;
 		vdd-1.8-xo-supply = <&L23B>;
 		vdd-1.3-rfa-supply = <&L14B>;
@@ -61,6 +61,16 @@
 					      <&smp2p_wlan_1_in 1 0>;
 			interrupt-names = "qcom,smp2p-force-fatal-error",
 					  "qcom,smp2p-early-crash-ind";
+		};
+		/**
+		 * qcom,iommu-dma-addr-pool = <0xa0000000 0x10000000> conversion:
+		 * 0x0 0xA0000000 - first range from above dma-addr pool
+		 * 0x0 0xB0000000 = 0xa0000000 + 0x10000000
+		 * 0x0 0x50000000 = 100000000 - 0xB0000000
+		 */
+		icnss2_iommu_region_partition: icnss2_iommu_region_partition {
+			iommu-addresses = <&icnss 0x00000000 0xa0000000>,
+					<&icnss 0xB0000000 0x50000000>;
 		};
 
 	};

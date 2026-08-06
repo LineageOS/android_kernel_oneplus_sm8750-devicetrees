@@ -4,12 +4,12 @@
  */
 
 /dts-v1/;
-/plugin/;
 
-#include "art-fig-cnss.dtsi"
+#include "ravelin-cqm.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Art SoC";
-	compatible = "qcom,art";
+	model = "Qualcomm Technologies, Inc. ravelin-cqm SoC";
+	compatible = "qcom,ravelin";
+	qcom,msm-id = <773 0x10000>;
 	qcom,board-id = <0 0>;
 };

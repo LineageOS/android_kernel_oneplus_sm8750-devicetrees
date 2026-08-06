@@ -1961,21 +1961,21 @@
 			pins = "gpio121";
 			function = "sdc1_clk";
 			bias-disable;
-			drive-strength = <8>;
+			drive-strength = <12>;
 		};
 
 		cmd {
 			pins = "gpio123";
 			function = "sdc1_cmd";
 			bias-pull-up;
-			drive-strength = <8>;
+			drive-strength = <12>;
 		};
 
 		data {
 			pins = "gpio124", "gpio125", "gpio126", "gpio127", "gpio128", "gpio129", "gpio130", "gpio131";
 			function = "sdc1_data";
 			bias-pull-up;
-			drive-strength = <8>;
+			drive-strength = <12>;
 		};
 
 		rclk {

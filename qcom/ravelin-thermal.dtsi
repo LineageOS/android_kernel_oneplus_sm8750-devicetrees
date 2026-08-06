@@ -242,6 +242,7 @@
 			<&gcc GCC_VIDEO_VENUS_CLK_SRC>,
 			<&dispcc DISP_CC_MDSS_MDP_CLK_SRC>;
 		csr-id = <0 1 2 6 7>;
+		status = "disabled";
 	};
 
 	cx_pe: cx_rdpm_pe@635000 {

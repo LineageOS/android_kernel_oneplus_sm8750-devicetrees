@@ -132,3 +132,7 @@
 &pcie0 {
 	qcom,no-client-based-bw-voting;
 };
+
+&redriver {
+	status = "disabled";
+};

@@ -47,24 +47,21 @@
 	};
 };
 
-&reserved_memory {
-	cnss_wlan_mem: cnss_wlan_region {
-		compatible = "shared-dma-pool";
-		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
-		reusable;
-		alignment = <0x0 0x400000>;
-		size = <0x0 0x2000000>;
-	};
-};
-
 &pcie2 {
 	pcie2_rp: pcie2_rp {
 		reg = <0 0 0 0 0>;
-		#address-cells = <5>;
-		#size-cells = <0>;
 		cnss_pci: cnss_pci {
 			reg = <0 0 0 0 0>;
-			memory-region = <&cnss_wlan_mem>;
+			memory-region = <&cnss_pci2_iommu_region_partition>;
+
+			#address-cells = <1>;
+			#size-cells = <1>;
+			wlan-smmuv3;
+
+			cnss_pci2_iommu_region_partition: cnss_pci2_iommu_region_partition {
+				iommu-addresses = <&cnss_pci 0x0 0x0 0x0 0x0 0x98000000>,
+						  <&cnss_pci 0x0 0x0 0xB0000000 0xf 0x50000000>;
+			};
 		};
 	};
 };
