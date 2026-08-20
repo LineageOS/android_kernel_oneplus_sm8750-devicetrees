@@ -24,7 +24,41 @@
 		};
 	};
 
+	pm8010m_tz {
+		status = "disabled";
+	};
+
+	pm8010n_tz {
+		status = "disabled";
+	};
+
+	pmd802x_tz {
+		status = "disabled";
+	};
+
+	pmr735d_tz {
+		status = "disabled";
+	};
 };
+
+&spmi_bus {
+	qcom,pmd802x@4 {
+		status = "disabled";
+	};
+
+	qcom,pmr735d@a {
+		status = "disabled";
+	};
+};
+
+&pm8010_m {
+	status = "disabled";
+};
+
+&pm8010_n {
+	status = "disabled";
+};
+
 &pm8550_flash0 {
 	qcom,ires-ua = <5000>;
 };
