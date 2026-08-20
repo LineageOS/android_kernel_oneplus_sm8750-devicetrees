@@ -24,6 +24,23 @@
 		};
 	};
 
+	pm8010n_tz {
+		status = "disabled";
+	};
+
+	pmd802x_tz {
+		status = "disabled";
+	};
+};
+
+&spmi_bus {
+	qcom,pmd802x@4 {
+		status = "disabled";
+	};
+};
+
+&pm8010_n {
+	status = "disabled";
 };
 
 &pm8550_flash0 {
