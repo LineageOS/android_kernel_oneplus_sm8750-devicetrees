@@ -16,6 +16,24 @@
       "message": "```diff\ndiff --git a/oplus/pista_overlay_common.dtsi b/oplus/pista_overlay_common.dtsi\nindex e9f120ba..0f6c0bcb 100644\n--- a/oplus/pista_overlay_common.dtsi\n+++ b/oplus/pista_overlay_common.dtsi\n@@ -30,6 +30,18 @@\n \tqcom,ires-ua \u003d \u003c5000\u003e;\n };\n \n+\u0026thermal_zones {\n+\tpmd802x_tz {\n+\t\tstatus \u003d \"disabled\";\n+\t};\n+};\n+\n+\u0026spmi_bus {\n+\tqcom,pmd802x@4 {\n+\t\tstatus \u003d \"disabled\";\n+\t};\n+};\n+\n \u0026soc {\n \t//#ifdef OPLUS_FEATURE_THERMAL_HORAE\n \tshell_front {\n```",
       "revId": "c710ded4d13fa09835b488eb68dd4791f91b570f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73d0d7db_9e1817a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 33843
+      },
+      "writtenOn": "2026-08-23T08:59:33Z",
+      "side": 1,
+      "message": "pista should only have pmd802x@4",
+      "parentUuid": "5fce0cfd_efcf5d02",
+      "revId": "c710ded4d13fa09835b488eb68dd4791f91b570f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
