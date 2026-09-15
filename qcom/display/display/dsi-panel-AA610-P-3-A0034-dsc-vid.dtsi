@@ -902,13 +902,13 @@
 	/* fps-switch */
 	qcom,mdss-dsi-pan-enable-dynamic-fps;
 	qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_both_hv_porch";
-	qcom,dsi-supported-dfps-list = <120  144    165    90    60    30>;
-	qcom,dsi-dfps-hfp-list       = <156   68    12    164   156   1196>;
-	qcom,dsi-dfps-hbp-list       = <16   16     16     16    16    560>;
-	qcom,dsi-dfps-hpw-list       = <16   16     16     16    16    16>;
-	qcom,dsi-dfps-vfp-list       = <80   80     80     980   2960  80>;
-	qcom,dsi-dfps-vbp-list       = <26   26     26     26    26    26>;
-	qcom,dsi-dfps-vpw-list       = <2    2      2      2     2     2>;
+	qcom,dsi-supported-dfps-list = <120  144    165    90    60>;
+	qcom,dsi-dfps-hfp-list       = <156   68    12    164   156>;
+	qcom,dsi-dfps-hbp-list       = <16   16     16     16    16>;
+	qcom,dsi-dfps-hpw-list       = <16   16     16     16    16>;
+	qcom,dsi-dfps-vfp-list       = <80   80     80     980   2960>;
+	qcom,dsi-dfps-vbp-list       = <26   26     26     26    26>;
+	qcom,dsi-dfps-vpw-list       = <2    2      2      2     2>;
 	/* video mode need download compensate code */
 	oplus,video-mode-fps-switch-compenstate-enable;
 	oplus,dsi_vid_timming_switch_post_enable;
