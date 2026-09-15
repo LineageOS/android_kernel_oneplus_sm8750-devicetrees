@@ -249,13 +249,13 @@
 	/* fps-switch */
 	qcom,mdss-dsi-pan-enable-dynamic-fps;
 	qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_both_hv_porch";
-	qcom,dsi-supported-dfps-list = <165  144    120    90    60    30>;
-	qcom,dsi-dfps-hfp-list       = <12   64     156    156   156   1196>;
-	qcom,dsi-dfps-hbp-list       = <16   16     16     16    16    560>;
-	qcom,dsi-dfps-hpw-list       = <16   16     16     16    16    16>;
-	qcom,dsi-dfps-vfp-list       = <84   84     84     1044  2964  84>;
-	qcom,dsi-dfps-vbp-list       = <22   22     22     22    22    22>;
-	qcom,dsi-dfps-vpw-list       = <2    2      2      2     2     2>;
+	qcom,dsi-supported-dfps-list = <165  144    120    90    60>;
+	qcom,dsi-dfps-hfp-list       = <12   64     156    156   156>;
+	qcom,dsi-dfps-hbp-list       = <16   16     16     16    16>;
+	qcom,dsi-dfps-hpw-list       = <16   16     16     16    16>;
+	qcom,dsi-dfps-vfp-list       = <84   84     84     1044  2964>;
+	qcom,dsi-dfps-vbp-list       = <22   22     22     22    22>;
+	qcom,dsi-dfps-vpw-list       = <2    2      2      2     2>;
 
 	/* ignore some fps swicth factory test */
 	//oplus,factory-ignore-mode = <1 5>;
