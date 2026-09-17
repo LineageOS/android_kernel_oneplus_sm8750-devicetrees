@@ -5411,32 +5411,32 @@
 			qcom,mdss-dsi-panel-phy-timings = [00 23 09 09 1A 24 09 09 09 02 04 00 1D 0E];
 			qcom,display-topology = <1 1 1>,<2 2 1>;
 			qcom,default-topology-index = <1>;
-			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <1264 60 1264 60 1264 60>;
+			//qcom,partial-update-enabled = "single_roi";
+			//qcom,panel-roi-alignment = <1264 60 1264 60 1264 60>;
 			qcom,dsi-mode-te-width-us = <315>;
 		};
 		timing@sdc_fhd_90 { /* FHD+ 120hz 1094.4Mbps */
 			qcom,mdss-dsi-panel-phy-timings = [00 23 09 09 1A 24 09 09 09 02 04 00 1D 0E];
 			qcom,display-topology = <1 1 1>,<2 2 1>;
 			qcom,default-topology-index = <1>;
-			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <1264 60 1264 60 1264 60>;
+			//qcom,partial-update-enabled = "single_roi";
+			//qcom,panel-roi-alignment = <1264 60 1264 60 1264 60>;
 			qcom,dsi-mode-te-width-us = <315>;
 		};
 		timing@sdc_fhd_60 { /* FHD+ 120hz 1094.4Mbps */
 			qcom,mdss-dsi-panel-phy-timings = [00 23 09 09 1A 24 09 09 09 02 04 00 1D 0E];
 			qcom,display-topology = <1 1 1>,<2 2 1>;
 			qcom,default-topology-index = <1>;
-			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <1264 60 1264 60 1264 60>;
+			//qcom,partial-update-enabled = "single_roi";
+			//qcom,panel-roi-alignment = <1264 60 1264 60 1264 60>;
 			qcom,dsi-mode-te-width-us = <3100>;
 		};
 		timing@oplus_fhd_120 { /* FHD+ 120hz 1094.4Mbps */
 			qcom,mdss-dsi-panel-phy-timings = [00 23 09 09 1A 24 09 09 09 02 04 00 1D 0E];
 			qcom,display-topology = <1 1 1>,<2 2 1>;
 			qcom,default-topology-index = <1>;
-			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <1264 60 1264 60 1264 60>;
+			//qcom,partial-update-enabled = "single_roi";
+			//qcom,panel-roi-alignment = <1264 60 1264 60 1264 60>;
 			qcom,dsi-mode-te-width-us = <315>;
 		};
 	};
