@@ -1,0 +1,15 @@
+/*
+ *   <author>     <data>      <desc>
+ *   LiFenfen   2024/09/09  , select BDF by device-tree , bug id 7902090
+ */
+
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/oplus/hw-id.h>
+#include "vw_tuna-mtp-wcn7750-overlay.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Tuna MTP, vw";
+
+	oplus,project-id = <24885 24886>;
+};

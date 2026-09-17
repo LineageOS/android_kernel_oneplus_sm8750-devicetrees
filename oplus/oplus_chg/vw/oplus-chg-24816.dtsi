@@ -1,6 +1,12 @@
 /* qcom battery gauge, svooc-80w, ufcs, no-pps */
 #include "oplus-chg-vw-common.dtsi"
 #include "oplus-chg-vw-sili.dtsi"
+#include "oplus-chg-vw-cn-in-curve.dtsi"
+#include "oplus-chg-vw-ufcs.dtsi"
+
+&oplus_virtual_dpdm_switch {
+	oplus,use_audio_switch;
+};
 
 &oplus_cpa {
 	oplus,protocol_list = <CHG_PROTOCOL_UFCS  80
@@ -12,4 +18,12 @@
 					CHG_PROTOCOL_VOOC
 					CHG_PROTOCOL_PPS
 					CHG_PROTOCOL_PD>;
+};
+
+&oplus_virtual_gauge {
+	oplus,batt_capacity_mah = <9000>;
+};
+
+&oplus_vooc {
+	oplus,smart_chg_bcc_support;
 };

@@ -1,0 +1,178 @@
+&aliases {
+	i2c4 = "/soc/qcom,qupv3_1_geni_se@ac0000/i2c@a94000";
+	i2c5 = "/soc/qcom,qupv3_1_geni_se@ac0000/i2c@a90000";
+};
+
+&tuna_snd {
+	qcom,audio-routing =
+		"AMIC1", "Analog Mic1",
+		"AMIC1", "MIC BIAS1",
+		"AMIC2", "Analog Mic2",
+		"AMIC2", "MIC BIAS2",
+		"AMIC3", "Analog Mic3",
+		"AMIC3", "MIC BIAS1",
+		"AMIC4", "Analog Mic4",
+		"AMIC4", "MIC BIAS1",
+		"VA AMIC1", "Analog Mic1",
+		"VA AMIC1", "VA MIC BIAS1",
+		"VA AMIC2", "Analog Mic2",
+		"VA AMIC2", "VA MIC BIAS2",
+		"VA AMIC3", "Analog Mic3",
+		"VA AMIC3", "VA MIC BIAS1",
+		"VA AMIC4", "Analog Mic4",
+		"VA AMIC4", "VA MIC BIAS1",
+		"TX DMIC0", "Digital Mic0",
+		"TX DMIC0", "MIC BIAS3",
+		"TX DMIC1", "Digital Mic1",
+		"TX DMIC1", "MIC BIAS3",
+		"TX DMIC2", "Digital Mic2",
+		"TX DMIC2", "MIC BIAS1",
+		"TX DMIC3", "Digital Mic3",
+		"TX DMIC3", "MIC BIAS1",
+		"IN1_HPHL", "HPHL_OUT",
+		"IN2_HPHR", "HPHR_OUT",
+		"IN3_AUX", "AUX_OUT",
+		"RX_TX DEC0_INP", "TX DEC0 MUX",
+		"RX_TX DEC1_INP", "TX DEC1 MUX",
+		"RX_TX DEC2_INP", "TX DEC2 MUX",
+		"RX_TX DEC3_INP", "TX DEC3 MUX",
+		"VA SWR_INPUT", "VA_SWR_CLK",
+		"VA_AIF1 CAP", "VA_SWR_CLK",
+		"VA_AIF2 CAP", "VA_SWR_CLK",
+		"VA_AIF3 CAP", "VA_SWR_CLK",
+		"VA DMIC0", "Digital Mic0",
+		"VA DMIC1", "Digital Mic1",
+		"VA DMIC2", "Digital Mic2",
+		"VA DMIC3", "Digital Mic3",
+		"VA DMIC0", "VA MIC BIAS3",
+		"VA DMIC1", "VA MIC BIAS3",
+		"VA DMIC2", "VA MIC BIAS1",
+		"VA DMIC3", "VA MIC BIAS1";
+	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
+		      <&wcd9378_codec>;
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
+			   "wcd9378_codec";
+	qcom,wsa-max-devs = <0>;
+
+	qcom,mi2s-audio-intf = <1>;
+	qcom,tdm-audio-intf = <0>;
+	qcom,pri-mi2s-gpios = <&cdc_pri_mi2s_gpios>;
+	swr-haptics-unsupported; // disable qcom haptics
+	qcom,wcn-bt = <1>;
+
+	qcom,msm-mbhc-usbc-audio-supported = <0>;
+	qcom,msm-mbhc-hs-mic-max-threshold-mv = <2600>;
+	qcom,msm-mbhc-hs-mic-min-threshold-mv = <112>; /* 75*2700/1800 */
+	qcom,msm-mbhc-hphl-swh = <0>;
+	qcom,msm-mbhc-gnd-swh = <0>;
+	oplus,mbhc-headset-micbias-alwayon = <1>;
+	oplus,mbhc-check-cross-conn = <1>;
+	oplus,mbhc-disable-l-det = <1>;
+};
+
+&cdc_pri_mi2s_gpios {
+	status = "ok";
+};
+
+&qupv3_se5_i2c {
+	status = "ok";
+	qcom,clk-freq-out = <400000>;
+	tfa98xx@34 {
+		compatible = "nxp,tfa98xx";
+		reg = <0x34>;
+		reset-gpio = <&tlmm 184 0x00>;
+		tfa9874_vdd-supply = <&L7B>;
+		tfa_min_range = <5300>;
+		tfa_max_range = <7500>;
+		tfa_default_mohm = <6000>;
+		tfa_channel = <0>;
+		is_use_freq = <1>;
+		reset-polarity = <0>;
+		status = "ok";
+	};
+	tfa98xx@35 {
+		compatible = "nxp,tfa98xx";
+		reg = <0x35>;
+		reset-gpio = <&tlmm 183 0x00>;
+		tfa9874_vdd-supply = <&L7B>;
+		tfa_min_range = <5300>;
+		tfa_max_range = <7500>;
+		tfa_default_mohm = <6000>;
+		tfa_channel = <1>;
+		is_use_freq = <1>;
+		reset-polarity = <0>;
+		status = "ok";
+	};
+};
+
+&soc {
+	oplus,audio-drv {
+		compatible = "oplus,asoc-audio";
+		//for nxp speaker
+		oplus,speaker-vendor = "nxp";
+		oplus,speaker-i2s-id = <0>;
+		oplus,speaker-codec-name = "tfa98xx.4-0034", "tfa98xx.4-0035";
+		oplus,speaker-codec-dai-name = "tfa98xx-aif-4-34", "tfa98xx-aif-4-35";
+	};
+};
+
+&i2s0_sck_active {
+	config {
+		drive-strength = <4>;   /* 4 mA */
+	};
+};
+
+&i2s0_ws_active {
+	config {
+		drive-strength = <4>;   /* 4 mA */
+	};
+};
+
+&i2s0_sd0_active {
+	config {
+		drive-strength = <4>;   /* 4 mA */
+	};
+};
+
+&i2s0_sd1_active {
+	config {
+		drive-strength = <4>;   /* 4 mA */
+		bias-pull-down;         /* PULL DOWN */
+	};
+};
+
+&tx_swr_clk_active {
+	config {
+		drive-strength = <2>;   /* 2 mA */
+	};
+};
+
+&tx_swr_data0_active {
+	config {
+		drive-strength = <2>;   /* 2 mA */
+	};
+};
+
+&tx_swr_data1_active {
+	config {
+		drive-strength = <2>;   /* 2 mA */
+	};
+};
+
+&tx_swr_data2_active {
+	config {
+		drive-strength = <2>;   /* 2 mA */
+	};
+};
+
+&wcd_reset_active {
+	config {
+		drive-strength = <6>;   /* 6 mA */
+	};
+};
+
+&wcd_reset_sleep {
+	config {
+		drive-strength = <2>;   /* 2 mA */
+	};
+};
