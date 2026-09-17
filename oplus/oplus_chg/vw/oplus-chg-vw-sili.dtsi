@@ -1,53 +1,57 @@
 &oplus_chg_comm {
 	oplus,ui_soc_2_voltage_comp_mv = <30>;
-	oplus,chg_shutdown_max_mv = <3000>;
+	oplus,chg_shutdown_max_mv = <2750>;
 
 	oplus_spec,drop_soc_2_temp_ladder = <(-50) 0 0 0 0 0 0 0 0 0>;
 	oplus_spec,volt_diff_ladder_of_drop_soc_2 = <80 80 0 0 0 0 0 0 0 0>;
 	oplus_spec,keep_soc_2_temp_ladder = <(-200) (-50) 0 0 0 0 0 0 0 0>;
 	oplus_spec,volt_diff_ladder_of_keep_soc_2 = <10 20 30 0 0 0 0 0 0 0>;
-	oplus_spec,back_rm_of_drop_soc_2 = <42>;
+	oplus_spec,back_rm_of_drop_soc_2 = <45>;
 	oplus_spec,back_rm_of_drop_soc_1 = <0>;
 	oplus_spec,load_current_of_drop_soc_2 = <1500>;
 	oplus_spec,load_current_of_drop_soc_1 = <2000>;
 	oplus_spec,current_limit_of_drop_soc_2 = <700>;
 	oplus_spec,volt_of_fast_drop_soc_1 = <2750>;
 	oplus_spec,support_uisoc_low_battery_control;
+	oplus_spec,soc_down_ladder = <2 11 60 95 100 0 0 0 0 0>;
+	oplus_spec,soc_down_delay_hz_ladder = <20 20 40 60 150 300 0 0 0 0>;
+	oplus_spec,soc_down_chg_delay_hz_ladder = <90 40 40 60 150 300 0 0 0 0>;
+	oplus_spec,soc_down_default_delay_hz = <40>;
 };
 
 &oplus_mms_gauge {
 	deep_spec,support;
 	deep_spec,uv_thr = <2750>;
 	deep_spec,count_thr = <50>;
-	deep_spec,vbat_soc = <20>;
+	deep_spec,vbat_soc = <80>;
 	deep_spec,count_step = <0 10 0
 				350 12 1
 				450 15 2
 				530 20 3>;
-	deep_spec,term_coeff = <2900 600 2
-				3000 650 4
-				3010 650 4
-				3050 750 6
-				3100 800 8
-				3110 800 8
-				3150 900 10
-				3160 900 10
-				3200 1000 12
-				3210 1000 12
-				3260 1100 12>;
+	deep_spec,term_coeff = <2900 700 2
+				3000 800 4
+				3010 800 4
+				3050 850 6
+				3100 950 8
+				3110 950 8
+				3150 1050 10
+				3160 1050 10
+				3200 1150 12
+				3210 1150 12
+				3260 1250 12>;
 	deep_spec,ddrc_strategy_name = "ddrc_curve_v2";
 	deep_spec,volt_step = <20>;
 	deep_spec,ddbc_curve {
 		oplus,temp_type = <OPLUS_STRATEGY_USE_BATT_TEMP>;
 		oplus,temp_range = <(-100) 0 200>;
-		deep_spec,ddbc_temp_cold = <500 3310 5
-					   10000 3260 2>;
-		deep_spec,ddbc_temp_cool = <500 3310 5
-					   10000 3260 2>;
-		deep_spec,ddbc_temp_normal = <500 3310 5
-					   10000 3260 2>;
-		deep_spec,ddbc_temp_warm = <500 3310 5
-					   10000 3260 2>;
+		deep_spec,ddbc_temp_cold = <500 3250 5
+					   10000 3200 2>;
+		deep_spec,ddbc_temp_cool = <500 3250 5
+					   10000 3200 2>;
+		deep_spec,ddbc_temp_normal = <500 3250 5
+					   10000 3200 2>;
+		deep_spec,ddbc_temp_warm = <500 3250 5
+					   10000 3200 2>;
 	};
 	ddrc_strategy {
 		oplus,temp_type = <OPLUS_STRATEGY_USE_BATT_TEMP>;
@@ -233,15 +237,15 @@
 			strategy_temp_4 = <0 2750 2900 0
 					50 2900 2910 1
 					150 3000 3010 2
-					250 3050 3050 3
-					350 3100 3100 4
-					450 3150 3150 5>;
+					250 3100 3100 3
+					350 3150 3150 4
+					450 3200 3200 5>;
 			strategy_temp_5 = <0 2750 2900 0
 					50 2900 2910 1
 					150 3000 3010 2
-					250 3050 3050 3
-					350 3100 3100 4
-					450 3150 3150 5>;
+					250 3100 3100 3
+					350 3150 3150 4
+					450 3200 3200 5>;
 		};
 		strategy_ratio_range_high {
 			strategy_temp_0 = <0 2753 3000 0
