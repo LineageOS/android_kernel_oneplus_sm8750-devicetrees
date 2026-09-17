@@ -1,0 +1,27 @@
+/*
+ *   <author>     <data>      <desc>
+ *   LiFenfen   2024/09/09  , select BDF by device-tree , bug id 7902090
+ */
+
+#include <dt-bindings/interconnect/qcom,tuna.h>
+#include "../tuna-mtp-wcn7750.dts"
+
+&icnss2 {
+	oplus_bdf: oplus_bdf {
+		bdf_name = "bdwlan.elf";
+		project_type = "operator";
+		region_type = "operator";
+	};
+};
+
+&oplus_bdf {
+    operator_2: operator_2 {
+		bdf_name = "bdwlan.b0i";
+		region_name = "IN";
+    };
+
+    operator_3: operator_3 {
+		bdf_name = "bdwlan.b0e";
+		region_name = "EU";
+    };
+};

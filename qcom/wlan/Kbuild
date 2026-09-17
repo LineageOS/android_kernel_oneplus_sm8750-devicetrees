@@ -152,6 +152,9 @@ dtbo-y += tuna-qrd-kiwi.dtbo
 dtbo-y += tuna-mtp-kiwi.dtbo
 dtbo-y += tuna-rcm-kiwi.dtbo
 dtbo-y += tuna-atp-kiwi.dtbo
+# ifdef OPLUS_FEATURE_WIFI_BDF
+dtbo-y += oplus/vw_tuna-mtp-wcn7750-overlay.dtbo
+# endif /* OPLUS_FEATURE_WIFI_BDF */
 endif
 
 ifeq ($(CONFIG_ARCH_KERA),y)

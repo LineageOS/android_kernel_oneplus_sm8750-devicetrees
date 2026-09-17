@@ -1,0 +1,51 @@
+/********** fastchg & normal chg & gpio dpdm switch config *********************************/
+&tlmm {
+	switch_ctrl_vooc: switch_ctrl_vooc {
+		mux {
+			pins = "gpio76";
+			function = "gpio";
+		};
+		conifg {
+			pins = "gpio76";
+			bias-pull-up; /* NO pull*/
+			drive-strength = <2>;
+			output-high;
+		};
+	};
+
+	switch_ctrl_ufcs: switch_ctrl_ufcs {
+		mux {
+			pins = "gpio76";
+			function = "gpio";
+		};
+		conifg {
+			pins = "gpio76";
+			bias-pull-down; /* NO pull*/
+			drive-strength = <2>; /* 2mA */
+			output-low;
+		};
+	};
+
+	switch_ctrl_ap: switch_ctrl_ap {
+		mux {
+			pins = "gpio76";
+			function = "gpio";
+		};
+		conifg {
+			pins = "gpio76";
+			bias-pull-down; /* NO pull*/
+			drive-strength = <2>; /* 2mA */
+			output-low;
+		};
+	};
+};
+
+&oplus_virtual_dpdm_switch {
+	oplus,switch_ctrl-gpio = <&tlmm 76 0x00>;
+	pinctrl-names = "switch_ctrl_ap", "switch_ctrl_vooc", "switch_ctrl_ufcs";
+	pinctrl-0 = <&switch_ctrl_ap>;
+	pinctrl-1 = <&switch_ctrl_vooc>;
+	pinctrl-2 = <&switch_ctrl_ufcs>;
+};
+
+/********************************* gpio dpdm switch config end ******************************************/
