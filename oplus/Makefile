@@ -32,6 +32,11 @@ else ifeq ($(CONFIG_KTM_DTB),y)
 OPLUS_SUN_BOARDS += ktm-24851-sun-overlay-gauge-ti.dtbo\
                     ktm-24851-sun-overlay-gauge-mpc.dtbo\
                     ktm-24851-sun-overlay-gauge-ti-dvt2.dtbo
+else ifeq ($(CONFIG_VOLKSWAGEN_DTB),y)
+OPLUS_SUN_BOARDS += volkswagen-24816-sun-overlay.dtbo\
+                    volkswagen-24885-sun-overlay-IN-T0.dtbo\
+                    volkswagen-24885-sun-overlay-IN.dtbo\
+                    volkswagen-24885-sun-overlay-EU.dtbo
 endif
 
 dtb-y += $(OPLUS_SUN_BOARDS) $(SUN_BASE_DTB)

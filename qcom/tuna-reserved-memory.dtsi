@@ -200,9 +200,7 @@
 
 	adspslpi_mem: adspslpi_region@99e00000 {
 		no-map;
-
-		/* reg = <0x0 0x99e00000 0x0 0x3200000>; */
-		reg = <0x0 0x9a300000 0x0 0x4c80000>;
+		reg = <0x0 0x99e00000 0x0 0x4400000>;
 	};
 
 	wlan_msa_mem: wlan_msa_region@a6400000 {
@@ -217,6 +215,11 @@
 	xbl_ramdump_mem: xbl_ramdump_region@b8000000 {
 		no-map;
 		reg = <0x0 0xb8000000 0x0 0x1c0000>;
+	};
+
+	gunyah_hyp_mem1: gunyah_hyp_region1@b81c0000 {
+		no-map;
+		reg = <0x0 0xb81c0000 0x0 0x800000>;
 	};
 
 	/* merged tz_reserved, xbl_sc, and qtee regions */

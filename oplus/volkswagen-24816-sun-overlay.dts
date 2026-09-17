@@ -1,0 +1,76 @@
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/oplus/hw-id.h>
+#include "../qcom/tuna-cdp-overlay-vw.dts"
+#include "oplus_nfc/volkswagen_nfc_thn31.dtsi"
+#include "tuna_overlay_common.dtsi"
+#include "volkswagen_overlay_common.dtsi"
+#include "oplus_chg/vw/oplus-chg-24816.dtsi"
+#include "oplus_misc/oplus-misc-24816.dtsi"
+#include "sensor/vw-sensor-24816-24885.dtsi"
+#include "tp/vw-oplus-tp-24816.dtsi"
+#include "oplus_uff/oplus_uff_24816.dtsi"
+#include "mm/volkswagen-24816-mm.dtsi"
+
+/ {
+    model = "Qualcomm Technologies, Inc. Tuna CDP,volkswagen";
+
+    qcom,board-id = <8 0>;
+    oplus,project-id = <24816>;
+    oplus,hw-id = <OPLUS_EVB1 OPLUS_T0 OPLUS_EVT1 OPLUS_EVT2 OPLUS_DVT1 OPLUS_DVT2 OPLUS_PVT1>;
+};
+
+&tlmm {
+  //#ifdef OPLUS_FEATURE_RF_CABLE_DETECT
+  //modify for rf_cable
+  rf_cable0_active: rf_cable0_active {
+    mux {
+      pins = "gpio127";
+      function = "gpio";
+    };
+    config {
+      pins = "gpio127";
+      drive-strength = <2>;
+      input-enable;
+      bias-pull-up;
+    };
+  };
+  //#endif /* OPLUS_FEATURE_RF_CABLE_DETECT */
+};
+
+&soc {
+  //#ifdef OPLUS_FEATURE_RF_CABLE_DETECT
+  //modify for rf_cable
+  oplus_rf_cable {
+    compatible = "oplus,rf_cable";
+    interrupt-parent = <&tlmm>;
+    rf_cable_support_num = <1>;
+    rf,cable0-gpio = <&tlmm 127 0>;
+    rf,cable-support-timer = <0>;
+    pinctrl-names = "rf_cable_active";
+    pinctrl-0 = <&rf_cable0_active>;
+  };
+  //#endif /* OPLUS_FEATURE_RF_CABLE_DETECT */
+  //#ifdef CONFIG_HMBIRD_SCHED
+  oplus,hmbird {
+      version_type {
+          type = "HMBIRD_OGKI";
+      };
+  };
+  //#endif /* CONFIG_HMBIRD_SCHED */
+
+  //#ifdef CONFIG_OPLUS_OMRG
+    oplus-omrg {
+        compatible = "oplus,oplus-omrg";
+        oplus-omrg0 {
+                oplus,divider-cells = <2>;
+                oplus,omrg-master = <&CPU2 940800 1824000>;
+                oplus,omrg-slave = <&CPU0 883200 1632000>;
+                master_vote_max;
+                up_limit_enable;
+                /* down_limit_enable; */
+                /* thermal_enable; */
+        };
+    };
+  //#endif
+};
