@@ -29,3 +29,7 @@ dtbo-$(CONFIG_ARCH_SUN)   += oplus/pista-camera-overlay-evb.dtbo \
 			     oplus/pista-camera-overlay-T0.dtbo \
 
 dtbo-$(CONFIG_ARCH_SUN)   += oplus/ktm-camera-overlay-T0.dtbo \
+
+dtbo-$(CONFIG_ARCH_TUNA)  += tuna-camera.dtbo
+dtbo-$(CONFIG_ARCH_TUNA)  += oplus/vw-camera-overlay-evb.dtbo \
+                             oplus/vwIn-camera-overlay-evb.dtbo

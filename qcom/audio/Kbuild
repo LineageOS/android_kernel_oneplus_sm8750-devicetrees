@@ -17,6 +17,7 @@ endif
 
 ifeq ($(CONFIG_ARCH_SUN), y)
 dtbo-y += sun-audio.dtbo \
+                tuna-audio.dtbo \
 #                sun-audio-cdp.dtbo \
 #                sun-audio-cdp-nfc.dtbo \
 #                sun-audio-rumi.dtbo \
@@ -45,6 +46,8 @@ dtbo-y += oplus/piloti-24620-audio-sun-overlay.dtbo
 dtbo-y += oplus/pista-24600-audio-sun-overlay.dtbo
 dtbo-y += oplus/ktm-24851-audio-sun-overlay.dtbo
 dtbo-y += oplus/ktm-24851-audio-sun-overlay-T0.dtbo
+dtbo-y += oplus/volkswagen-24816-audio-tuna-overlay.dtbo
+dtbo-y += oplus/volkswagen-24885-audio-tuna-overlay.dtbo
 #OPLUS_DTS_OVERLAY end
 endif
 

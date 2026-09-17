@@ -1,0 +1,12 @@
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/oplus/hw-id.h>
+#include "../tuna-audio-mtp.dts"
+#include "tuna-audio-overlay-common.dtsi"
+#include "volkswagen-24885-audio-tuna-overlay.dtsi"
+
+/ {
+    model = "Qualcomm Technologies, Inc. Tuna MTP,volkswagen";
+
+    oplus,project-id = <24885 24886>;
+};
