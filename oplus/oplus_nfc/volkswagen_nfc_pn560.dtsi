@@ -1,0 +1,119 @@
+#include <dt-bindings/clock/qcom,rpmh.h>
+
+&soc {
+    //add for nfc_chipset
+    nfc_chipset {
+        compatible = "oplus-nfc-chipset";
+        chipset-24885 = "pn560";
+    };
+};
+&tlmm {
+	nfc {
+		nfc_int_active: nfc_int_active {
+			/* active state */
+			mux {
+				/* NFC Read Interrupt */
+				pins = "gpio55";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio55";
+				drive-strength = <2>; /* 2 MA */
+				bias-pull-down;
+			};
+		};
+
+		nfc_int_suspend: nfc_int_suspend {
+			/* sleep state */
+			mux {
+				/* NFC Read Interrupt */
+				pins = "gpio55";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio55";
+				drive-strength = <2>; /* 2 MA */
+				bias-pull-down;
+			};
+		};
+
+		nfc_enable_active: nfc_enable_active {
+			mux {
+				/* Enable, and Clock request gpios */
+				pins = "gpio114", "gpio115";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio114", "gpio115";
+				drive-strength = <2>; /* 2 MA */
+				bias-disable;
+			};
+		};
+
+		nfc_enable_suspend: nfc_enable_suspend {
+			mux {
+				pins = "gpio114", "gpio115";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio114", "gpio115";
+				drive-strength = <2>; /* 2 MA */
+				bias-disable;
+			};
+		};
+
+                nfc_vbat_active: nfc_vbat_active {
+			mux {
+				pins = "gpio161";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio161";
+				bias-pull-up; //The bias configuraion is for input GPIO. it could be bias-pull-down/bias-pull-up/bias-disable(means no pull)
+				drive-strength = <2>; // the strength is for output GPIO, the valuse could be 2/4/6/8/10/12/14/16 ma according to you hardware requirement.
+				//output-high; //for output GPIO, it could be output-high or output-low.
+				input-enable; // this is for input GPIO
+			};
+		};
+
+                nfc_vbat_suspend: nfc_vbat_suspend {
+			mux {
+				pins = "gpio161";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio161";
+				bias-pull-up; //The bias configuraion is for input GPIO. it could be bias-pull-down/bias-pull-up/bias-disable(means no pull)
+				drive-strength = <2>; // the strength is for output GPIO, the valuse could be 2/4/6/8/10/12/14/16 ma according to you hardware requirement.
+				//output-high; //for output GPIO, it could be output-high or output-low.
+				input-enable; // this is for input GPIO
+			};
+		};
+	}; //nfc
+}; //tlmm
+&qupv3_se0_i2c {
+	status = "ok";
+	qcom,clk-freq-out = <400000>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	nq@28 {
+		compatible = "qcom,sn-nci";
+		reg = <0x28>;
+		qcom,sn-irq = <&tlmm 55 0x00>;
+		qcom,sn-ven = <&tlmm 114 0x00>;
+		qcom,sn-clkreq = <&tlmm 115 0x00>;
+                nxp,sn-vbat = <&tlmm 161 0x00>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <55 0>;
+		interrupt-names = "nfc_irq";
+		pinctrl-names = "nfc_active", "nfc_suspend";
+		pinctrl-0 = <&nfc_int_active &nfc_enable_active &nfc_vbat_active>;
+		pinctrl-1 = <&nfc_int_suspend &nfc_enable_suspend &nfc_vbat_suspend>;
+	};
+};

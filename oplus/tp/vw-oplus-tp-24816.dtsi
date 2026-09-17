@@ -1,0 +1,431 @@
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+
+&soc {
+	/delete-node/ gpio_key;
+	gpio_key {
+		compatible = "gpio-keys";
+		label = "gpio-keys";
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&key_vol_up_default>;
+
+		vol_up {
+			label = "volume_down";
+			gpios = <&pmxr2230_gpios 6 GPIO_ACTIVE_LOW>;
+			linux,input-type = <1>;
+			linux,code = <KEY_VOLUMEDOWN>;
+			gpio-key,wakeup;
+			debounce-interval = <32>;
+			linux,can-disable;
+		};
+	};
+};
+
+&qupv3_se4_i2c {
+	status = "disabled";
+};
+
+&qupv3_se4_spi{
+	/delete-property/ pinctrl-0;
+	/delete-property/ pinctrl-1;
+	pinctrl-0 = <&qupv3_se4_spi_mosi_active>, <&qupv3_se4_spi_miso_active>,
+				<&qupv3_se4_spi_clk_active>, <&qupv3_se4_spi_cs_active>;
+	pinctrl-1 = <&qupv3_se4_spi_sleep>, <&qupv3_se4_spi_cs_sleep>;
+};
+
+&qupv3_se4_spi {
+	status = "ok";
+
+	synaptics_tcm_hbp@0{
+		status = "disabled";
+		compatible = "synaptics,tcm-spi-hbp";
+		reg = <0x0>;
+		chip-name = "S3910";
+		spi-max-frequency = <19000000>;
+		qcom,rt;
+
+		/* Interrupt && Irq-gpio */
+		interrupt-parent = <&tlmm>;
+		interrupts = <176 0x2008>;
+
+		/* Power Config */
+		avdd-supply = <&L22B>;
+		vdd-supply = <&L1D>;
+		synaptics,vdd-name = "vdd";
+		synaptics,avdd-name = "avdd";
+		synaptics,vdd_2v8_volt = <3000000>;
+
+		/* Other HW Resource */
+		synaptics,irq-gpio = <&tlmm 176 0x2008>;
+		synaptics,reset-gpio = <&tlmm 189 0x1>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&ts_int_active &ts_reset_active>;
+
+		touchpanel,panel-coords = <20352 44352>;
+		touchpanel,tx-rx-num = <17 38>;
+		//touchpanel,tp_ic_type = <2>;
+		panel_type = <3 7>;
+		// type of tp_dev ,TP-SAMSUNG = 8;
+		firmware_name = "AA545";
+		platform_support_project = <24067 24295>;
+		platform_support_project_dir = <24067 24067>;
+		platform_support_project_commandline = "mdss_dsi_panel_AC274_P_3_A0019_dsc_cmd_evb",
+							"mdss_dsi_panel_AC274_P_3_A0026_dsc_vid";
+
+		synaptics,power-on-state = <1>;
+		synaptics,power-delay-ms = <200>;
+		synaptics,irq-on-state = <0>;
+		synaptics,reset-on-state = <0>;
+		synaptics,reset-active-ms = <10>;
+		synaptics,reset-delay-ms = <80>;
+		synaptics,spi-mode = <0>;
+		synaptics,spi-byte-delay-us = <0>;
+		synaptics,spi-block-delay-us = <0>;
+
+		/* SW Support Feature Control */
+		tp_data_record_support;
+		stats_upload_support;
+
+		S3910_PANEL7 {
+			touchpanel,tx-rx-num = <18 39>;
+		};
+	};
+
+	hbp_spi_bus0:hbp_spi@0 {
+		compatible = "oplus,hbp_spi_bus";
+		reg = <0x0>;
+		status = "okay";
+
+		spi-max-frequency = <19000000>;
+		bus,spi-mode = <0>;
+		bus,rx-dummy = <0>;
+		bus,tx-dummy = <0>;
+		spi-cs-setup = <50 0>;
+	};
+};
+
+&tlmm {
+	pmx_ts_int_active {
+		ts_int_active: ts_int_active {
+			mux {
+				pins = "gpio176";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio176";
+				drive-strength = <8>;
+				bias-disable;
+				input-enable;
+			};
+		};
+	};
+
+	pmx_ts_reset_active {
+		ts_reset_active: ts_reset_active {
+			mux {
+				pins = "gpio189";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio189";
+				drive-strength = <8>;
+				output-high;
+				bias-disable;
+			};
+		};
+	};
+
+	pmx_ts_reset_idle {
+		ts_reset_idle: ts_reset_idle {
+			mux {
+				pins = "gpio189";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio189";
+				drive-strength = <8>;
+				output-low;
+				bias-disable;
+			};
+		};
+	};
+
+	qupv3_se4_spi_pins: qupv3_se4_spi_pins {
+		qupv3_se4_spi_miso_active: qupv3_se4_spi_miso_active {
+			mux {
+				pins = "gpio16";
+				function = "qup1_se4_l0";
+			};
+
+			config {
+				pins = "gpio16";
+				drive-strength = <6>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se4_spi_mosi_active: qupv3_se4_spi_mosi_active {
+			mux {
+				pins = "gpio17";
+				function = "qup1_se4_l1";
+			};
+
+			config {
+				pins = "gpio17";
+				drive-strength = <4>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se4_spi_clk_active: qupv3_se4_spi_clk_active {
+			mux {
+				pins = "gpio18";
+				function = "qup1_se4_l2";
+			};
+
+			config {
+				pins = "gpio18";
+				drive-strength = <6>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se4_spi_cs_active: qupv3_se4_spi_cs_active {
+			mux {
+				pins = "gpio19";
+				function = "qup1_se4_l3";
+			};
+
+			config {
+				pins = "gpio19";
+				drive-strength = <4>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se4_spi_sleep: qupv3_se4_spi_sleep {
+			mux {
+				pins = "gpio16", "gpio17",
+						"gpio18";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio16", "gpio17",
+						"gpio18";
+				drive-strength = <4>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se4_spi_cs_sleep: qupv3_se4_spi_cs_sleep {
+			mux {
+				pins = "gpio19";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio19";
+				drive-strength = <4>;
+				bias-disable;
+				output-high;
+			};
+		};
+	};
+
+};
+/*
+&qupv3_hub_i2c9 {
+	status = "ok";
+	qcom,clk-freq-out = <400000>;
+
+	ist8801@19 {
+		status = "disabled";
+	};
+	ist8801@18 {
+		status = "disabled";
+	};
+	magnachip@0D {
+		status = "disabled";
+	};
+	magnachip@0C {
+		status = "disabled";
+	};
+
+	magneticcover@11 {
+                status = "ok";
+		compatible = "oplus,magcvr_mxm1120";
+		reg = <0x0f>;
+		vcc_1v8-supply = <&L1B>;
+		vdd_3v0-supply = <&L2B>;
+		interrupt-parent = <&tlmm>;
+		interrups = <65 0x02>;
+                mag_irq_gpio = <&tlmm 65 0x2002>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&mag_cover_interrupt_input>;
+                // para config
+                magcvr_detect_step = <50>;
+                magcvr_farmax_th = <50>;
+                magcvr_far_threshold = <150>;
+                magcvr_far_noise_threshold = <125>;
+	};
+};
+
+&tlmm {
+	pmx_mag_cover_interrupt_input {
+		mag_cover_interrupt_input: mag_cover_interrupt_input {
+			mux {
+				pins = "gpio65";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio65";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+	};
+};
+*/
+
+&soc {
+	devinfo_vw {
+		compatible = "oplus-devinfo";
+		pinctrl-names = "default", "sleep", "active", "idle";
+		pinctrl-0 = <&hw_pins_default>;
+		pinctrl-1 = <&aboard_pin_gpio0_sleep>;
+		pinctrl-2 = <&aboard_pin_gpio0_active>;
+		pinctrl-3 = <&aboard_pin_gpio0_idle>;
+
+		main-sub {
+			compatible = "hw-match, main-sub";
+			use_tristate_gpio;
+			aboard-gpio0 = <&tlmm 146 0>;
+			aboard-patterns = <0 1 1 2 2>;
+			match-projects = <24816 24885 24886 24885 24886>;
+		};
+	};
+
+	synaptics:synaptics@0 {
+		compatible = "synaptics-tcm";
+		status = "okay";
+
+		device,id = <0>;
+		device,chip_name = "synaptics-s3910";
+		device,resolution = <20352 44352>;
+
+		/*interrupt config*/
+		interrupt-parent = <&tlmm>;
+		interrupts = <176 0x2008>;
+		irq-gpio = <&tlmm 176 0x2008>;
+
+		pinctrl-names = "default",
+				"ts_reset_active",
+				"ts_reset_idle",
+				"ts_resume",
+				"ts_suspend";
+		pinctrl-0 = <&ts_int_active &ts_reset_active>;
+		pinctrl-1 = <&ts_reset_active>;
+		pinctrl-2 = <&ts_reset_idle>;
+		pinctrl-3 = <&qupv3_se4_spi_miso_active &qupv3_se4_spi_mosi_active &qupv3_se4_spi_clk_active &qupv3_se4_spi_cs_active>;
+		pinctrl-4 = <&qupv3_se4_spi_sleep &qupv3_se4_spi_cs_sleep>;
+
+		/*cs active state, not used now*/
+		spi,cs_active = <0>;
+
+		/*power config*/
+		power,avdd-supply = <&L22B>;
+		power,avdd_volt = <3000000 3000000>;
+
+		power,vddi-supply = <&L1D>;
+		power,vddi_volt = <1800000 1800000>;
+
+		/*bus config*/
+		device,attached_bus = <&hbp_spi_bus0>;
+
+		create_with_power_on_support;
+	};
+
+	hbp:hbp@0 {
+		compatible = "oplus,hbp_core";
+		hbp,project = "vw";
+		hbp,devices = <&synaptics>;
+	};
+};
+
+&tlmm
+{
+	hw_pins_default:hw_pins_default {
+	};
+
+	aboard_pin_gpio0_sleep:aboard_pin_gpio0_sleep {
+		mux {
+			pins = "gpio146";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio146";
+			drive-strength = <2>;
+			bias-pull-down;
+			input-enable;
+		};
+	};
+
+	aboard_pin_gpio0_active:aboard_pin_gpio0_active {
+		mux {
+			pins = "gpio146";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio146";
+			drive-strength = <2>;
+			bias-pull-up;
+			input-enable;
+		};
+	};
+
+	aboard_pin_gpio0_idle:aboard_pin_gpio0_idle {
+		mux {
+			pins = "gpio146";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio146";
+			bias-disable;
+			input-enable;
+		};
+	};
+};
+
+&soc {
+	gpio-hall-sensor {
+		compatible = "gpio-keys";
+		label = "gpio-keys";
+		status = "okay";
+		pinctrl-0 = <&gpio_magic_button_default>;
+		pinctrl-names = "default";
+		oplus-magic-buttom {
+			label = "oplus_magic_button";
+			gpios = <&tlmm 135 GPIO_ACTIVE_LOW>;
+			linux,input-type = <EV_KEY>;
+			linux,code = <735>; /* means: BTN_TRIGGER_HAPPY32 */
+			linux,can-disable;
+			gpio-key,wakeup;
+			debounce-interval = <32>; /* standard debounce time 32ms */
+		};
+	};
+};
+
+&tlmm {
+	gpio_magic_button_default: gpio_magic_button_default-state {
+		pins = "gpio135";
+		function = "gpio";
+		drive-strength = <6>;
+		bias-pull-up;
+	};
+};
