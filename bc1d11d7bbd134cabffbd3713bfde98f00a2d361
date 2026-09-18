@@ -16,6 +16,24 @@
       "message": "chmod 644 all added files.",
       "revId": "bc1d11d7bbd134cabffbd3713bfde98f00a2d361",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2ace08b_3958233f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35436
+      },
+      "writtenOn": "2026-09-18T17:42:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "507e2535_8bc18d24",
+      "revId": "bc1d11d7bbd134cabffbd3713bfde98f00a2d361",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
